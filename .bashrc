@@ -1,9 +1,8 @@
 # Basics settings
 
 ## Sourcing
-[ -f /etc/bash_completion ] && . /etc/bash_completion
-[ -f ~/.config/git-prompt.sh ] && . ~/.config/git-prompt.sh
-
+[ -f /usr/share/bash-completion ] && . /usr/share/bash-completion
+[ -e /usr/lib/git-core/git-sh-prompt ] && . /usr/lib/git-core/git-sh-prompt
 
 ## Exporting
 export TERM='xterm-256color'
@@ -46,6 +45,9 @@ alias mypass='bw get password'
 alias myday='v ~/Documents/Journal/2021/2021.md'
 alias fm='ranger'
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias city='curl ipinfo.io/city'
+alias rc='sudo systemctl restart openvpn'
+alias dc='sudo systemctl stop openvpn'
 
 ## ptSh
 alias ls="ptls"

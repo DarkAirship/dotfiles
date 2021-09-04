@@ -1,8 +1,8 @@
-" Plug-ins
-call plug#begin('/home/semyon/.config/nvim/plugged')
+" Plug-ins (junegunn/vim-plug)
+call plug#begin('~/.config/nvim/plugged')
 
-Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'arcticicestudio/nord-vim' | Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive' | Plug 'godlygeek/tabular'
 
 "Plug 'plasticboy/vim-markdown'
@@ -25,14 +25,18 @@ echo ">^.^<"
 
 " Color
 colorscheme nord
+"colorscheme seoul256
 set termguicolors
 let g:limelight_conceal_ctermfg = 240
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 
 
-" Key-bindings
+" Commands
+:ca Tab Tabularize
 
+
+" Key-bindings
 "" Regular key remaps
 nn <space> :
 nn o o<esc>
@@ -52,8 +56,6 @@ ino <c-d> <esc>ddi
 xn K :move '<-2<CR>gv-gv
 xn J :move '>+1<CR>gv-gv
 
-:ca Tab Tabularize
-
 "" Leader-bindings for settings
 let mapleader = '\'
 
@@ -64,13 +66,17 @@ nn <leader>r :set keymap=russian-jcukenwin<CR>:echo<cr>
 nn <leader>e :set keymap=<cr>:echo<cr>
 nn <leader>v :vsplit $MYVIMRC<cr>
 
-"" Bindings for editing markdown
-nn <leader>l I*<esc>A*<esc>
+
+" Markdown settings
 nn <leader>h I#<esc>
+nn <leader>l I*<esc>A*<esc>
 
 ino <leader>i <esc>bi*<esc>ea*
 ino <leader>b <esc>bi**<esc>ea**
 ino <leader>u <esc>vBUea
+
+autocmd bufreadpre *.md setlocal textwidth=0
+autocmd bufreadpre *.md setlocal conceallevel=0
 
 
 " Goyo settings
@@ -93,13 +99,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
-" Markdown settings
-autocmd bufreadpre *.md setlocal textwidth=0
-autocmd bufreadpre *.md setlocal conceallevel=0
-
-
-" Status-line
-"run :so $VIMRUNTIME/syntax/hitest.vim
+" Status-line (:so $VIMRUNTIME/syntax/hitest.vim)
 set laststatus=2
 set statusline=
 set statusline+=%#DiffText#

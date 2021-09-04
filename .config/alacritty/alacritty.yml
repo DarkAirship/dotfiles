@@ -182,8 +182,8 @@ key_bindings:
   # (Windows, Linux, and BSD only)
   #- { key: V,              mods: Control, mode: ~Vi,        action: Paste            }
   #- { key: C,              mods: Control,                   action: Copy             }
-  - { key: F,              mods: Control, mode: ~Search,    action: SearchForward    }
-  - { key: B,              mods: Control, mode: ~Search,    action: SearchBackward   }
+  #- { key: F,              mods: Control, mode: ~Search,    action: SearchForward    }
+  #- { key: B,              mods: Control, mode: ~Search,    action: SearchBackward   }
   #- { key: C,              mods: Control, mode: Vi|~Search, action: ClearSelection   }
   #- { key: Insert,         mods: Shift,                           action: PasteSelection   }
   - { key: Key0,           mods: Control,                         action: ResetFontSize    }
