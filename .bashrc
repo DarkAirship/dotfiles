@@ -11,7 +11,6 @@ export MANPAGER='sh -c "col -bx | batcat -l man -p"'
 export EDITOR='nvim'
 export BROWSER='brave-browser'
 
-
 ## Semi-useful
 shopt -s checkwinsize
 
@@ -32,28 +31,22 @@ PS1+='\[\033[00m\]'
 # Aliases
 
 ## General
-alias dir='dir --color=auto'
-alias grep='grep --color=auto'
 #alias ls='exa -a --colour=always --group-directories-first'
+alias ls="ptls"
 alias ll='ls -al'
 alias la='ls -A'
-alias l='ls -CF'
-alias v='nvim'
-alias vim='nvim'
-alias mrkd='pandoc -f docx -t commonmark'
-alias mypass='bw get password'
-alias myday='v ~/Documents/Journal/2021/2021.md'
-alias fm='ranger'
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-alias city='curl ipinfo.io/city'
-alias rc='sudo systemctl restart openvpn'
-alias dc='sudo systemctl stop openvpn'
-
-## ptSh
-alias ls="ptls"
 alias pwd="ptpwd"
 alias mkdir="ptmkdir"
 alias touch="pttouch"
+alias grep='grep --color=auto'
+alias v='nvim'
+alias vim='nvim'
+alias fm='ranger'
+alias city='curl ipinfo.io/city'
+alias rc='sudo systemctl restart openvpn'
+alias dc='sudo systemctl stop openvpn'
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias mypass='bw get password'
 
 
 # History settings

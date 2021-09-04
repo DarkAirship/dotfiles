@@ -12,9 +12,6 @@ window:
     x: 20
     y: 20
 
-  # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
-
   decorations: none
 
   # Startup Mode (changes require restart)
@@ -53,11 +50,6 @@ font:
     x: 0
     y: 0
 
-  glyph_offset:
-    x: 0
-    y: 0
-
-
 # Cusrsor configuration
 cursor:
   style:
@@ -90,16 +82,10 @@ colors:
    cursor: '#d8dee9'
 
   # Search colors
-  #
-  # Colors used for the search bar and match highlighting.
   search:
     matches:
       foreground: CellBackground
       background: '#88c0d0'
-
-    #focused_match:
-    #  foreground: '#ffffff'
-    #  background: '#000000'
 
     bar:
       background: '#434c5e'
