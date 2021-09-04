@@ -9,9 +9,9 @@
 **Bash and CLI-apps**:
 - Git shell prompt (/usr/lib/git-core/git-sh-prompt)
 - [ptSh](https://github.com/jszczerbinsky/ptSh)
-- [batcat](https://github.com/sharkdp/bat)
+- [bat](https://github.com/sharkdp/bat)
 - [BitWarden](https://bitwarden.com/help/article/cli/)
-- [Ranger](https://github.com/ranger/ranger)j
+- [Ranger](https://github.com/ranger/ranger)
 
 **Neovim**:
 - [vim-plug](https://github.com/junegunn/vim-plug)
