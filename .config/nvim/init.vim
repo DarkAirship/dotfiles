@@ -12,7 +12,7 @@ call plug#end()
 
 
 " Basic settings
-set nobackup nowritebackup list lcs=tab:»_,trail:·
+set nobackup nowritebackup encoding=UTF-8 list lcs=tab:»_,trail:·
 set splitbelow splitright showcmd noshowmode nocursorline textwidth=80
 set incsearch hlsearch ignorecase smartcase showmatch linebreak
 set wildmode=longest,list,full scrolloff=10 wildmenu nowrap whichwrap+=h,l
@@ -21,19 +21,23 @@ set nospell spelllang=en_us,en_gb,ru_yo
 syntax on
 filetype on
 filetype plugin on
-echo ">^.^<"
+echo '>^.^<'
+
 
 " Color
 colorscheme nord
 "colorscheme seoul256
 set termguicolors
-let g:limelight_conceal_ctermfg = 240
+let g:limelight_conceal_ctermfg = 242
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 
 
-" Commands
-:ca Tab Tabularize
+" Abbreviations
+"" Commands
+
+"" Typos
+ia adn and
 
 
 " Key-bindings
@@ -45,13 +49,20 @@ nn n nzz
 nn N Nzz
 nn Y y$
 
-nn <Up> <nop>
-nn <Down> <nop>
-nn <Right> <nop>
-nn <Left> <nop>
+nn <up>    :resize +2<cr>
+nn <down>  :resize -2<cr>
+nn <right> :vertical resize -2<cr>
+nn <left>  :vertical resize +2<cr>
 
 ino jj <esc>
 ino <c-d> <esc>ddi
+
+ino <up> <nop>
+ino <down> <nop>
+ino <right> <nop>
+ino <left> <nop>
+ino <bs> <nop>
+ino <enter> <nop>
 
 xn K :move '<-2<CR>gv-gv
 xn J :move '>+1<CR>gv-gv
@@ -61,27 +72,28 @@ let mapleader = '\'
 
 nn <leader>\ :source $MYVIMRC<cr>
 nn <leader>] :set nu! rnu!<cr>:echo<cr>
-nn <leader>g :Goyo<cr>:echo<cr>
-nn <leader>r :set keymap=russian-jcukenwin<CR>:echo<cr>
-nn <leader>e :set keymap=<cr>:echo<cr>
+nn <leader>g :Goyo<cr>
+nn <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
+nn <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
 nn <leader>v :vsplit $MYVIMRC<cr>
-
+nn <leader>t :Tabularize /
 
 " Markdown settings
-nn <leader>h I#<esc>
+nn <leader>h I## <esc>j4ddjI*<esc>A*<esc>
 nn <leader>l I*<esc>A*<esc>
+nn <leader>a 0r ^i**<esc>ea**<esc>
+nn <leader>i Bi*<esc>ea*<esc>
+no <leader>b Bi**<esc>Ea**<esc>
 
-ino <leader>i <esc>bi*<esc>ea*
-ino <leader>b <esc>bi**<esc>ea**
-ino <leader>u <esc>vBUea
+ino <leader>u <esc>vBUEa
 
-autocmd bufreadpre *.md setlocal textwidth=0
-autocmd bufreadpre *.md setlocal conceallevel=0
+autocmd FileType markdown :setlocal textwidth=0 cole=2
 
 
 " Goyo settings
 function! s:goyo_enter()
     set noshowcmd
+    echo
     set notermguicolors
     set scrolloff=999
     Limelight
@@ -89,6 +101,7 @@ endfunction
 
 function! s:goyo_leave()
     set showcmd
+    echo
     set termguicolors
     set scrolloff=5
     Limelight!
@@ -110,7 +123,7 @@ set statusline+=%#DiffDelete#
 set statusline+=%{(mode()=='r')?'\ \ REPLACE\ ':''}
 set statusline+=%#DiffChange#
 set statusline+=%{(mode()=='v')?'\ \ VISUAL\ ':''}
-"set statusline+=%{(mode()=='C-v')?'\ \ VBLOCK\ ':''}
+"set statusline+=%{(mode()=='^V')?'\ \ VBLOCK\ ':''}
 set statusline+=%#jedifunction#
 set statusline+=\ %y
 set statusline+=%r
