@@ -1,4 +1,7 @@
 # Basics settings
+## Path
+[ -d $HOME/.bin ] && PATH=$HOME/.bin:$PATH
+[ -d $HOME/.local/bin ] && PATH=$HOME/.local/bin:$PATH
 
 ## Sourcing
 [ -f /usr/share/bash-completion ] && . /usr/share/bash-completion
@@ -9,11 +12,11 @@ export TERM='xterm-256color'
 export TERMINAL='alacritty'
 export MANPAGER='sh -c "col -bx | batcat -l man -p"'
 export EDITOR='nvim'
-export BROWSER='brave-browser'
+export BROWSER='brave'
 
 ## Semi-useful
 shopt -s checkwinsize
-
+bind 'set completion-ignore-case On'
 
 # Prompt settings
 GIT_PS1_SHOWDIRTYSTATE=1
@@ -29,8 +32,6 @@ PS1+='\[\033[00m\]'
 
 
 # Aliases
-
-## General
 #alias ls='exa -a --colour=always --group-directories-first'
 alias ls="ptls"
 alias ll='ls -al'
@@ -42,12 +43,13 @@ alias grep='grep --color=auto'
 alias v='nvim'
 alias vim='nvim'
 alias fm='ranger'
-alias tsm='transmission-remote'
+alias tsm='transmission-remote --auth username:password'
 alias city='curl ipinfo.io/city'
 alias rc='sudo systemctl restart openvpn'
 alias dc='sudo systemctl stop openvpn'
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias mypass='bw get password'
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias dayup='cd ~/Documents/Journal/ && git commit -am '$(date +%d.%m.%Y)' && git push'
 
 
 # History settings
