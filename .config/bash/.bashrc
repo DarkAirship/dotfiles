@@ -10,7 +10,7 @@
 ## Exporting
 export TERM='xterm-256color'
 export TERMINAL='alacritty'
-export MANPAGER='sh -c "col -bx | batcat -l man -p"'
+export MANPAGER='sh -c "col -bx | bat -l man -p"'
 export EDITOR='nvim'
 export BROWSER='brave'
 
@@ -42,14 +42,16 @@ alias touch="pttouch"
 alias grep='grep --color=auto'
 alias v='nvim'
 alias vim='nvim'
+alias p='sudo pacman'
+#alias rp='sudo pacman -Rcs $(pacman -Qdtq)'
+alias rp='sudo pacman -Qtdq | pacman -Rns -'
 alias fm='ranger'
-alias tsm='transmission-remote --auth username:password'
+alias tsm='transmission-remote'
 alias city='curl ipinfo.io/city'
-alias rc='sudo systemctl restart openvpn'
-alias dc='sudo systemctl stop openvpn'
+alias rc='sudo systemctl restart openvpn-client@ie'
+alias dc='sudo systemctl stop openvpn-client@ie'
 alias mypass='bw get password'
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-alias dayup='cd ~/Documents/Journal/ && git commit -am '$(date +%d.%m.%Y)' && git push'
 
 
 # History settings

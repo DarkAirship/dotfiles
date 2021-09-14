@@ -1,11 +1,11 @@
 # Window configuration
 window:
   dimensions:
-    columns: 59
-    lines: 49
+    columns: 76
+    lines: 21
 
   position:
-    x: 1520
+    x: 704
     y: 0
 
   padding:
@@ -44,7 +44,7 @@ font:
     family: LiterationMono Nerd Font
     style: Bold Italic
 
-  size: 13.0
+  size: 9.0
 
   offset:
     x: 0
@@ -123,7 +123,7 @@ colors:
     cyan:     '#8fbcbb'
     white:    '#eceff4'
 
-  # #Dim colors
+  # Dim colors
   dim:
     black:    '#373e4d'
     red:      '#94545d'

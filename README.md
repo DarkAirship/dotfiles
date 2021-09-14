@@ -7,11 +7,17 @@
 - [Nord Theme](https://www.nordtheme.com/ports)
 
 **Bash and CLI-apps**:
-- Git shell prompt (/usr/lib/git-core/git-sh-prompt)
+- [Git shell prompt][1]
 - [ptSh](https://github.com/jszczerbinsky/ptSh)
 - [bat](https://github.com/sharkdp/bat)
 - [BitWarden](https://bitwarden.com/help/article/cli/)
 - [Ranger](https://github.com/ranger/ranger)
+- [Tldr](https://github.com/tldr-pages/tldr)
+- [Tlp](https://linrunner.de/tlp/index.html)
+- [OpenVPN](https://github.com/OpenVPN/openvpn)
+- [Transmission-cli](https://transmissionbt.com/)
+
+[1](https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh)
 
 **Neovim**:
 - [vim-plug](https://github.com/junegunn/vim-plug)
