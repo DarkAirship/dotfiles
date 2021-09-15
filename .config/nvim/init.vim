@@ -94,10 +94,10 @@ let mapleader = '\'
 nn <silent> <leader>\ :source $MYVIMRC<cr>
 nn <silent> <leader>] :set nu! rnu!<cr>
 nn <silent> <leader>g :Goyo<cr>
-nn <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
-nn <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
 nn <leader>v :vsplit $MYVIMRC<cr>
 nn <leader>t :Tabularize /
+nn <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
+nn <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
 
 " Markdown settings
 nn <leader>h I## <esc>j4ddjI*<esc>A*<esc>
@@ -132,17 +132,29 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
 " Status-line (:so $VIMRUNTIME/syntax/hitest.vim)
+let g:modeMap={
+      \ "n"      : "n",
+      \ "v"      : "v",
+      \ "V"      : "vl",
+      \ "\<c-v>" : "vb",
+      \ "i"      : "i",
+      \ "R"      : "r",
+      \ "Rv"     : "rv",
+      \ "c"      : "c",
+      \ "t"      : "f",
+      \}
+
 set laststatus=2
 set statusline=
-set statusline+=%#DiffText#
-set statusline+=%{(mode()=='n')?'\ \ NORMAL\ ':''}
-set statusline+=%#DiffAdd#
-set statusline+=%{(mode()=='i')?'\ \ INSERT\ ':''}
-set statusline+=%#DiffDelete#
-set statusline+=%{(mode()=='r')?'\ \ REPLACE\ ':''}
-set statusline+=%#DiffChange#
-set statusline+=%{(mode()=='v')?'\ \ VISUAL\ ':''}
-"set statusline+=%{(mode()=='^V')?'\ \ VBLOCK\ ':''}
+set statusline+=%#DiffText#%{(g:modeMap[mode()]=='n')?'\ \ normal\ ':''}
+set statusline+=%#DiffAdd#%{(g:modeMap[mode()]=='i')?'\ \ insert\ ':''}
+set statusline+=%#DiffDelete#%{(g:modeMap[mode()]=='r')?'\ \ replace\ ':''}
+set statusline+=%#DiffDelete#%{(g:modeMap[mode()]=='rv')?'\ \ v-replace\ ':''}
+set statusline+=%#DiffChange#%{(g:modeMap[mode()]=='v')?'\ \ visual\ ':''}
+set statusline+=%#DiffChange#%{(g:modeMap[mode()]=='vl')?'\ \ v-line\ ':''}
+set statusline+=%#DiffChange#%{(g:modeMap[mode()]=='vb')?'\ \ v-block\ ':''}
+set statusline+=%#DiffText#%{(g:modeMap[mode()]=='c')?'\ \ command\ ':''}
+set statusline+=%#DiffText#%{(g:modeMap[mode()]=='f')?'\ \ finder\ ':''}
 set statusline+=%#jedifunction#
 set statusline+=\ %y
 set statusline+=%r
