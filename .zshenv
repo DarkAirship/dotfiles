@@ -6,6 +6,8 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export BROWSER="brave"
 
+# Setting for ranger to load user configs
+export RANGER_LOAD_DEFAULT_RC=false
 
 # Set XDG variables
 export XDG_CONFIG_HOME=$HOME/.config

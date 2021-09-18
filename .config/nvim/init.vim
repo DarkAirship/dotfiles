@@ -17,7 +17,7 @@ set splitbelow splitright showcmd noshowmode nocursorline textwidth=80
 set incsearch hlsearch ignorecase smartcase showmatch linebreak
 set wildmode=longest,list,full scrolloff=10 wildmenu nowrap whichwrap+=h,l
 set shiftwidth=4 autoindent smartindent tabstop=4 softtabstop=4 expandtab
-set nospell spelllang=en_us,en_gb,ru_yo
+set nospell spelllang=en_us,en_gb,ru_yo clipboard+=unnamedplus
 syntax on
 filetype on
 filetype plugin on
@@ -71,6 +71,9 @@ nn <silent> <c-l> :wincmd l<CR>
 "" Insert mode
 """ Exit with jj
 ino jj <esc>
+
+""" Delete a word when in Insert mode
+ino <c-g> <c-w>
 
 """ Delete a line while in Insert mode
 ino <c-d> <esc>ddi

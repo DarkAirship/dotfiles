@@ -1,12 +1,13 @@
 # Aliases
 ## Colorizing
-alias ls="ptls"
+alias ls='ptls'
 alias ll='ptls -Al'
 alias la='ptls -A'
+alias l='ls'
 alias l.="/bin/ls -A | egrep '^\.'"
-alias pwd="ptpwd"
-alias mkdir="ptmkdir"
-alias touch="pttouch"
+alias pwd='ptpwd'
+alias mkdir='ptmkdir'
+alias touch='pttouch'
 alias cat='bat'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -37,9 +38,10 @@ alias vv='nvim ~/.config/nvim/init.vim'
 
 ## Alias for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias pushconfig='config commit -am "Update"'
 
 ## Aliases for software managment
-alias update='sudo pacman -Syyu'
+alias update='sudo pacman -Syyu --color auto'
 alias upall="yay -Syu --noconfirm"
 alias yayskip='yay -S --mflags --skipinteg'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
@@ -47,7 +49,7 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 ## Fix obvious typo's
 alias cd..='cd ..'
 alias pdw='pwd'
-alias udpate='sudo pacman -Syyu'
+alias udpate='sudo pacman -Syyu --color auto'
 
 ## System information
 alias df='df -h'
@@ -72,6 +74,7 @@ alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias rg="rg --sort path"
 alias wget="wget -c"
 alias rez='. $ZDOTDIR/.zshrc'
+alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
 
 ## Get fastest mirrors in your neighborhood
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -93,6 +96,7 @@ alias ars="arcolinux-reflector-simple"
 alias atm="arcolinux-tellme"
 alias avs="arcolinux-vbox-share"
 alias awa="arcolinux-welcome-app"
+alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 
 ## Arcolinux resets
 #copy/paste all content of /etc/skel over to home folder - backup of config created - beware
