@@ -2,10 +2,10 @@
 window:
   dimensions:
     columns: 80
-    lines: 21
+    lines: 25
 
   position:
-    x: 660
+    x: 785
     y: 0
 
   padding:
