@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Set XDG variables
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -12,9 +14,6 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export BROWSER="brave"
 
-# Setting for ranger to load user configs
-export RANGER_LOAD_DEFAULT_RC=false
-
 # ~/ clean-up
 export ZDOTDIR=$HOME/.config/zsh
 export HISTFILE=$ZDOTDIR/.zhistory
@@ -26,3 +25,7 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg, gpg2 --homedir "$XDG_DATA_HOME"/gnupg
 
 # Cannot set this - doesn't allow to login then
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+#
+# Setting for ranger to load user configs
+#export RANGER_LOAD_DEFAULT_RC=false
+

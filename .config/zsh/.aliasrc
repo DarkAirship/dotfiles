@@ -1,10 +1,12 @@
+#!/bin/sh
+
 # Aliases
 ## Colorizing
-alias ls='ptls'
-alias ll='ptls -Al'
-alias la='ptls -A'
-alias l='ls'
-alias l.="/bin/ls -A | egrep '^\.'"
+alias ls='exa -x --color=always --group-directories-first'
+alias la='ls -a'
+alias ll='ls -alh --git'
+alias l.="ls -a --no-icons | grep '^\.'"
+alias pls='ptls'
 alias pwd='ptpwd'
 alias mkdir='ptmkdir'
 alias touch='pttouch'
@@ -23,6 +25,9 @@ alias fm='ranger'
 alias tsm='transmission-remote'
 alias p='sudo pacman --color auto'
 alias mypass='bw get password'
+alias wthr='curl wttr.in/chelyabinsk'
+alias mail='aerc'
+alias news='newsboat'
 
 ## VPN management
 alias city='curl ipinfo.io/city'
@@ -35,13 +40,14 @@ alias vz='nvim ~/.config/zsh/.zshrc'
 alias val='nvim ~/.config/zsh/.aliasrc'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias vv='nvim ~/.config/nvim/init.vim'
+alias vr='nvim ~/.config/ranger/rc.conf'
 
 ## Alias for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
 
 ## Aliases for software managment
-alias update='sudo pacman -Syyu --color auto'
-alias upall="yay -Syu --noconfirm"
+alias update='sudo pacman -Syyu --color auto --noconfirm'
+alias upall='yay -Syu --noconfirm'
 alias yayskip='yay -S --mflags --skipinteg'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 

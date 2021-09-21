@@ -57,10 +57,10 @@ nn N Nzz
 nn Y y$
 
 """ Resize splits with arrows
-nn <up>    :resize +2<cr>
-nn <down>  :resize -2<cr>
-nn <right> :vertical resize -2<cr>
-nn <left>  :vertical resize +2<cr>
+"nn <up>    :resize +2<cr>
+"nn <down>  :resize -2<cr>
+"nn <right> :vertical resize -2<cr>
+"nn <left>  :vertical resize +2<cr>
 
 """ Jump between splits with ctrl-[hjkl]
 nn <silent> <c-k> :wincmd k<CR>
@@ -73,12 +73,17 @@ nn <silent> <c-l> :wincmd l<CR>
 ino jj <esc>
 
 """ Delete a word when in Insert mode
-ino <c-g> <c-w>
+ino <c-b> <c-w>
 
 """ Delete a line while in Insert mode
 ino <c-d> <esc>ddi
 
 """ Disable keys
+nn <up> <nop>
+nn <down> <nop>
+nn <right> <nop>
+nn <left> <nop>
+
 ino <up> <nop>
 ino <down> <nop>
 ino <right> <nop>
