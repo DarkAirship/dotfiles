@@ -16,7 +16,7 @@ setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 
 ## Vi key bindings
-bindkey -v
+#bindkey -v
 export KEYTIMEOUT=1
 
 ## Change cursor shape for different vi modes

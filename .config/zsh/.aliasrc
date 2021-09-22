@@ -41,9 +41,13 @@ alias val='nvim ~/.config/zsh/.aliasrc'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vr='nvim ~/.config/ranger/rc.conf'
+alias vn='nvim ~/.config/newsboat/config'
+alias vrss='nvim ~/.config/newsboat/urls'
 
 ## Alias for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
+alias addconf="config add $(config status | grep 'config' | awk '{print $2}')"
+alias comconf='config commit -m $(date +%d.%m.%Y)'
 
 ## Aliases for software managment
 alias update='sudo pacman -Syyu --color auto --noconfirm'
