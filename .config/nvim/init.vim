@@ -116,7 +116,10 @@ nn <leader>b Bi**<esc>Ea**<esc>
 
 ino <leader>u <esc>vBUEa
 
-autocmd FileType markdown :setlocal textwidth=0 cole=2
+augroup filetype_md
+    autocmd!
+    autocmd FileType markdown :setlocal textwidth=0 cole=2
+augroup END
 
 
 " Goyo settings

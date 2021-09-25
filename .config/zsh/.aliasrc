@@ -2,10 +2,10 @@
 
 # Aliases
 ## Colorizing
-alias ls='exa -x --color=always --group-directories-first'
-alias la='ls -a'
-alias ll='ls -alh --git'
-alias l.="ls -a --no-icons | grep '^\.'"
+alias ls='exa -x --color=always --group-directories-first --icons'
+alias la='exa -a'
+alias ll='exa -alh --git'
+alias l.="exa -a --no-icons | grep '^\.'"
 alias pls='ptls'
 alias pwd='ptpwd'
 alias mkdir='ptmkdir'

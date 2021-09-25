@@ -66,11 +66,12 @@ zstyle ':vcs_info:*' formats ' %F{yellow}%b%f%u%c'
 precmd () { vcs_info }
 
 ## Readonly alert
-function isReadOnly { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo  }
+function isReadOnly { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo " " }
 
 ## The prompt itself
-PS1='%F{cyan}[%1~]%f'
+PS1='%F{cyan}[%1~%f'
 PS1+='%F{red}$(isReadOnly)%f'
+PS1+='%F{cyan}]%f'
 PS1+='${vcs_info_msg_0_} '
 PS1+='%(?.%F{green}.%F{red})ﬄ%f '
 
