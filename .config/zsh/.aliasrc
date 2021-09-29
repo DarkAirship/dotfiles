@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# Aliases
+# Aliases (most of these come from ArloLinux)
 ## Colorizing
-alias ls='exa -x --color=always --group-directories-first --icons'
-alias la='exa -a'
-alias ll='exa -alh --git'
-alias l.="exa -a --no-icons | grep '^\.'"
+alias ls='exa -x --color=always --group-directories-first'
+alias la='ls -a'
+alias ll='ls -alh --git'
+alias l.="ls -a --no-icons | grep '^\.'"
 alias pls='ptls'
 alias pwd='ptpwd'
 alias mkdir='ptmkdir'
@@ -21,9 +21,11 @@ alias -g ....='../../..'
 
 ## Short names for frequently used programs
 alias v='nvim'
+alias vim='nvim'
 alias fm='ranger'
 alias tsm='transmission-remote'
 alias p='sudo pacman --color auto'
+alias rg="rg --sort path"
 alias mypass='bw get password'
 alias wthr='curl wttr.in/chelyabinsk'
 alias mail='aerc'
@@ -41,12 +43,11 @@ alias val='nvim ~/.config/zsh/.aliasrc'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vr='nvim ~/.config/ranger/rc.conf'
-alias vn='nvim ~/.config/newsboat/config'
+alias vnews='nvim ~/.config/newsboat/config'
 alias vrss='nvim ~/.config/newsboat/urls'
 
 ## Alias for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
-alias addconf="config add $(config status | grep 'config' | awk '{print $2}')"
 alias comconf='config commit -m $(date +%d.%m.%Y)'
 
 ## Aliases for software managment
@@ -57,8 +58,6 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 ## Fix obvious typo's
 alias cd..='cd ..'
-alias pdw='pwd'
-alias udpate='sudo pacman -Syyu --color auto'
 
 ## System information
 alias df='df -h'
@@ -80,10 +79,13 @@ alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
-alias rg="rg --sort path"
 alias wget="wget -c"
 alias rez='. $ZDOTDIR/.zshrc'
 alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
+alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
+alias unhblock='hblock -S none -D none'
 
 ## Get fastest mirrors in your neighborhood
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -93,6 +95,7 @@ alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pac
 ### Arcolinux experimental - best option for the moment
 alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
+alias ram='rate-arch-mirrors'
 
 ## Arcolinux applications
 alias att="arcolinux-tweak-tool"
@@ -107,14 +110,3 @@ alias avs="arcolinux-vbox-share"
 alias awa="arcolinux-welcome-app"
 alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 
-## Arcolinux resets
-#copy/paste all content of /etc/skel over to home folder - backup of config created - beware
-#alias skel='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
-
-#backup contents of /etc/skel to hidden backup folder in home/user
-#alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
-
-#copy bashrc-latest over on bashrc - cb= copy bashrc
-#alias cb='sudo cp /etc/skel/.bashrc ~/.bashrc && source ~/.bashrc'
-#copy /etc/skel/.zshrc over on ~/.zshrc - cb= copy zshrc
-#alias cz='sudo cp /etc/skel/.zshrc ~/.zshrc && exec zsh'

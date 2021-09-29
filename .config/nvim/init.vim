@@ -12,7 +12,7 @@ call plug#end()
 
 
 " Basic settings
-set nobackup nowritebackup encoding=UTF-8 list lcs=tab:»_,trail:·
+set nobackup writebackup encoding=UTF-8 list lcs=tab:»_,trail:·
 set splitbelow splitright showcmd noshowmode nocursorline textwidth=80
 set incsearch hlsearch ignorecase smartcase showmatch linebreak
 set wildmode=longest,list,full scrolloff=10 wildmenu nowrap whichwrap+=h,l
@@ -23,6 +23,11 @@ filetype on
 filetype plugin on
 echo '>^.^<'
 
+" Edit file from last position
+autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
 
 " Color
 colorscheme nord
@@ -119,6 +124,7 @@ ino <leader>u <esc>vBUEa
 augroup filetype_md
     autocmd!
     autocmd FileType markdown :setlocal textwidth=0 cole=2
+    ono ih :<c-u>execute "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
 augroup END
 
 
