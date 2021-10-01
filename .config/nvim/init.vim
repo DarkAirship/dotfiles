@@ -23,109 +23,21 @@ filetype on
 filetype plugin on
 echo '>^.^<'
 
-" Edit file from last position
+
+"" Edit file from last position
 autocmd BufReadPost *
     \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
     \ |   exe "normal! g`\""
     \ | endif
 
-" Color
+
+"" Color
 colorscheme nord
 "colorscheme seoul256
 set termguicolors
 let g:limelight_conceal_ctermfg = 242
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
-
-
-" Abbreviations
-"" Commands
-
-"" Typos
-ia adn and
-
-
-" Key-bindings and remaps
-"" Normal mode
-""" Enter commands with space
-nn <space> :
-
-""" Insert lines with o
-nn o o<esc>
-nn O O<esc>
-
-""" Center cursor when searching
-nn n nzz
-nn N Nzz
-
-""" Yank to the end of line
-nn Y y$
-
-""" Resize splits with arrows
-"nn <up>    :resize +2<cr>
-"nn <down>  :resize -2<cr>
-"nn <right> :vertical resize -2<cr>
-"nn <left>  :vertical resize +2<cr>
-
-""" Jump between splits with ctrl-[hjkl]
-nn <silent> <c-k> :wincmd k<CR>
-nn <silent> <c-j> :wincmd j<CR>
-nn <silent> <c-h> :wincmd h<CR>
-nn <silent> <c-l> :wincmd l<CR>
-
-"" Insert mode
-""" Exit with jj
-ino jj <esc>
-
-""" Delete a word when in Insert mode
-ino <c-b> <c-w>
-
-""" Delete a line while in Insert mode
-ino <c-d> <esc>ddi
-
-""" Disable keys
-nn <up> <nop>
-nn <down> <nop>
-nn <right> <nop>
-nn <left> <nop>
-
-ino <up> <nop>
-ino <down> <nop>
-ino <right> <nop>
-ino <left> <nop>
-ino <bs> <nop>
-ino <enter> <nop>
-
-"" Visual mode
-""" Move selected area with JK
-xn K :move '<-2<CR>gv-gv
-xn J :move '>+1<CR>gv-gv
-
-" Leader-bindings for settings
-let mapleader = '\'
-
-nn <silent> <leader>\ :source $MYVIMRC<cr>
-nn <silent> <leader>] :set nu! rnu!<cr>
-nn <silent> <leader>g :Goyo<cr>
-nn <leader>v :vsplit $MYVIMRC<cr>
-nn <leader>t :Tabularize /
-nn <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
-nn <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
-
-" Markdown settings
-nn <leader>h I## <esc>j4ddjI*<esc>A*<esc>
-nn <leader>l I*<esc>A*<esc>
-nn <leader>a 0r ^i**<esc>ea**<esc>
-nn <leader>i Bi*<esc>ea*<esc>
-nn <leader>b Bi**<esc>Ea**<esc>
-
-ino <leader>u <esc>vBUEa
-
-augroup filetype_md
-    autocmd!
-    autocmd FileType markdown :setlocal textwidth=0 cole=2
-    ono ih :<c-u>execute "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
-augroup END
 
 
 " Goyo settings
@@ -148,7 +60,121 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
-" Status-line (:so $VIMRUNTIME/syntax/hitest.vim)
+" Abbreviations
+"" Commands
+
+"" Typos
+ia adn and
+
+
+" Remaps
+"" Normal mode
+""" Enter commands with space
+nn <space> :
+
+""" Insert lines with o
+nn o o<esc>
+nn O O<esc>
+
+""" Center cursor when searching
+nn n nzz
+nn N Nzz
+
+""" Yank to the end of line
+nn Y y$
+
+""" Jump between splits with ctrl-[hjkl]
+nn <silent> <c-k> :wincmd k<CR>
+nn <silent> <c-j> :wincmd j<CR>
+nn <silent> <c-h> :wincmd h<CR>
+nn <silent> <c-l> :wincmd l<CR>
+
+""" Resize splits with arrows
+"nn <up>    :resize +2<cr>
+"nn <down>  :resize -2<cr>
+"nn <right> :vertical resize -2<cr>
+"nn <left>  :vertical resize +2<cr>
+
+""" Disable keys
+nn <up> <nop>
+nn <down> <nop>
+nn <right> <nop>
+nn <left> <nop>
+
+
+"" Insert mode
+""" Exit with jj
+ino jj <esc>
+
+""" Delete a word when in Insert mode
+ino <c-b> <c-w>
+
+""" Delete a line while in Insert mode
+ino <c-d> <esc>ddi
+
+""" Disable keys
+ino <up> <nop>
+ino <down> <nop>
+ino <right> <nop>
+ino <left> <nop>
+ino <bs> <nop>
+ino <enter> <nop>
+
+
+"" Visual mode
+""" Move selected area with JK
+xn K :move '<-2<CR>gv-gv
+xn J :move '>+1<CR>gv-gv
+
+
+" Leader-bindings
+let mapleader = '\'
+
+"" Source VIMRC
+nn <silent> <leader>\ :source $MYVIMRC<cr>
+
+"" Open VIMRC in a split buffer
+nn <leader>v :vsplit $MYVIMRC<cr>
+
+"" Show relative line numbers
+nn <silent> <leader>] :set nu! rnu!<cr>
+
+"" Enter Goyo
+nn <silent> <leader>g :Goyo<cr>
+
+"" Change keymaps between RU and EN
+nn <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
+nn <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
+
+
+" Markdown settings
+augroup filetype_md
+    autocmd!
+    autocmd FileType markdown :setlocal textwidth=0 cole=2
+    ono ih :<c-u>execute "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
+augroup END
+
+"" Make subheading
+nn <leader>h I## <esc>j4ddjI*<esc>A*<esc>
+
+"" Italisize a line
+nn <leader>l I*<esc>A*<esc>
+
+"" Fix stupid formatting
+nn <leader>a 0r ^i**<esc>ea**<esc>
+
+"" Italisize a word
+nn <leader>i bi*<esc>ea*<esc>
+
+"" Boldize a word
+nn <leader>b Bi**<esc>Ea**<esc>
+
+"" Uppercase a word while in Insert mode
+ino <leader>u <esc>vBUEa
+
+
+" Status-line
+"" Create a dictionary of modes (othervise doesn't work)
 let g:modeMap={
       \ "n"      : "n",
       \ "v"      : "v",
@@ -161,6 +187,8 @@ let g:modeMap={
       \ "t"      : "f",
       \}
 
+"" Add items to statusline
+"" Run :so $VIMRUNTIME/syntax/hitest.vim for colors
 set laststatus=2
 set statusline=
 set statusline+=%#DiffText#%{(g:modeMap[mode()]=='n')?'\ \ normal\ ':''}
@@ -175,10 +203,12 @@ set statusline+=%#DiffText#%{(g:modeMap[mode()]=='f')?'\ \ finder\ ':''}
 set statusline+=%#jedifunction#
 set statusline+=\ %y
 set statusline+=%r
-set statusline+=%m
 set statusline+=%{FugitiveStatusline()}
+set statusline+=%m
 set statusline+=%=
-set statusline+=\ %f\ 
+set statusline+=%f
+set statusline+=\ 
 set statusline+=%#DiffText#
 set statusline+=\ %l/%L
 set statusline+=\ [%c]
+

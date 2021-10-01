@@ -15,11 +15,9 @@ SAVEHIST=1000
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 
-## Vi key bindings
-#bindkey -v
+## Change cursor shape for different vi modes
 export KEYTIMEOUT=1
 
-## Change cursor shape for different vi modes
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -77,4 +75,4 @@ PS1+='%(?.%F{green}.%F{red})ﬄ%f '
 
 # Useless beatification
 clear && fortune -s | lolcat -t
-#ufetch-arco | lolcat
+

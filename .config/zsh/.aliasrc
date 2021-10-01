@@ -14,6 +14,7 @@ alias cat='bat'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias rg='rg --color=auto'
 
 ## Navigation
 alias -g ...='../..'
