@@ -1,28 +1,26 @@
-" Plug-ins (junegunn/vim-plug) ---------- {{{
+" Plug-ins {{{
+" (junegunn/vim-plug)
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'arcticicestudio/nord-vim' | Plug 'junegunn/seoul256.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive' | Plug 'godlygeek/tabular'
-
-"Plug 'plasticboy/vim-markdown'
-"Plug 'gabrielelana/vim-markdown'
 
 call plug#end()
 " }}}
 
-" Basic settings ---------- {{{
+" Basic settings {{{
 set nobackup writebackup encoding=UTF-8 list lcs=tab:»_,trail:·
 set splitbelow splitright showcmd noshowmode nocursorline textwidth=80
 set incsearch hlsearch ignorecase smartcase showmatch linebreak
-set wildmode=longest,list,full scrolloff=10 wildmenu nowrap whichwrap+=h,l
+set wildmode=longest,full wildmenu scrolloff=10 nowrap whichwrap+=h,l
 set shiftwidth=4 autoindent smartindent tabstop=4 softtabstop=4 expandtab
 set nospell spelllang=en_us,en_gb,ru_yo clipboard+=unnamedplus
+set completeopt=longest,menuone
 syntax on
 filetype on
 filetype plugin on
 echo '>^.^<'
-
 
 "" Edit file from last position
 autocmd BufReadPost *
@@ -30,17 +28,15 @@ autocmd BufReadPost *
     \ |   exe "normal! g`\""
     \ | endif
 
-
 "" Color
 colorscheme nord
-"colorscheme seoul256
 set termguicolors
 let g:limelight_conceal_ctermfg = 242
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 " }}}
 
-" Goyo settings ---------- {{{
+" Goyo settings {{{
 function! s:goyo_enter()
     set noshowcmd
     set notermguicolors
@@ -60,94 +56,97 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " }}}
 
-" Abbreviations ---------- {{{
-"" Commands
-
-"" Typos
-iabbrev adn and
-" }}}
-
-" Remaps ---------- {{{
-"" Normal mode
-""" Enter commands with space
+" Remaps {{{
+" Normal mode {{{
+"" Enter commands with space
 nnoremap <space> :
 
-""" Insert lines with o
+"" Insert lines with o
 nnoremap o o<esc>
 nnoremap O O<esc>
 
-""" Center cursor when searching
+"" Center cursor when searching
 nnoremap n nzz
 nnoremap N Nzz
 
-""" Yank to the end of line
+"" Yank to the end of line
 nnoremap Y y$
 
-""" Jump between splits with ctrl-[hjkl]
+"" Jump between splits with ctrl-[hjkl]
 nnoremap <silent> <c-k> :wincmd k<CR>
 nnoremap <silent> <c-j> :wincmd j<CR>
 nnoremap <silent> <c-h> :wincmd h<CR>
 nnoremap <silent> <c-l> :wincmd l<CR>
 
-""" Resize splits with arrows
+"" Resize splits with arrows
 "nnoremap <up>    :resize +2<cr>
 "nnoremap <down>  :resize -2<cr>
 "nnoremap <right> :vertical resize -2<cr>
 "nnoremap <left>  :vertical resize +2<cr>
 
-""" Disable keys
+"" Disable keys
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <right> <nop>
 nnoremap <left> <nop>
+" }}}
 
-
-"" Insert mode
-""" Exit with jj
+" Insert mode {{{
+"" Exit with jj
 inoremap jj <esc>
 
-""" Delete a word when in Insert mode
+"" Delete a word when in Insert mode
 inoremap <c-b> <c-w>
 
-""" Delete a line while in Insert mode
+"" Delete a line while in Insert mode
 inoremap <c-d> <esc>ddi
 
-""" Disable keys
+"" Disable keys
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <right> <nop>
 inoremap <left> <nop>
 inoremap <bs> <nop>
 inoremap <enter> <nop>
+" }}}
 
-
-"" Visual mode
-""" Move selected area with JK
+" Visual mode {{{
+"" Move selected area with JK
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 " }}}
+" }}}
 
-" Leader-bindings ---------- {{{
+" Leader-bindings {{{
 let mapleader = '\'
 
 "" Source VIMRC
 nnoremap <silent> <leader>\ :source $MYVIMRC<cr>
 
 "" Open VIMRC in a split buffer
-nnoremap <leader>v :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>v :vsplit $MYVIMRC<cr>
 
 "" Show relative line numbers
 nnoremap <silent> <leader>] :set nu! rnu!<cr>
 
+"" Change keymaps between RU and EN
+nnoremap <silent> <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
+nnoremap <silent> <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
+
+"" Toggle spellcheck
+nnoremap <silent> <leader>s :setlocal spell!<cr>
+
+"" Add folds
+nnoremap <silent> <leader>fs :setlocal foldmethod=syntax<cr>
+nnoremap <silent> <leader>fi :setlocal foldmethod=indent<cr>
+nnoremap <silent> <leader>fd :setlocal foldmethod=diff<cr>
+nnoremap <silent> <leader>nf :setlocal nofoldenable<cr>
+
 "" Enter Goyo
 nnoremap <silent> <leader>g :Goyo<cr>
-
-"" Change keymaps between RU and EN
-nnoremap <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
-nnoremap <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
 " }}}
 
-" Status-line ---------- {{{
+" Status-line {{{
 "" Create a dictionary of modes (othervise doesn't work)
 let g:modeMap={
       \ "n"      : "n",
@@ -187,37 +186,39 @@ set statusline+=\ %l/%L
 set statusline+=\ [%c]
 " }}}
 
-" Markdown settings ---------- {{{
-augroup filetype_md
-    autocmd!
-    autocmd FileType markdown :setlocal textwidth=0 cole=2
-    "" Make subheading
-    nnoremap <leader>h I## <esc>j4ddjI*<esc>A*<esc>
-
-    "" Italisize a line
-    nnoremap <leader>l I*<esc>A*<esc>
-
-    "" Fix stupid formatting
-    nnoremap <leader>a 0r ^i**<esc>ea**<esc>
-
-    "" Italisize a word
-    nnoremap <leader>i bi*<esc>ea*<esc>
-
-    "" Boldize a word
-    nnoremap <leader>b Bi**<esc>Ea**<esc>
-
-    "" Uppercase a word while in Insert mode
-    inoremap <leader>u <esc>vBUEa
-
-    " Quickly change heading
-    onoremap ih :<c-u>execute "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
-augroup END
-" }}}
-
-" Vimscript file settings ---------- {{{
+" Vimscript file settings {{{
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" Markdown filetype settings {{{
+augroup filetype_md
+    autocmd!
+    autocmd FileType markdown setlocal textwidth=0 cole=2
+
+    "" Make subheading
+    autocmd FileType markdown nnoremap <leader>h I## <esc>j4ddjI*<esc>A*<esc>
+
+    "" Italisize a line
+    autocmd FileType markdown nnoremap <leader>l I*<esc>A*<esc>
+
+    "" Fix stupid formatting
+    autocmd FileType markdown nnoremap <leader>a 0r ^i**<esc>ea**<esc>
+
+    "" Italisize a word
+    autocmd FileType markdown nnoremap <leader>i bi*<esc>ea*<esc>
+
+    "" Boldize a word
+    autocmd FileType markdown nnoremap <leader>b Bi**<esc>Ea**<esc>
+
+    "" Uppercase a word while in Insert mode
+    autocmd FileType markdown inoremap <leader>u <esc>vBUEa
+
+    " Quickly change heading
+    autocmd FileType markdown onoremap ih :<c-u>execute
+                \ "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
 augroup END
 " }}}
 

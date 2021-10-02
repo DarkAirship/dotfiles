@@ -17,6 +17,7 @@ alias fgrep='fgrep --color=auto'
 alias rg='rg --color=auto'
 
 ## Navigation
+alias cd..='cd ..'
 alias -g ...='../..'
 alias -g ....='../../..'
 
@@ -56,9 +57,6 @@ alias update='sudo pacman -Syyu --color auto --noconfirm'
 alias upall='yay -Syu --noconfirm'
 alias yayskip='yay -S --mflags --skipinteg'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-
-## Fix obvious typo's
-alias cd..='cd ..'
 
 ## System information
 alias df='df -h'

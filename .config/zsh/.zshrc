@@ -74,5 +74,5 @@ PS1+='${vcs_info_msg_0_} '
 PS1+='%(?.%F{green}.%F{red})ﬄ%f '
 
 # Useless beatification
-clear && fortune -s | lolcat -t
+clear && toilet DarkAirship --filter rainbow
 
