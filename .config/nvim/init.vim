@@ -1,4 +1,4 @@
-" Plug-ins (junegunn/vim-plug)
+" Plug-ins (junegunn/vim-plug) ---------- {{{
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'arcticicestudio/nord-vim' | Plug 'junegunn/seoul256.vim'
@@ -9,9 +9,9 @@ Plug 'tpope/vim-fugitive' | Plug 'godlygeek/tabular'
 "Plug 'gabrielelana/vim-markdown'
 
 call plug#end()
+" }}}
 
-
-" Basic settings
+" Basic settings ---------- {{{
 set nobackup writebackup encoding=UTF-8 list lcs=tab:»_,trail:·
 set splitbelow splitright showcmd noshowmode nocursorline textwidth=80
 set incsearch hlsearch ignorecase smartcase showmatch linebreak
@@ -38,9 +38,9 @@ set termguicolors
 let g:limelight_conceal_ctermfg = 242
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+" }}}
 
-
-" Goyo settings
+" Goyo settings ---------- {{{
 function! s:goyo_enter()
     set noshowcmd
     set notermguicolors
@@ -58,122 +58,96 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+" }}}
 
-
-" Abbreviations
+" Abbreviations ---------- {{{
 "" Commands
 
 "" Typos
-ia adn and
+iabbrev adn and
+" }}}
 
-
-" Remaps
+" Remaps ---------- {{{
 "" Normal mode
 """ Enter commands with space
-nn <space> :
+nnoremap <space> :
 
 """ Insert lines with o
-nn o o<esc>
-nn O O<esc>
+nnoremap o o<esc>
+nnoremap O O<esc>
 
 """ Center cursor when searching
-nn n nzz
-nn N Nzz
+nnoremap n nzz
+nnoremap N Nzz
 
 """ Yank to the end of line
-nn Y y$
+nnoremap Y y$
 
 """ Jump between splits with ctrl-[hjkl]
-nn <silent> <c-k> :wincmd k<CR>
-nn <silent> <c-j> :wincmd j<CR>
-nn <silent> <c-h> :wincmd h<CR>
-nn <silent> <c-l> :wincmd l<CR>
+nnoremap <silent> <c-k> :wincmd k<CR>
+nnoremap <silent> <c-j> :wincmd j<CR>
+nnoremap <silent> <c-h> :wincmd h<CR>
+nnoremap <silent> <c-l> :wincmd l<CR>
 
 """ Resize splits with arrows
-"nn <up>    :resize +2<cr>
-"nn <down>  :resize -2<cr>
-"nn <right> :vertical resize -2<cr>
-"nn <left>  :vertical resize +2<cr>
+"nnoremap <up>    :resize +2<cr>
+"nnoremap <down>  :resize -2<cr>
+"nnoremap <right> :vertical resize -2<cr>
+"nnoremap <left>  :vertical resize +2<cr>
 
 """ Disable keys
-nn <up> <nop>
-nn <down> <nop>
-nn <right> <nop>
-nn <left> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <right> <nop>
+nnoremap <left> <nop>
 
 
 "" Insert mode
 """ Exit with jj
-ino jj <esc>
+inoremap jj <esc>
 
 """ Delete a word when in Insert mode
-ino <c-b> <c-w>
+inoremap <c-b> <c-w>
 
 """ Delete a line while in Insert mode
-ino <c-d> <esc>ddi
+inoremap <c-d> <esc>ddi
 
 """ Disable keys
-ino <up> <nop>
-ino <down> <nop>
-ino <right> <nop>
-ino <left> <nop>
-ino <bs> <nop>
-ino <enter> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <right> <nop>
+inoremap <left> <nop>
+inoremap <bs> <nop>
+inoremap <enter> <nop>
 
 
 "" Visual mode
 """ Move selected area with JK
-xn K :move '<-2<CR>gv-gv
-xn J :move '>+1<CR>gv-gv
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+" }}}
 
-
-" Leader-bindings
+" Leader-bindings ---------- {{{
 let mapleader = '\'
 
 "" Source VIMRC
-nn <silent> <leader>\ :source $MYVIMRC<cr>
+nnoremap <silent> <leader>\ :source $MYVIMRC<cr>
 
 "" Open VIMRC in a split buffer
-nn <leader>v :vsplit $MYVIMRC<cr>
+nnoremap <leader>v :vsplit $MYVIMRC<cr>
 
 "" Show relative line numbers
-nn <silent> <leader>] :set nu! rnu!<cr>
+nnoremap <silent> <leader>] :set nu! rnu!<cr>
 
 "" Enter Goyo
-nn <silent> <leader>g :Goyo<cr>
+nnoremap <silent> <leader>g :Goyo<cr>
 
 "" Change keymaps between RU and EN
-nn <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
-nn <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
+nnoremap <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
+nnoremap <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
+" }}}
 
-
-" Markdown settings
-augroup filetype_md
-    autocmd!
-    autocmd FileType markdown :setlocal textwidth=0 cole=2
-    ono ih :<c-u>execute "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
-augroup END
-
-"" Make subheading
-nn <leader>h I## <esc>j4ddjI*<esc>A*<esc>
-
-"" Italisize a line
-nn <leader>l I*<esc>A*<esc>
-
-"" Fix stupid formatting
-nn <leader>a 0r ^i**<esc>ea**<esc>
-
-"" Italisize a word
-nn <leader>i bi*<esc>ea*<esc>
-
-"" Boldize a word
-nn <leader>b Bi**<esc>Ea**<esc>
-
-"" Uppercase a word while in Insert mode
-ino <leader>u <esc>vBUEa
-
-
-" Status-line
+" Status-line ---------- {{{
 "" Create a dictionary of modes (othervise doesn't work)
 let g:modeMap={
       \ "n"      : "n",
@@ -211,4 +185,39 @@ set statusline+=\
 set statusline+=%#DiffText#
 set statusline+=\ %l/%L
 set statusline+=\ [%c]
+" }}}
+
+" Markdown settings ---------- {{{
+augroup filetype_md
+    autocmd!
+    autocmd FileType markdown :setlocal textwidth=0 cole=2
+    "" Make subheading
+    nnoremap <leader>h I## <esc>j4ddjI*<esc>A*<esc>
+
+    "" Italisize a line
+    nnoremap <leader>l I*<esc>A*<esc>
+
+    "" Fix stupid formatting
+    nnoremap <leader>a 0r ^i**<esc>ea**<esc>
+
+    "" Italisize a word
+    nnoremap <leader>i bi*<esc>ea*<esc>
+
+    "" Boldize a word
+    nnoremap <leader>b Bi**<esc>Ea**<esc>
+
+    "" Uppercase a word while in Insert mode
+    inoremap <leader>u <esc>vBUEa
+
+    " Quickly change heading
+    onoremap ih :<c-u>execute "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
+augroup END
+" }}}
+
+" Vimscript file settings ---------- {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
 
