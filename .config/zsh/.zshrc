@@ -1,23 +1,36 @@
-# Basics settings
-## If not running interactively, don't do anything
+# Useless beatification
+clear && toilet ArcoLinux --metal
+
+# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-## Path
-[[ -d $HOME/.bin ]] && PATH=$HOME/.bin:$PATH
-[[ -d $HOME/.local/bin ]] && PATH=$HOME/.local/bin:$PATH
-
-## Aliases
+# Source aliases
 [[ -f $ZDOTDIR/.aliasrc ]] && . $ZDOTDIR/.aliasrc
 
-## History settings
+# History settings
 HISTSIZE=1000
 SAVEHIST=1000
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 
-## Change cursor shape for different vi modes
-export KEYTIMEOUT=1
+# Speedy options
+setopt AUTO_CD
+setopt NO_BEEP
+setopt PUSHDSILENT
+setopt AUTO_MENU
+setopt AUTO_LIST
+setopt CORRECT
+setopt PROMPT_SUBST
+#export KEYTIMEOUT=1
 
+# Autocompletion
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zmodload zsh/complist
+
+# Setting up vi mode
+## Change cursor shape for different vi modes (by Luke Smith)
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -31,28 +44,24 @@ function zle-keymap-select {
 }
 zle -N zle-keymap-select
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    zle -K viins
     echo -ne "\e[5 q"
 }
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-## Speedy options
-setopt AUTO_CD
-setopt NO_BEEP
-setopt PUSHDSILENT
-setopt AUTO_MENU
-setopt AUTO_LIST
-setopt CORRECT
-setopt PROMPT_SUBST
+## Use vim keys in tab completion menu
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
 
-## Syntax highlighting
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+## Fix backspace when switching modes
+bindkey "^?" backward-delete-char
 
-## Autocompletion
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+## Use jj to exit Insert mode
+bindkey jj vi-cmd-mode
 
 # Prompt settings
 ## Git integration
@@ -73,6 +82,7 @@ PS1+='%F{cyan}]%f'
 PS1+='${vcs_info_msg_0_} '
 PS1+='%(?.%F{green}.%F{red})ﬄ%f '
 
-# Useless beatification
-clear && toilet DarkAirship --filter rainbow
+# Add plugins
+## Syntax highlighting
+. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

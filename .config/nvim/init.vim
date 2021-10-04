@@ -1,4 +1,5 @@
 " Plug-ins {{{
+
 " (junegunn/vim-plug)
 call plug#begin('~/.config/nvim/plugged')
 
@@ -7,9 +8,11 @@ Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive' | Plug 'godlygeek/tabular'
 
 call plug#end()
+
 " }}}
 
 " Basic settings {{{
+
 set nobackup writebackup encoding=UTF-8 list lcs=tab:»_,trail:·
 set splitbelow splitright showcmd noshowmode nocursorline textwidth=80
 set incsearch hlsearch ignorecase smartcase showmatch linebreak
@@ -22,21 +25,30 @@ filetype on
 filetype plugin on
 echo '>^.^<'
 
-"" Edit file from last position
-autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-    \ |   exe "normal! g`\""
-    \ | endif
-
-"" Color
+" Color settings
 colorscheme nord
 set termguicolors
 let g:limelight_conceal_ctermfg = 242
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+highlight! Normal ctermbg=NONE guibg=NONE
+highlight! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+
+" Autocommands for all files
+augroup basic
+    autocmd!
+    "" Edit file from last position
+    autocmd BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \ |   exe "normal! g`\""
+        \ | endif
+
+    "" Remove trailing whitespace on save
+    autocmd BufWritePre * %s/\s\+$//e
+augroup END
+
 " }}}
 
 " Goyo settings {{{
+
 function! s:goyo_enter()
     set noshowcmd
     set notermguicolors
@@ -54,10 +66,13 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 " }}}
 
 " Remaps {{{
+
 " Normal mode {{{
+
 "" Enter commands with space
 nnoremap <space> :
 
@@ -71,6 +86,9 @@ nnoremap N Nzz
 
 "" Yank to the end of line
 nnoremap Y y$
+
+"" Alias S = replace all
+nnoremap S :%s//gI<left><left><left>
 
 "" Jump between splits with ctrl-[hjkl]
 nnoremap <silent> <c-k> :wincmd k<CR>
@@ -89,9 +107,12 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <right> <nop>
 nnoremap <left> <nop>
+nnoremap Q <nop>
+
 " }}}
 
 " Insert mode {{{
+
 "" Exit with jj
 inoremap jj <esc>
 
@@ -108,17 +129,32 @@ inoremap <right> <nop>
 inoremap <left> <nop>
 inoremap <bs> <nop>
 inoremap <enter> <nop>
+
 " }}}
 
 " Visual mode {{{
+
 "" Move selected area with JK
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
+
 " }}}
+
+" Command mode {{{
+
+" Save file as sudo when no sudo priveleges
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" }}}
+
 " }}}
 
 " Leader-bindings {{{
+
 let mapleader = '\'
+
+"" QUIET
+nnoremap <silent> <leader>q :echo<cr>
 
 "" Source VIMRC
 nnoremap <silent> <leader>\ :source $MYVIMRC<cr>
@@ -132,6 +168,8 @@ nnoremap <silent> <leader>] :set nu! rnu!<cr>
 "" Change keymaps between RU and EN
 nnoremap <silent> <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<cr>
 nnoremap <silent> <leader>e :setlocal keymap=<cr>:echo 'EN'<cr>
+inoremap <silent> <leader>r <esc> :setlocal keymap=russian-jcukenwin<cr>ha
+inoremap <silent> <leader>e <esc> :setlocal keymap=<cr>ha
 
 "" Toggle spellcheck
 nnoremap <silent> <leader>s :setlocal spell!<cr>
@@ -142,11 +180,23 @@ nnoremap <silent> <leader>fi :setlocal foldmethod=indent<cr>
 nnoremap <silent> <leader>fd :setlocal foldmethod=diff<cr>
 nnoremap <silent> <leader>nf :setlocal nofoldenable<cr>
 
+"" Set a jumping mark
+nnoremap <silent> <leader>m a<++><esc>
+
+"" Jump to the next jumping mark
+inoremap <silent> <leader>j <esc>/<++><cr>"_c4l
+
 "" Enter Goyo
 nnoremap <silent> <leader>g :Goyo<cr>
+
+"" Tabularize command
+nnoremap <leader>t :Tabularize /
+vnoremap <leader>t :Tabularize /
+
 " }}}
 
 " Status-line {{{
+
 "" Create a dictionary of modes (othervise doesn't work)
 let g:modeMap={
       \ "n"      : "n",
@@ -180,45 +230,53 @@ set statusline+=%{FugitiveStatusline()}
 set statusline+=%m
 set statusline+=%=
 set statusline+=%f
-set statusline+=\ 
+set statusline+=\
 set statusline+=%#DiffText#
 set statusline+=\ %l/%L
 set statusline+=\ [%c]
+
 " }}}
 
 " Vimscript file settings {{{
+
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+
 " }}}
 
 " Markdown filetype settings {{{
+
 augroup filetype_md
     autocmd!
     autocmd FileType markdown setlocal textwidth=0 cole=2
 
     "" Make subheading
-    autocmd FileType markdown nnoremap <leader>h I## <esc>j4ddjI*<esc>A*<esc>
+    autocmd FileType markdown nnoremap <leader>h
+                \ I## <esc>A,<esc>j3ddkJ2jI*<esc>A*<esc>
 
     "" Italisize a line
     autocmd FileType markdown nnoremap <leader>l I*<esc>A*<esc>
 
-    "" Fix stupid formatting
-    autocmd FileType markdown nnoremap <leader>a 0r ^i**<esc>ea**<esc>
+    "" Fix formatting
+    autocmd FileType markdown nnoremap <leader>a 0r ^i**<esc>Ea**<esc>
 
     "" Italisize a word
     autocmd FileType markdown nnoremap <leader>i bi*<esc>ea*<esc>
+    autocmd FileType markdown inoremap <leader>i bi*<esc>ea*<esc>
 
     "" Boldize a word
     autocmd FileType markdown nnoremap <leader>b Bi**<esc>Ea**<esc>
+    autocmd FileType markdown inoremap <leader>b Bi**<esc>Ea**<esc>
 
-    "" Uppercase a word while in Insert mode
+    "" Uppercase a word
     autocmd FileType markdown inoremap <leader>u <esc>vBUEa
 
     " Quickly change heading
     autocmd FileType markdown onoremap ih :<c-u>execute
                 \ "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
 augroup END
+
 " }}}
 
