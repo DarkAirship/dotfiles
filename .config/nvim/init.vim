@@ -23,7 +23,6 @@ set completeopt=longest,menuone
 syntax on
 filetype on
 filetype plugin on
-echo '>^.^<'
 
 " Color settings
 colorscheme nord
@@ -250,7 +249,7 @@ augroup END
 
 augroup filetype_md
     autocmd!
-    autocmd FileType markdown setlocal textwidth=0 cole=2
+    autocmd FileType markdown setlocal textwidth=80 conceallevel=2
 
     "" Make subheading
     autocmd FileType markdown nnoremap <leader>h
@@ -276,6 +275,10 @@ augroup filetype_md
     " Quickly change heading
     autocmd FileType markdown onoremap ih :<c-u>execute
                 \ "normal! ?^#\\+\r:nohlsearch\r0wvg_"<cr>
+
+    "" Edit journal when opened
+    autocmd BufRead 2021.md setlocal keymap=russian-jcukenwin
+    autocmd BufRead 2021.md Goyo
 augroup END
 
 " }}}

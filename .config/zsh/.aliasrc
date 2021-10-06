@@ -41,7 +41,7 @@ alias dc='sudo systemctl stop openvpn-client@ie'
 ## Fast configuration edits
 alias vb='nvim ~/.config/bash/.bashrc'
 alias vz='nvim ~/.config/zsh/.zshrc'
-alias val='nvim ~/.config/zsh/.aliasrc'
+alias vza='nvim ~/.config/zsh/.aliasrc'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vr='nvim ~/.config/ranger/rc.conf'
