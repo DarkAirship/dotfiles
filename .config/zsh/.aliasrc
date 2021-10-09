@@ -15,6 +15,7 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias rg='rg --color=auto'
+alias ip='ip -color=auto'
 
 ## Navigation
 alias cd..='cd ..'
@@ -41,7 +42,7 @@ alias dc='sudo systemctl stop openvpn-client@ie'
 ## Fast configuration edits
 alias vb='nvim ~/.config/bash/.bashrc'
 alias vz='nvim ~/.config/zsh/.zshrc'
-alias vza='nvim ~/.config/zsh/.aliasrc'
+alias vsa='nvim ~/.config/zsh/.aliasrc'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vr='nvim ~/.config/ranger/rc.conf'
@@ -79,7 +80,7 @@ alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
 alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias wget="wget -c"
-alias rez='. $ZDOTDIR/.zshrc'
+alias rz='. $ZDOTDIR/.zshrc'
 alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
 alias unlock="sudo rm /var/lib/pacman/db.lck"
 alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"

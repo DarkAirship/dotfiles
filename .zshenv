@@ -1,19 +1,27 @@
 #!/bin/sh
-#
-## Path
+
+# Path
 [[ -d $HOME/.bin ]] && PATH=$HOME/.bin:$PATH
 [[ -d $HOME/.local/bin ]] && PATH=$HOME/.local/bin:$PATH
 
 # Set environment variables
 export TERM="xterm-256color"
 export TERMINAL="alacritty"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export VISUAL="nvim"
 export EDITOR="nvim"
-export BROWSER="brave"
 export READER="zathura"
+export BROWSER="brave"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER='less -s -M +Gg'
 
-#export LESS_TERMCAP_mb=$'\e[1;32m'
+# Colorize less
+export LESS_TERMCAP_mb=$'\e[1;38;5;160m' # red
+export LESS_TERMCAP_md=$'\e[1;38;5;178m' # bold text
+export LESS_TERMCAP_me=$'\e[0m' # turn off appearance modes
+export LESS_TERMCAP_us=$'\e[4;38;5;74m' # underlined text
+export LESS_TERMCAP_ue=$'\e[0m' # leave underline mode
+export LESS_TERMCAP_so=$'\e[1;48;5;74m' # bottom of the screen
+export LESS_TERMCAP_se=$'\e[0m' # leave standout mode
 
 # Set XDG variables
 export XDG_CONFIG_HOME=$HOME/.config
@@ -32,7 +40,7 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg, gpg2 --homedir "$XDG_DATA_HOME"/gnupg
 
 # Cannot set this - doesn't allow to login then
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-#
+
 # Setting for ranger to load user configs
 #export RANGER_LOAD_DEFAULT_RC=false
 
