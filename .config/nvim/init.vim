@@ -3,16 +3,10 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-"" Git integration for statusline
 Plug 'tpope/vim-fugitive'
-
-"" Nord colorscheme
 Plug 'arcticicestudio/nord-vim'
-
-"" Goyo and Limelight for writing
-Plug 'junegunn/goyo.vim' | Plug 'junegunn/limelight.vim'
-
-"" For text alignment
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'godlygeek/tabular'
 
 call plug#end()
@@ -88,11 +82,9 @@ highlight! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 "" Search highlighting
 set hlsearch
 highlight clear Search
-highlight Search cterm=bold ctermfg=white ctermbg=gray guifg=white guibg=242
-highlight IncSearch cterm=bold ctermfg=white ctermbg=red guifg=white guibg=cyan
 
 "" Show whitespace characters
-set listchars=tab:»_,trail:·,nbsp:~
+set listchars=tab:»_,trail:·
 
 augroup whitespace_files
     autocmd!
@@ -155,8 +147,7 @@ function! s:goyo_leave()
     hi! Normal ctermbg=NONE guibg=NONE
 endfunction
 
-augroup goyo
-    autocmd!
+augroup goyo_do
     autocmd User GoyoEnter nested call <SID>goyo_enter()
     autocmd User GoyoLeave nested call <SID>goyo_leave()
 augroup END
@@ -397,8 +388,8 @@ augroup filetype_md
                 \ "normal! ?^#\\+\r:nohlsearch\r0wvg_"<CR>
 
     "" Edit journal when opened
-    autocmd BufEnter 2021.md Goyo
-    autocmd BufEnter 2021.md setlocal keymap=russian-jcukenwin
+    autocmd BufRead 2021.md Goyo
+    autocmd BufRead 2021.md setlocal keymap=russian-jcukenwin
 
     "" Upload journal
     autocmd BufRead 2021.md nnoremap <leader>1 :! ~/.local/bin/dup<CR>

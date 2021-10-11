@@ -1,5 +1,5 @@
 # Useless beatification
-clear && toilet cowsay --rainbow
+clear && toilet '  cowsay' --rainbow
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

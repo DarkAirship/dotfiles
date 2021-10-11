@@ -5,32 +5,34 @@
 alias ls='exa -x --color=always --group-directories-first'
 alias la='ls -a'
 alias ll='ls -alh --git'
-alias l.="ls -a --no-icons | grep '^\.'"
+alias l.="ls -a --no-icons | rg '^\.'"
 alias pls='ptls'
 alias pwd='ptpwd'
 alias mkdir='ptmkdir'
 alias touch='pttouch'
 alias cat='bat'
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias rg='rg --color=auto'
+alias pacman='pacman --color=always'
+alias rg='rg --sort path --color=auto'
 alias ip='ip -color=auto'
 
 ## Navigation
 alias cd..='cd ..'
 alias -g ...='../..'
 alias -g ....='../../..'
+alias dang='sudo !!'
 
 ## Short names for frequently used programs
 alias v='nvim'
 alias vim='nvim'
 alias fm='ranger'
+alias mf='ranger'
+alias tsd='transmission-daemon'
 alias tsm='transmission-remote'
-alias p='sudo pacman --color auto'
-alias rg="rg --sort path"
+alias p='sudo pacman --color always'
 alias mypass='bw get password'
-alias wthr='curl wttr.in/chelyabinsk'
+alias wtrc='wttr chelyabinsk'
+alias wtre='wttr ekaterinburg'
 alias mail='aerc'
 alias news='newsboat'
 
@@ -95,7 +97,7 @@ alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pac
 ### Arcolinux experimental - best option for the moment
 alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias ram='rate-arch-mirrors'
+alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
 
 ## Arcolinux applications
 alias att="arcolinux-tweak-tool"
