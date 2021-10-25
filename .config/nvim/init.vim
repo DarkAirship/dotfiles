@@ -3,11 +3,12 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'tpope/vim-fugitive'
 Plug 'arcticicestudio/nord-vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
+Plug 'chrisbra/colorizer'
 
 call plug#end()
 
@@ -82,6 +83,8 @@ highlight! NonText ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 "" Search highlighting
 set hlsearch
 highlight clear Search
+highlight Search cterm=bold ctermfg=White ctermbg=Black guifg=White
+highlight IncSearch cterm=bold ctermfg=White ctermbg=Red guifg=Red
 
 "" Show whitespace characters
 set listchars=tab:»_,trail:·
@@ -130,45 +133,22 @@ augroup vim_reload
 augroup END
 
 " }}}
-" Goyo settings {{{
-
-function! s:goyo_enter()
-    set noshowcmd
-    set notermguicolors
-    set scrolloff=999
-    Limelight
-endfunction
-
-function! s:goyo_leave()
-    set showcmd
-    set termguicolors
-    set scrolloff=5
-    Limelight!
-    hi! Normal ctermbg=NONE guibg=NONE
-endfunction
-
-augroup goyo_do
-    autocmd User GoyoEnter nested call <SID>goyo_enter()
-    autocmd User GoyoLeave nested call <SID>goyo_leave()
-augroup END
-
-" }}}
 " Autocorrections {{{
 
-iab    retrun  return
-iab     pritn  print
-iab       teh  the
-iab      liek  like
-iab        ;t  't
-iab      moer  more
-iab  previosu  previous
+iabbrev    retrun  return
+iabbrev     pritn  print
+iabbrev       teh  the
+iabbrev      liek  like
+iabbrev        ;t  't
+iabbrev      moer  more
+iabbrev  previosu  previous
 
 " }}}
 " Remaps {{{
 
 " Normal mode {{{
 
-"" Enter commands with space
+"" Enter commands with semicolon
 nnoremap ; :
 nnoremap : ;
 
@@ -192,6 +172,9 @@ nnoremap <C-V> v
 
 "" Use space to jump down a page
 nnoremap <Space> <PageDown>
+
+"" Insert a line at the cursor
+nnoremap <C-I> i<CR><Esc>
 
 "" Jump between splits with ctrl-[hjkl]
 nnoremap <silent> <C-K> :wincmd k<CR>
@@ -235,13 +218,16 @@ inoremap <Enter> <Nop>
 " }}}
 " Visual mode {{{
 
-"" Enter commands with space
+"" Enter commands with semicolon
 xnoremap ; :
 xnoremap : ;
 
 "" Swap Visual Block and Visual modes
 xnoremap v <C-V>
 xnoremap <C-V> v
+
+"" Insert with i
+xnoremap i I
 
 "" Use space to jump down a page
 xnoremap <Space> <PageDown>
@@ -267,10 +253,10 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <BAR> edit!
 let mapleader = '\'
 
 "" QUIET
-nnoremap <silent> <leader>q :echo<CR>
+nnoremap <silent> <leader>q :highlight! clear Search<CR>:echo<CR>
 
 "" Source VIMRC
-nnoremap <silent> <leader>\ :source $MYVIMRC<CR>:echo '>^.^<'<CR>
+nnoremap <silent> <leader><Space> :source $MYVIMRC<CR>:echo '>^.^<'<CR>
 
 "" Open VIMRC in a split buffer
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<CR>
@@ -294,10 +280,12 @@ nnoremap <silent> <leader>fd :setlocal foldmethod=diff<CR>
 nnoremap <silent> <leader>nf :setlocal nofoldenable<CR>
 
 "" Set a jumping mark
-nnoremap <silent> <leader>m a<++><Esc>
+nnoremap <silent> <leader>M a<++><Esc>
+inoremap <silent> <leader>M <Esc>a<++>
 
 "" Jump to the next jumping mark
-inoremap <silent> <leader>j <Esc>/<++><CR>"_c4l
+nnoremap <silent> <leader>m /<++><CR>"_c4l<Esc>
+inoremap <silent> <leader>m <Esc>/<++><CR>"_c4l
 
 "" Enter Goyo
 nnoremap <silent> <leader>g :Goyo<CR>
@@ -347,6 +335,27 @@ set statusline+=\ %l/%L
 set statusline+=\ [%c]
 
 " }}}
+" Goyo settings {{{
+
+function! s:goyo_enter()
+    set noshowcmd
+    set notermguicolors
+    set scrolloff=999
+    Limelight
+endfunction
+
+function! s:goyo_leave()
+    set showcmd
+    set termguicolors
+    set scrolloff=5
+    Limelight!
+    hi! Normal ctermbg=NONE guibg=NONE
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" }}}
 " Vimscript file settings {{{
 
 augroup filetype_vim
@@ -376,6 +385,10 @@ augroup filetype_md
     autocmd FileType markdown nnoremap <leader>i bi*<Esc>ea*<Esc>
     autocmd FileType markdown inoremap <leader>i <Esc>bi*<Esc>ea*
 
+    "" Italisize two words
+    autocmd FileType markdown nnoremap <leader>2i 2bi*<Esc>2ea*<Esc>
+    autocmd FileType markdown inoremap <leader>2i <Esc>2bi*<Esc>2ea*
+
     "" Boldize a word
     autocmd FileType markdown nnoremap <leader>b Bi**<Esc>Ea**<Esc>
     autocmd FileType markdown inoremap <leader>b <Esc>Bi**<Esc>Ea**
@@ -393,7 +406,13 @@ augroup filetype_md
 
     "" Upload journal
     autocmd BufRead 2021.md nnoremap <leader>1 :! ~/.local/bin/dup<CR>
+    autocmd BufWritePost 2021.md execute ":! ~/.local/bin/dup"
 augroup END
 
 " }}}
+" LaTeX filetype settings {{{
 
+augroup filetype_tex
+augroup END
+
+" }}}

@@ -18,9 +18,9 @@ export MANPAGER='less -s -M +Gg'
 export LESS_TERMCAP_mb=$'\e[1;38;5;160m' # red
 export LESS_TERMCAP_md=$'\e[1;38;5;178m' # bold text
 export LESS_TERMCAP_me=$'\e[0m' # turn off appearance modes
-export LESS_TERMCAP_us=$'\e[4;38;5;74m' # underlined text
+export LESS_TERMCAP_us=$'\e[4;38;5;70m' # underlined text
 export LESS_TERMCAP_ue=$'\e[0m' # leave underline mode
-export LESS_TERMCAP_so=$'\e[1;48;5;74m' # bottom of the screen
+export LESS_TERMCAP_so=$'\e[1;38;5;67m' # bottom of the screen
 export LESS_TERMCAP_se=$'\e[0m' # leave standout mode
 
 # Set XDG variables
