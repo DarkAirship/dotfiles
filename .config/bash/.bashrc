@@ -30,30 +30,6 @@ PS1+='\[\033[0;33m\]$(__git_ps1 "(%s) ")'
 PS1+='\[\033[1;$(SuccessFail)m\]ﬄ '
 PS1+='\[\033[00m\]'
 
-
-# Aliases
-#alias ls='exa -a --colour=always --group-directories-first'
-alias ls="ptls"
-alias ll='ls -al'
-alias la='ls -A'
-alias pwd="ptpwd"
-alias mkdir="ptmkdir"
-alias touch="pttouch"
-alias grep='grep --color=auto'
-alias v='nvim'
-alias vim='nvim'
-alias p='sudo pacman'
-#alias rp='sudo pacman -Rcs $(pacman -Qdtq)'
-alias rp='sudo pacman -Qtdq | pacman -Rns -'
-alias fm='ranger'
-alias tsm='transmission-remote'
-alias city='curl ipinfo.io/city'
-alias rc='sudo systemctl restart openvpn-client@ie'
-alias dc='sudo systemctl stop openvpn-client@ie'
-alias mypass='bw get password'
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-
-
 # History settings
 shopt -s histappend
 HISTCONTROL=ignoreboth

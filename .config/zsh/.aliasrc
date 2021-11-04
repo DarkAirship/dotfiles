@@ -6,9 +6,6 @@ alias ls='exa -x --color=always --group-directories-first'
 alias la='ls -a'
 alias ll='ls -alh --git'
 alias l.="ls -a --no-icons | rg '^\.'"
-alias pwd='ptpwd'
-alias mkdir='ptmkdir'
-alias touch='pttouch'
 alias grep='grep --color=auto'
 alias pacman='pacman --color=always'
 alias rg='rg --sort path --color=auto'
@@ -33,6 +30,7 @@ alias wtrc='curl wttr.in/chelyabinsk'
 alias wtre='curl wttr.in/ekaterinburg'
 alias mail='aerc'
 alias news='newsboat'
+alias please='sudo'
 
 ## VPN management
 alias city='curl ipinfo.io/city'
@@ -48,6 +46,10 @@ alias vv='nvim ~/.config/nvim/init.vim'
 alias vr='nvim ~/.config/ranger/rc.conf'
 alias vnews='nvim ~/.config/newsboat/config'
 alias vrss='nvim ~/.config/newsboat/urls'
+alias vp='nvim ~/.config/polybar/config'
+
+## Fast note-taking
+alias vts='nvim ~/Documents/cheatsheets/techsup.txt'
 
 ## Alias for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
@@ -59,6 +61,7 @@ alias upall='paru -Syu --noconfirm'
 alias pksyua='paru -Syu --noconfirm'
 alias paruskip='paru -S --mflags --skipinteg'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias rp='~/.config/polybar/launch.sh'
 
 ## System information
 alias df='df -h'

@@ -265,6 +265,7 @@ nnoremap <silent> <leader>v :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>] :set nu! rnu!<CR>
 
 "" Change keymaps between RU and EN
+"" Note that inoremap works only if there are spaces on new lines after cursor
 nnoremap <silent> <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<CR>
 nnoremap <silent> <leader>e :setlocal keymap=<CR>:echo 'EN'<CR>
 inoremap <silent> <leader>r <Esc> :setlocal keymap=russian-jcukenwin<CR>ha
@@ -293,6 +294,10 @@ nnoremap <silent> <leader>g :Goyo<CR>
 "" Tabularize command
 nnoremap <leader>t :Tabularize /
 vnoremap <leader>t :Tabularize /
+
+"" Toggle Colorizer
+nnoremap <silent> <leader>c :ColorToggle<CR>
+inoremap <silent> <leader>c :ColorToggle<CR>
 
 " }}}
 " Status-line {{{
