@@ -11,7 +11,6 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 export READER="zathura"
 export BROWSER="brave"
-#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANPAGER='less -s -M +Gg'
 
 # Colorize less
@@ -34,11 +33,12 @@ export ZDOTDIR=$HOME/.config/zsh
 export HISTFILE=$ZDOTDIR/.zhistory
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg, gpg2 --homedir "$XDG_DATA_HOME"/gnupg
 
-# Cannot set this - doesn't allow to login then
+# Cannot set this - sddm breaks then
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 # Setting for ranger to load user configs

@@ -369,6 +369,15 @@ augroup filetype_vim
 augroup END
 
 " }}}
+" LeftWM file settings {{{
+"
+"augroup filetype_leftwm
+"    autocmd!
+"    autocmd BufWritePost ~/.config/leftwm/config.toml execute ":! "
+"augroup END
+"
+" }}}
+
 " Markdown filetype settings {{{
 
 augroup filetype_md
