@@ -22,6 +22,7 @@ alias fm='ranger'
 alias mf='ranger'
 alias tsd='transmission-daemon'
 alias tsm='transmission-remote'
+alias watchtsm='watch transmission-remote -l'
 alias p='sudo pacman --color always'
 alias mypass='bw get password'
 alias genpass='bw generate -lusn --length 14'
@@ -92,7 +93,7 @@ alias unlock="sudo rm /var/lib/pacman/db.lck"
 alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
 alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
 alias unhblock='hblock -S none -D none'
-alias merge='xrdb -merge /home/semyon/.config/X11/xresourses'
+alias merge='xrdb -merge /home/semyon/.config/X11/xresources'
 
 ## Aliases for software managment
 alias update='sudo pacman -Syyu --color auto --noconfirm'

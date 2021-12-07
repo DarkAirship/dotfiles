@@ -175,6 +175,11 @@ modifier = ["modkey"]
 key = "q"
 
 [[keybind]]
+command = "CloseWindow"
+modifier = ["modkey", "Shift"]
+key = "q"
+
+[[keybind]]
 command = "SoftReload"
 modifier = ["modkey", "Shift"]
 key = "r"
@@ -225,9 +230,19 @@ modifier = ["modkey"]
 key = "space"
 
 [[keybind]]
+command = "NextLayout"
+modifier = ["modkey", "Control"]
+key = "Up"
+
+[[keybind]]
 command = "PreviousLayout"
 modifier = ["modkey", "Shift"]
 key = "space"
+
+[[keybind]]
+command = "PreviousLayout"
+modifier = ["modkey", "Control"]
+key = "Down"
 
 [[keybind]]
 command = "FocusWorkspaceNext"
@@ -240,16 +255,6 @@ modifier = ["modkey"]
 key = "h"
 
 [[keybind]]
-command = "NextLayout"
-modifier = ["modkey", "Control"]
-key = "Up"
-
-[[keybind]]
-command = "PreviousLayout"
-modifier = ["modkey", "Control"]
-key = "Down"
-
-[[keybind]]
 command = "FocusNextTag"
 modifier = ["modkey"]
 key = "Down"
@@ -258,6 +263,18 @@ key = "Down"
 command = "FocusPreviousTag"
 modifier = ["modkey"]
 key = "Up"
+
+#[[keybind]]
+#command = "Execute"
+#value = "leftwm-command SwapScreens"
+#modifier = ["modkey"]
+#key = "Left"
+#
+#[[keybind]]
+#command = "Execute"
+#value = "leftwm-command SwapScreens"
+#modifier = ["modkey"]
+#key = "Right"
 
 [[keybind]]
 command = "FocusPreviousTag"
