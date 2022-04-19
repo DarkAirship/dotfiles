@@ -183,16 +183,16 @@ nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
 
 "" Resize splits with arrows
-"nnoremap <Up>    :resize +2<CR>
-"nnoremap <Down>  :resize -2<CR>
-"nnoremap <Right> :vertical resize -2<CR>
-"nnoremap <Left>  :vertical resize +2<CR>
+nnoremap <Up>    :resize +2<CR>
+nnoremap <Down>  :resize -2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+nnoremap <Left>  :vertical resize +2<CR>
 
 "" Disable keys
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Left> <Nop>
+"nnoremap <Up> <Nop>
+"nnoremap <Down> <Nop>
+"nnoremap <Right> <Nop>
+"nnoremap <Left> <Nop>
 nnoremap Q <Nop>
 
 " }}}
@@ -377,7 +377,6 @@ augroup END
 "augroup END
 "
 " }}}
-
 " Markdown filetype settings {{{
 
 augroup filetype_md
@@ -413,16 +412,17 @@ augroup filetype_md
     " Quickly change heading
     autocmd FileType markdown onoremap ih :<C-U>execute
                 \ "normal! ?^#\\+\r:nohlsearch\r0wvg_"<CR>
-
-    "" Edit journal when opened
-    autocmd BufRead 2021.md Goyo
-    autocmd BufRead 2021.md setlocal keymap=russian-jcukenwin
-
-    "" Upload journal
-    autocmd BufRead 2021.md nnoremap <leader>1 :! ~/.local/bin/dup<CR>
-    autocmd BufWritePost 2021.md execute ":! ~/.local/bin/dup"
 augroup END
 
+
+augroup journal
+    "" Edit journal when opened
+    autocmd BufRead 2022.md setlocal keymap=russian-jcukenwin
+    "autocmd BufRead 2022.md Goyo
+
+    "" Upload journal
+    autocmd BufWritePost 2022.md execute ":! ~/.local/bin/dup"
+augroup END
 " }}}
 " LaTeX filetype settings {{{
 

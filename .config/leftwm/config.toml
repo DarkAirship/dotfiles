@@ -159,15 +159,22 @@ key = "f"
 
 [[keybind]]
 command = "Execute"
-value = "brightnessctl s +10%"
-modifier = ["Control"]
-key = "Right"
+value = "remmina"
+modifier = ["Control", "Alt"]
+key = "r"
 
-[[keybind]]
-command = "Execute"
-value = "brightnessctl s 10%-"
-modifier = ["Control"]
-key = "Left"
+
+#[[keybind]]
+#command = "Execute"
+#value = "brightnessctl s +10%"
+#modifier = ["Control"]
+#key = "Right"
+#
+#[[keybind]]
+#command = "Execute"
+#value = "brightnessctl s 10%-"
+#modifier = ["Control"]
+#key = "Left"
 
 [[keybind]]
 command = "CloseWindow"
