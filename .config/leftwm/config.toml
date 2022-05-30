@@ -1,7 +1,12 @@
+#possible keybindings
+#https://github.com/leftwm/leftwm/blob/master/src/utils/xkeysym_lookup.rs
+
 #Mod4 = Super key
 modkey = "Mod4"
 workspaces = []
-tags = ["1", "2", "3", "4"]
+tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+#tags = ["", "", "", "", "", "", "", "", ""]
+#tags = ["www", "edit", "gimp", "inkscape", "meld", "video","vm", "files", "music"]
 
 layouts = [ "MainAndVertStack",
             "MainAndHorizontalStack",
@@ -22,8 +27,15 @@ scratchpad = []
 #value = "xfce4-terminal" # The command to load the application if it isn't started
 disable_current_tag_swap = true
 focus_behaviour = "Sloppy"
+#focus_behaviour = "Driven"
 #focus_behaviour = "ClickTo"
 focus_new_windows = true
+
+[[keybind]]
+command = "Execute"
+value = "xfce4-terminal --drop-down"
+modifier = []
+key = "F12"
 
 #[[keybind]]
 #command = "ToggleScratchPad"
@@ -147,7 +159,7 @@ key = "l"
 
 [[keybind]]
 command = "Execute"
-value = "arcolinux-tweak-tool"
+value = "archlinux-tweak-tool"
 modifier = ["Control", "Alt"]
 key = "e"
 
@@ -159,7 +171,7 @@ key = "f"
 
 [[keybind]]
 command = "Execute"
-value = "remmina"
+value = "/home/semyon/.local/bin/gowork"
 modifier = ["Control", "Alt"]
 key = "r"
 
@@ -281,6 +293,16 @@ key = "Up"
 #command = "Execute"
 #value = "leftwm-command SwapScreens"
 #modifier = ["modkey"]
+#key = "Right"
+
+#[[keybind]]
+#command = "MoveWindowToNextWorkspace"
+#modifier = ["modkey","Shift"]
+#key = "Left"
+#
+#[[keybind]]
+#command = "MoveWindowToNextWorkspace"
+#modifier = ["modkey","Shift"]
 #key = "Right"
 
 [[keybind]]
