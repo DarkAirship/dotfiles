@@ -132,6 +132,12 @@ augroup vim_reload
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
+" Auto-reload leftwm after writing config
+augroup leftwm_reload
+    autocmd!
+    autocmd BufWritePost *leftwm/config.toml :!leftwm-command SoftReload<CR>
+augroup END
+
 " }}}
 " Autocorrections {{{
 
@@ -207,6 +213,25 @@ inoremap <C-B> <C-W>
 "" Delete a line while in Insert mode
 inoremap <C-D> <Esc>ddi
 
+"" Insert # in Russian layout by pressing №№
+inoremap № #
+
+"" Autoinsert brackets
+"" (double tap for a single bracket)
+inoremap " ""<left>
+inoremap "" "
+inoremap ' ''<left>
+inoremap '' '
+inoremap ( ()<left>
+inoremap (( (
+inoremap [ []<left>
+inoremap [[ [
+inoremap { {}<left>
+inoremap {{ {
+"" insert a block of code by pressing Enter after a curly bracket
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 "" Disable keys
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
@@ -261,15 +286,18 @@ nnoremap <silent> <leader><Space> :source $MYVIMRC<CR>:echo '>^.^<'<CR>
 "" Open VIMRC in a split buffer
 nnoremap <silent> <leader>v :vsplit $MYVIMRC<CR>
 
+"" Show line numbers
+nnoremap <silent> <leader>] :set nu!<CR>
+
 "" Show relative line numbers
-nnoremap <silent> <leader>] :set nu! rnu!<CR>
+nnoremap <silent> <leader>[ :set nu! rnu!<CR>
 
 "" Change keymaps between RU and EN
 "" Note that inoremap works only if there are spaces on new lines after cursor
 nnoremap <silent> <leader>r :setlocal keymap=russian-jcukenwin<CR>:echo 'RU'<CR>
 nnoremap <silent> <leader>e :setlocal keymap=<CR>:echo 'EN'<CR>
-inoremap <silent> <leader>r <Esc> :setlocal keymap=russian-jcukenwin<CR>ha
-inoremap <silent> <leader>e <Esc> :setlocal keymap=<CR>ha
+inoremap <silent> <leader>r <Esc>:setlocal keymap=russian-jcukenwin<CR>a
+inoremap <silent> <leader>e <Esc>:setlocal keymap=<CR>a
 
 "" Toggle spellcheck
 nnoremap <silent> <leader>s :setlocal spell!<CR>

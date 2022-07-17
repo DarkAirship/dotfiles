@@ -1,306 +1,201 @@
 #################################################################
-# KEYBOARD BINDINGS FOR ANY TWM
+#     KEYBOARD BINDINGS FOR ANY TWM
 #################################################################
 
 #################################################################
-# SUPER + FUNCTION KEYS
+#     MULTIMEDIA KEYS
 #################################################################
 
-# Vivaldi
-super + F1
-	vivaldi-stable
+#Raise volume
+XF86AudioRaiseVolume
+    amixer set Master 10%+
 
-# Atom
-super + F2
-	atom
+#Lower volume
+XF86AudioLowerVolume
+    amixer set Master 10%-
 
-#Inkscape
-super + F3
-    inkscape
+#Mute
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
 
-#Gimp
-super + F4
-    gimp
+#Play
+XF86AudioPlay
+    playerctl play-pause
 
-#Meld
-super + F5
-    meld
+#Next
+XF86AudioNext
+    playerctl next
 
-#Vlc
-super + F6
-    vlc --video-on-top
+#Previous
+XF86AudioPrev
+    playerctl previous
 
-#Virtualbox
-super + F7
-    virtualbox
+#Stop
+XF86AudioStop
+    playerctl stop
 
-#Thunar
-super + F8
-    thunar
+#Brightness up
+XF86MonBrightnessUp
+    xbacklight -inc 10
 
-#Evolution
-super + F9
-    evolution
+#Brightness down
+XF86MonBrightnessDown
+    xbacklight -dec 10
 
-#Spotify
-super + F10
-    spotify
-
-#Rofi Fullscreen
-super + F11
-    rofi -theme-str 'window \{width: 100%;height: 100%;\}' -show drun
-
-#Rofi
-super + F12
-    rofi -show drun
 
 #################################################################
-# SUPER + ... KEYS
+#     FUNCTION KEYS
 #################################################################
 
-#Atom
+#Xfce terminal drop-down
+F12
+    xfce4-terminal --drop-down
+
+
+#################################################################
+#     SUPER + FUNCTION KEYS
+#################################################################
+
+#################################################################
+#     SUPER + KEYS
+#################################################################
+
+#Xfce4-appfinder
+super + a
+    xfce4-appfinder
+
+#Brave
+super + b
+    brave
+
+#Diary
+super + d
+    alacritty -e md
+
+#Email
 super + e
-    atom
+    alacritty -e aerc
 
-#Browser
-super + w
-    vivaldi-stable
+#Telegram
+super + m
+    telegram-desktop
 
-#Conky-toggle
-super + c
-    conky-toggle
+#Newsboat
+super + n
+    alacritty -e newsboat
 
-#Htop
-super + h
-    urxvt -e htop
-
-#Rofi theme selector
-super + r
-    rofi-theme-selector
-
-#Urxvt
+#Alacritty
 super + t
-    urxvt
+    alacritty
 
 #Pavucontrol
 super + v
     pavucontrol
 
-#Pragha
-super + m
-    pragha
+#ArchLinux Logout
+super + x
+    archlinux-logout
 
-#urxvt
+#Youtube
+super + y
+    brave youtube.com
+
+#Alacritty
 super + Return
-    urxvt
+    alacritty
 
 #Xkill
 super + Escape
     xkill
 
-#Keyboard dependent
-#urxvt
-super + KP_Enter
-	urxvt
 
 #################################################################
-# SUPER + SHIFT KEYS
+#     SUPER + CONTROL KEYS
+#################################################################
+
+#################################################################
+#     SUPER + ALT KEYS
+#################################################################
+
+#################################################################
+#     SUPER + SHIFT KEYS
 #################################################################
 
 #File-Manager
 super + shift + Return
-	thunar
+    thunar
 
-#Keyboard dependent
-#File-Manager
-#super + shift + KP_Enter
-#	thunar
-
-#dmenu
-super + shift + d
-	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
-
-#reload sxhkd:
+#Reload sxhkd
 super + shift + s
-	pkill -USR1 -x sxhkd
-
-#Keyboard dependent
-#super + shift + KP_Enter
-#	thunar
+    pkill -USR1 -x sxhkd
 
 
 #################################################################
-# CONTROL + ALT KEYS
+#     CONTROL + ALT KEYS
 #################################################################
-
-#arcolinux-welcome-app
-ctrl + alt + w
-     arcolinux-welcome-app
-
-#arcolinux-tweak-tool
-ctrl + alt + e
-    arcolinux-tweak-tool
-
-#conky-rotate
-ctrl + alt + Next
-     conky-rotate -n
-
-#conky-rotate
-ctrl + alt + Prior
-    conky-rotate -p
-
-#File-Manager
-ctrl + alt + b
-     thunar
-
-#Catfish
-ctrl + alt + c
-     catfish
-
-#Chromium
-ctrl + alt + g
-    chromium -no-default-browser-check
-
-#Firefox
-ctrl + alt + f
-     firefox
-
-#Nitrogen
-ctrl + alt + i
-     nitrogen
-
-#arcolinux-logout
-ctrl + alt + k
-     arcolinux-logout
-
-#arcolinux-logout
-ctrl + alt + l
-    arcolinux-logout
-
-#Pamac-manager
-ctrl + alt + p
-    pamac-manager
-
-#Xfce4-settings-manager
-ctrl + alt + m
-     xfce4-settings-manager
-
-#Pulse Audio Control
-ctrl + alt + u
-     pavucontrol
-
-#Rofi theme selector
-ctrl + alt + r
-  rofi-theme-selector
-
-#Spotify
-ctrl + alt + s
-   spotify
-
-#urxvt
-ctrl + alt + Return
-    urxvt
-
-#urxvt
-ctrl + alt + t
-    urxvt
-
-#Vivaldi
-ctrl + alt + v
-    vivaldi-stable
 
 #Xfce4-appfinder
 ctrl + alt + a
     xfce4-appfinder
 
+#Dmenu
+ctrl + alt + d
+    dmenu_run -fn 'NotoMonoRegular:bold:pixelsize=19'
 
-#Keyboard dependent
-#urxvt
-#ctrl + alt + KP_Enter
-#     urxvt
+#Archlinux-tweak-tool
+ctrl + alt + e
+    archlinux-tweak-tool
 
+#Gotop
+ctrl + alt + g
+    alacritty -e gotop
 
-#################################################################
-# ALT + ... KEYS
-#################################################################
+#Betterlockscreen
+ctrl + alt + l
+     betterlockscreen -l
 
-#Wallpaper trash
-alt + t
-    variety -t
+#Xfce4-settings-manager
+ctrl + alt + m
+     xfce4-settings-manager
 
-#Wallpaper next
-alt + n
-    variety -n
+#Picom Toggle
+ctrl + alt + o
+    ~/.config/leftwm/scripts/picom-toggle.sh
 
-#Wallpaper previous
-alt + p
-    variety -p
-
-#Wallpaper favorite
-alt + f
-    variety -f
-
-#Wallpaper previous
-alt + Left
-    variety -p
-
-#Wallpaper next
-alt + Right
-    variety -n
-
-#Wallpaper toggle-pause
-alt + Up
-    variety --toggle-pause
-
-#Wallpaper resume
-alt + Down
-    variety --resume
-
-#Xfce appfinder
-alt + F2
-    xfce4-appfinder --collapsed
-
-#Xfce4-appfinder
-alt + F3
-    xfce4-appfinder
-
-#Xlunch app launcher
-#alt + F5
-#    xlunch --config ~/.config/xlunch/default.conf --input ~/.config/xlunch/entries.dsv   
-
-
-#################################################################
-#VARIETY KEYS WITH PYWAL
-#################################################################
-
-#Wallpaper trash
-alt + shift + t
-    variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper next
-alt + shift + n
-    variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper previous
-alt + shift + p
-    variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper favorite
-alt + shift + f
-    variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#Wallpaper update
-alt + shift + u
-    wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
-
-#################################################################
-# CONTROL + SHIFT KEYS
-#################################################################
+#Update packages
+ctrl + alt + u
+    alacritty -e upd
 
 #Xcfe4-TaskManager
-ctrl + shift + Escape
+ctrl + alt + Escape
     xfce4-taskmanager
 
+
+#################################################################
+#     CONTROL + SHIFT KEYS
+#################################################################
+
+#Go work
+ctrl + shift + w
+    ~/.local/bin/gowork
+
+
+#################################################################
+#     ALT KEYS
+#################################################################
+
+#Screenshot of choice
+alt + s
+    flameshot gui
+
+#Change wallpaper
+alt + w
+    feh --bg-fill -rz --no-fehbg /usr/share/backgrounds/
+
+
+#################################################################
+#     ALT + SHIFT KEYS
+#################################################################
 
 #################################################################
 #     SCREENSHOTS
@@ -322,102 +217,12 @@ ctrl + shift + Print
 super + ctrl + Print
     flameshot gui
 
+
 #################################################################
-#     MULTIMEDIA KEYS
+#     POLYBAR
 #################################################################
-
-#Raises volume
-XF86AudioRaiseVolume
-    amixer set Master 10%+
-
-#Lowers volume
-XF86AudioLowerVolume
-    amixer set Master 10%-
-
-#Mute
-XF86AudioMute
-    amixer -D pulse set Master 1+ toggle
-
-#Playerctl works for Pragha, Spotify and others
-#Delete the line for playerctl if you want to use mpc
-#and replace it with the corresponding code
-#mpc works for e.g.ncmpcpp
-#mpc toggle
-#mpc next
-#mpc prev
-#mpc stop
-
-#PLAY
-XF86AudioPlay
-    playerctl play-pause
-
-#Next
-XF86AudioNext
-    playerctl next
-
-#previous
-XF86AudioPrev
-    playerctl previous
-
-#Stop
-XF86AudioStop
-    playerctl stop
-
-#Brightness up
-XF86MonBrightnessUp
-    xbacklight -inc 10
-
-#Brightness down
-XF86MonBrightnessDown
-    xbacklight -dec 10
-
-#########################
-#        POLYBAR        #
-#########################
 
 #Hide polybar
 super + y
     polybar-msg cmd toggle
-
-#################################################################
-#################################################################
-##################   DESKTOP SPECIFIC    ########################
-#################################################################
-#################################################################
-
-#################################################################
-# CTRL + ALT KEYS
-#################################################################
-
-#Picom Toggle
-ctrl + alt + o
-    ~/.config/leftwm/scripts/picom-toggle.sh
-
-#################################################################
-# SUPER + KEYS
-#################################################################
-
-#################################################################
-# SUPER KEYS
-#################################################################
-
-#################################################################
-# SUPER + SHIFT KEYS
-#################################################################
-
-#################################################################
-# SUPER + CONTROL KEYS
-#################################################################
-
-#################################################################
-# ALT KEYS
-#################################################################
-
-#################################################################
-# ALT + SHIFT KEYS
-#################################################################
-
-#################################################################
-# CTRL + ALT KEYS
-#################################################################
 

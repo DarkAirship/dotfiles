@@ -84,4 +84,4 @@ PS1+='%(?.%F{green}.%F{red})ﬄ%f '
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Useless beatification
-
+#elfman

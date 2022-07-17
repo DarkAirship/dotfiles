@@ -4,9 +4,8 @@
 #Mod4 = Super key
 modkey = "Mod4"
 workspaces = []
-tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-#tags = ["", "", "", "", "", "", "", "", ""]
-#tags = ["www", "edit", "gimp", "inkscape", "meld", "video","vm", "files", "music"]
+#tags = ["1", "2", "3", "4"]
+tags = [" ", "爵 ", "ﲵ ", " "]
 
 layouts = [ "MainAndVertStack",
             "MainAndHorizontalStack",
@@ -33,160 +32,9 @@ focus_new_windows = true
 
 [[keybind]]
 command = "Execute"
-value = "xfce4-terminal --drop-down"
-modifier = []
-key = "F12"
-
-#[[keybind]]
-#command = "ToggleScratchPad"
-#value = "MainTerminal"
-#modifier = []
-#key = "F12"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty"
-modifier = ["modkey"]
-key = "t"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty"
-modifier = ["Control", "Alt"]
-key = "t"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty"
-modifier = ["Control", "Alt"]
-key = "Return"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty"
-modifier = ["modkey"]
-key = "Return"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty -e md"
-modifier = ["Control", "Alt"]
-key = "j"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty -e recon"
-modifier = ["modkey"]
-key = "r"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty -e upd"
-modifier = ["modkey"]
-key = "u"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty -e aerc"
-modifier = ["modkey"]
-key = "e"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty -e newsboat"
-modifier = ["modkey"]
-key = "n"
-
-[[keybind]]
-command = "Execute"
-value = "alacritty -e gotop"
-modifier = ["modkey"]
-key = "g"
-
-[[keybind]]
-command = "Execute"
-value = "brave"
-modifier = ["modkey"]
-key = "b"
-
-[[keybind]]
-command = "Execute"
-value = "brave youtube.com"
-modifier = ["modkey"]
-key = "y"
-
-[[keybind]]
-command = "Execute"
-value = "thunar"
-modifier = ["modkey", "Shift"]
-key = "Return"
-
-[[keybind]]
-command = "Execute"
-value = "xfce4-appfinder"
-modifier = ["modkey"]
-key = "a"
-
-[[keybind]]
-command = "Execute"
-value = "dmenu_run -fn 'NotoMonoRegular:bold:pixelsize=19'"
-modifier = ["modkey","Shift"]
-key = "d"
-
-[[keybind]]
-command = "Execute"
-value = "telegram-desktop"
-modifier = ["modkey"]
-key = "m"
-
-[[keybind]]
-command = "Execute"
-value = "feh --bg-fill -rz --no-fehbg /usr/share/backgrounds/"
-modifier = ["Alt"]
-key = "w"
-
-[[keybind]]
-command = "Execute"
-value = "arcolinux-logout"
-modifier = ["modkey"]
-key = "x"
-
-[[keybind]]
-command = "Execute"
-value = "betterlockscreen -l"
-modifier = ["Control", "Alt"]
-key = "l"
-
-[[keybind]]
-command = "Execute"
-value = "archlinux-tweak-tool"
-modifier = ["Control", "Alt"]
-key = "e"
-
-[[keybind]]
-command = "Execute"
 value = "leftwm-command ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
-
-[[keybind]]
-command = "Execute"
-value = "/home/semyon/.local/bin/gowork"
-modifier = ["Control", "Alt"]
-key = "r"
-
-
-#[[keybind]]
-#command = "Execute"
-#value = "brightnessctl s +10%"
-#modifier = ["Control"]
-#key = "Right"
-#
-#[[keybind]]
-#command = "Execute"
-#value = "brightnessctl s 10%-"
-#modifier = ["Control"]
-#key = "Left"
 
 [[keybind]]
 command = "CloseWindow"
@@ -305,6 +153,18 @@ key = "Up"
 #modifier = ["modkey","Shift"]
 #key = "Right"
 
+#[[keybind]]
+#command = "MoveWindowToNextTag"
+#value = "true"
+#modifier = ["modkey", "Shift"]
+#key = "Right"
+#
+#[[keybind]]
+#command = "MoveWindowToPreviousTag"
+#value = "true"
+#modifier = ["modkey", "Shift"]
+#key = "Left"
+
 [[keybind]]
 command = "FocusPreviousTag"
 modifier = ["modkey"]
@@ -392,36 +252,6 @@ modifier = ["modkey"]
 key = "4"
 
 [[keybind]]
-command = "GotoTag"
-value = "5"
-modifier = ["modkey"]
-key = "5"
-
-[[keybind]]
-command = "GotoTag"
-value = "6"
-modifier = ["modkey"]
-key = "6"
-
-[[keybind]]
-command = "GotoTag"
-value = "7"
-modifier = ["modkey"]
-key = "7"
-
-[[keybind]]
-command = "GotoTag"
-value = "8"
-modifier = ["modkey"]
-key = "8"
-
-[[keybind]]
-command = "GotoTag"
-value = "9"
-modifier = ["modkey"]
-key = "9"
-
-[[keybind]]
 command = "Execute"
 value = "leftwm-command \"SendWindowToTag 1\" \"SendWorkspaceToTag 0 0\""
 modifier = ["modkey", "Shift"]
@@ -445,32 +275,3 @@ value = "leftwm-command \"SendWindowToTag 4\" \"SendWorkspaceToTag 0 3\""
 modifier = ["modkey", "Shift"]
 key = "4"
 
-[[keybind]]
-command = "Execute"
-value = "leftwm-command \"SendWindowToTag 5\" \"SendWorkspaceToTag 0 4\""
-modifier = ["modkey", "Shift"]
-key = "5"
-
-[[keybind]]
-command = "Execute"
-value = "leftwm-command \"SendWindowToTag 6\" \"SendWorkspaceToTag 0 5\""
-modifier = ["modkey", "Shift"]
-key = "6"
-
-[[keybind]]
-command = "Execute"
-value = "leftwm-command \"SendWindowToTag 7\" \"SendWorkspaceToTag 0 6\""
-modifier = ["modkey", "Shift"]
-key = "7"
-
-[[keybind]]
-command = "Execute"
-value = "leftwm-command \"SendWindowToTag 8\" \"SendWorkspaceToTag 0 7\""
-modifier = ["modkey", "Shift"]
-key = "8"
-
-[[keybind]]
-command = "Execute"
-value = "leftwm-command \"SendWindowToTag 9\" \"SendWorkspaceToTag 0 8\""
-modifier = ["modkey", "Shift"]
-key = "9"
