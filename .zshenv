@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Path
 [[ -d $HOME/.bin ]] && PATH=$HOME/.bin:$PATH
@@ -40,10 +40,10 @@ export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg, gpg2 --homedir "$XDG_DATA_HOME"/gnupg
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export ATOM_HOME="$XDG_DATA_HOME"/atom
+export KDEHOME="$XDG_CONFIG_HOME"/kde
 
 # Cannot set this - sddm breaks then
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
-# Setting for ranger to load user configs
-#export RANGER_LOAD_DEFAULT_RC=false
+export SCRIPTFOLDER = ~/.local/bin
 

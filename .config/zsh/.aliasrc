@@ -1,10 +1,11 @@
 #!/bin/sh
+
 # Aliases (most of these come from ArloLinux)
 ## Colorizing
-alias ls='exa -x --color=always --group-directories-first'
-alias la='ls -a'
-alias ll='ls -alh --git'
-alias l.="ls -a --no-icons | rg '^\.'"
+alias ls='exa -x --group-directories-first'
+alias la='exa -a --group-directories-first'
+alias ll='exa -alh --git --group-directories-first --icons'
+alias l.="exa -a --no-icons | rg '^\.'"
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -38,8 +39,8 @@ alias py='python'
 
 ## VPN management
 alias city='curl ipinfo.io/city'
-alias rc='sudo systemctl restart openvpn-client@nl'
-alias dc='sudo systemctl stop openvpn-client@nl'
+alias rc='sudo systemctl restart openvpn-client@nl.service'
+alias dc='sudo systemctl stop openvpn-client@nl.service'
 alias wgup='sudo wg-quick up wgdark 2> /dev/null'
 alias wgdown='sudo wg-quick down wgdark 2> /dev/null'
 
@@ -51,10 +52,6 @@ alias untrasko='sudo wg-quick down wg_trasko 2> /dev/null'
 alias hphones='bluetoothctl -- connect CC:98:8B:E3:1D:4E'
 alias unhphones='bluetoothctl -- disconnect CC:98:8B:E3:1D:4E'
 
-## Alias for quick keyboard switching
-alias keys='setxkbmap -layout us,ru -option grp:alt_shift_toggle'
-alias unkeys='setxkbmap us'
-
 ## Fast configuration edits
 alias vb='nvim ~/.config/bash/.bashrc'
 alias vz='nvim ~/.config/zsh/.zshrc'
@@ -62,11 +59,13 @@ alias vsa='nvim ~/.config/zsh/.aliasrc'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias vv='nvim ~/.config/nvim/init.vim'
 alias vr='nvim ~/.config/ranger/rc.conf'
+alias vp='nvim ~/.config/polybar/config'
+alias vl='nvim ~/.config/leftwm/config.toml'
+alias vd='nvim ~/.config/dunst/dunstrc'
+alias vsx='nvim ~/.config/sxhkd/sxhkdrc'
+alias vwm='nvim ~/.config/bspwm/bspwmrc'
 alias vnews='nvim ~/.config/newsboat/config'
 alias vrss='nvim ~/.config/newsboat/urls'
-#alias vp='nvim ~/.config/themes/current/polybar.config'
-alias vl='nvim ~/.config/leftwm/config.toml'
-alias vsx='nvim ~/.config/sxhkd/sxhkdrc'
 
 ## Fast note-taking
 alias vts='nvim ~/Documents/cheatsheets/techsup.txt'
@@ -102,14 +101,16 @@ alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
 alias unlock="sudo rm /var/lib/pacman/db.lck"
 alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
 alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
+alias rmvimswap='rm ~/.local/share/nvim/swap/*'
 alias unhblock='hblock -S none -D none'
 alias merge='xrdb -merge /home/semyon/.config/X11/xresources'
+alias rpb='~/.config/polybar/launch.sh'
 
 #add new fonts
 alias update-fc='sudo fc-cache -fv'
 
 #clear
-alias clean="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat"
+alias clean="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo"
 
 #which graphical card is working
 alias whichvga="/usr/local/bin/arcolinux-which-vga"

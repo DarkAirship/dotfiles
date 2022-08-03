@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -5,8 +7,8 @@
 [[ -f $ZDOTDIR/.aliasrc ]] && . $ZDOTDIR/.aliasrc
 
 # History settings
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 
@@ -49,16 +51,13 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 ## Use vim keys in tab completion menu
-#bindkey -M menuselect 'h' vi-backward-char
-#bindkey -M menuselect 'j' vi-down-line-or-history
-#bindkey -M menuselect 'k' vi-up-line-or-history
-#bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
 
 ## Fix backspace when switching modes
 bindkey "^?" backward-delete-char
-
-## Use jj to exit Insert mode
-bindkey jj vi-cmd-mode
 
 # Prompt settings
 ## Git integration
@@ -70,18 +69,28 @@ zstyle ':vcs_info:*' formats ' %F{yellow}%b%f%u%c'
 precmd () { vcs_info }
 
 ## Readonly alert
-function isReadOnly { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo " " }
+isReadOnly() { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo " " }
 
 ## The prompt itself
-PS1='%F{cyan}[%1~%f'
-PS1+='%F{red}$(isReadOnly)%f'
-PS1+='%F{cyan}]%f'
-PS1+='${vcs_info_msg_0_} '
-PS1+='%(?.%F{green}.%F{red})ﬄ%f '
+# options ﬄﲸ
+[[ $EUID -eq 0 ]] \
+    && PS1='%F{red}ROOT! %F{cyan}%1~%F{red}$(isReadOnly)${vcs_info_msg_0_} %(?.%F{green}.%F{red})ﲸ%f '
+
+[[ $EUID -ne 0 ]] \
+    && PS1='%F{cyan}%1~%F{red}$(isReadOnly)%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})ﲸ%f '
+
+#PS1='%F{cyan}%1~%f'
+#PS1+='%F{red}$(isReadOnly)%f'
+#PS1+='${vcs_info_msg_0_} '
+#PS1+='%(?.%F{green}.%F{red})ﲸ%f '
 
 # Add plugins
 ## Syntax highlighting
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+## Auto suggestions
+. ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#a5abb6"
+
 # Useless beatification
-#elfman
+

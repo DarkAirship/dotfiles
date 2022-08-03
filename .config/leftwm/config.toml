@@ -4,21 +4,31 @@
 #Mod4 = Super key
 modkey = "Mod4"
 workspaces = []
-#tags = ["1", "2", "3", "4"]
-tags = [" ", "爵 ", "ﲵ ", " "]
+tags = ["1", "2", "3", "4"]
+#tags = [" ", "爵 ", "ﲵ ", " "]
+
+
+#layout options:
+#    "MainAndVertStack",
+#    "MainAndHorizontalStack",
+#    "MainAndDeck",
+#    "GridHorizontal",
+#    "EvenHorizontal",
+#    "EvenVertical",
+#    "Fibonacci",
+#    "CenterMain",
+#    "CenterMainBalanced",
+#    "Monocle",
+#    "RightWiderLeftStack",
+#    "LeftWiderRightStack"
 
 layouts = [ "MainAndVertStack",
-            "MainAndHorizontalStack",
-            "MainAndDeck",
-            "GridHorizontal",
-            "EvenHorizontal",
-            "EvenVertical",
+            "LeftWiderRightStack",
             "Fibonacci",
-            "CenterMain",
-            "CenterMainBalanced",
             "Monocle",
-            "RightWiderLeftStack",
-            "LeftWiderRightStack"]
+            "GridHorizontal",
+            "CenterMain"
+]
 
 scratchpad = []
 #[[scratchpad]]
@@ -29,6 +39,12 @@ focus_behaviour = "Sloppy"
 #focus_behaviour = "Driven"
 #focus_behaviour = "ClickTo"
 focus_new_windows = true
+
+[[keybind]]
+command = "Execute"
+value = "Alacritty"
+modifier = ["modkey"]
+key = "t"
 
 [[keybind]]
 command = "Execute"
@@ -48,7 +64,7 @@ key = "q"
 
 [[keybind]]
 command = "SoftReload"
-modifier = ["modkey", "Shift"]
+modifier = ["modkey", "Alt"]
 key = "r"
 
 [[keybind]]

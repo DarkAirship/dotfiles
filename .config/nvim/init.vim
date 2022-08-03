@@ -32,6 +32,9 @@ set ignorecase
 set smartcase
 set showmatch
 
+"" Set formatoptions not to start newline with comment after o
+set formatoptions-=o
+
 "" Textwidth and linebreaks
 set textwidth=0
 set linebreak
@@ -135,7 +138,25 @@ augroup END
 " Auto-reload leftwm after writing config
 augroup leftwm_reload
     autocmd!
-    autocmd BufWritePost *leftwm/config.toml :!leftwm-command SoftReload<CR>
+    autocmd BufWritePost *leftwm/config.toml :!leftwm-command SoftReload
+augroup END
+
+" Auto-reload bspwm after writing config
+augroup bspwm_reload
+    autocmd!
+    autocmd BufWritePost *bspwmrc :! bspc wm -r
+augroup END
+
+" Auto-reload polybar after writing config
+augroup polybar_reload
+    autocmd!
+    autocmd BufWritePost *polybar/config :! ~/.config/polybar/launch.sh
+augroup END
+
+" Auto-reload sxhkd after writing config
+augroup sxhkd_reload
+    autocmd!
+    autocmd BufWritePost *sxhkdrc :! pkill sxhkd && sxhkd &
 augroup END
 
 " }}}
@@ -205,7 +226,7 @@ nnoremap Q <Nop>
 " Insert mode {{{
 
 "" Exit with jj
-inoremap jj <Esc>
+"inoremap jj <Esc>
 
 "" Delete a word when in Insert mode
 inoremap <C-B> <C-W>
@@ -239,6 +260,8 @@ inoremap <Right> <Nop>
 inoremap <Left> <Nop>
 inoremap <BS> <Nop>
 inoremap <Enter> <Nop>
+inoremap <C-@> <Esc>
+inoremap <Nul> <Esc>
 
 " }}}
 " Visual mode {{{
