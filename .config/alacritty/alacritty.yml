@@ -1,8 +1,8 @@
 # Window configuration
 window:
   dimensions:
-    columns: 80
-    lines: 25
+    columns: 120
+    lines: 30
 
   position:
     x: 810

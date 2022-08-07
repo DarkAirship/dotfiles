@@ -1,0 +1,29 @@
+#!/bin/sh
+# this is a nord colourscheme.
+# More info at https://www.nordtheme.com
+
+[colours]
+# Polar night (nord0 - nord3)
+black     = #2e3440
+blackish  = #2b4252
+gray      = #434c5e
+grayish   = #4c566a
+
+# Snow storm (nord4 - nord6)
+white     = #d8dee9
+whiter    = #e5e9f0
+whitest   = #eceff4
+
+# Frost (nord7 - nord10)
+cyan      = #8fbcbb
+lightblue = #88c0D0
+blue      = #81a1c1
+darkblue  = #5e81ac
+
+# Aurora (nord11 - nord15)
+red       = #bf616a
+orange    = #d08770
+yellow    = #ebcb8b
+green     = #a3be8c
+magenta   = #b48ead
+

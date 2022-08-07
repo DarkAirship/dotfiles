@@ -1,15 +1,14 @@
 #!/bin/sh
-
-# Aliases (most of these come from ArloLinux)
+## Aliases (most of these come from ArloLinux)
 ## Colorizing
 alias ls='exa -x --group-directories-first'
 alias la='exa -a --group-directories-first'
 alias ll='exa -alh --git --group-directories-first --icons'
-alias l.="exa -a --no-icons | rg '^\.'"
+alias l.='exa -a --no-icons | rg "^\."'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias pacman='pacman --color=always'
+alias pacman='pacman --color=auto'
 alias rg='rg --sort path --color=auto'
 alias ip='ip -color=auto'
 
@@ -26,7 +25,7 @@ alias mf='ranger'
 alias tsd='transmission-daemon'
 alias tsm='transmission-remote'
 alias watchtsm='watch transmission-remote -l'
-alias p='sudo pacman --color always'
+alias p='sudo pacman --color auto'
 alias mypass='bw get password'
 alias genpass='bw generate -lusn --length 14'
 alias wtrc='curl wttr.in/chelyabinsk'
@@ -58,17 +57,10 @@ alias vz='nvim ~/.config/zsh/.zshrc'
 alias vsa='nvim ~/.config/zsh/.aliasrc'
 alias va='nvim ~/.config/alacritty/alacritty.yml'
 alias vv='nvim ~/.config/nvim/init.vim'
-alias vr='nvim ~/.config/ranger/rc.conf'
-alias vp='nvim ~/.config/polybar/config'
-alias vl='nvim ~/.config/leftwm/config.toml'
+alias vp='nvim ~/.config/polybar/config.ini'
 alias vd='nvim ~/.config/dunst/dunstrc'
 alias vsx='nvim ~/.config/sxhkd/sxhkdrc'
 alias vwm='nvim ~/.config/bspwm/bspwmrc'
-alias vnews='nvim ~/.config/newsboat/config'
-alias vrss='nvim ~/.config/newsboat/urls'
-
-## Fast note-taking
-alias vts='nvim ~/Documents/cheatsheets/techsup.txt'
 
 ## Alias for managing dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
@@ -76,123 +68,69 @@ alias comconf='config commit -m $(date +%d.%m.%Y)'
 
 ## System information
 alias df='df -h'
-alias free="free -mt"
-alias psa="ps auxf"
-alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
-alias userlist="cut -d: -f1 /etc/passwd"
-alias hw="hwinfo --short"
-alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
-alias xd="ls /usr/share/xsessions"
+alias free='free -mt'
+alias psa='ps auxf'
+alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
+alias userlist='cut -d: -f1 /etc/passwd'
+alias hw='hwinfo --short'
+alias iso='cat /etc/dev-rel | awk -F "=" "/ISO/ {print $2}"'
+alias xd='ls /usr/share/xsessions'
 
 ## System management
-alias probe="sudo -E hw-probe -all -upload"
-alias sysfailed="systemctl list-units --failed"
-alias jctl="journalctl -p 3 -xb"
-alias big="expac -H M '%m\t%n' | sort -h | nl"
-alias ssn="sudo shutdown now"
-alias sr="sudo reboot"
+alias probe='sudo -E hw-probe -all -upload'
+alias sysfailed='systemctl list-units --failed'
+alias jctl='journalctl -p 3 -xb'
+alias big='expac -H M "%m\t%n" | sort -h | nl'
+alias ssn='sudo shutdown now'
+alias sr='sudo reboot'
 alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-alias wget="wget -c"
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias wget='wget -c'
 alias rz='. $ZDOTDIR/.zshrc'
-alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
-alias unlock="sudo rm /var/lib/pacman/db.lck"
-alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
-alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
+alias downgrada='sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/'
+alias unlock='sudo rm /var/lib/pacman/db.lck'
+alias rmpacmanlock='sudo rm /var/lib/pacman/db.lck'
+alias rmlogoutlock='sudo rm /tmp/arcologout.lock'
 alias rmvimswap='rm ~/.local/share/nvim/swap/*'
 alias unhblock='hblock -S none -D none'
 alias merge='xrdb -merge /home/semyon/.config/X11/xresources'
 alias rpb='~/.config/polybar/launch.sh'
 
-#add new fonts
-alias update-fc='sudo fc-cache -fv'
+## flashy clear
+alias clean='clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
 
-#clear
-alias clean="clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo"
-
-#which graphical card is working
-alias whichvga="/usr/local/bin/arcolinux-which-vga"
+## which graphical card is working
+alias whichvga='/usr/local/bin/arcolinux-which-vga'
 
 ## Aliases for software managment
 alias update='sudo pacman -Syyu --color auto --noconfirm'
-alias upall='paru -Syu --noconfirm'
-alias pksyua='paru -Syu --noconfirm'
 alias paruskip='paru -S --mflags --skipinteg'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
-#switch between bash and zsh
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+## switch between bash and zsh
+alias tobash='sudo chsh $USER -s /bin/bash && echo "Now log out."'
+alias tozsh='sudo chsh $USER -s /bin/zsh && echo "Now log out."'
 
-#switch between lightdm and sddm
+## switch between lightdm and sddm
 alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'"
 alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'"
 
-# quickly kill polybar
-alias kp='killall polybar'
-alias ks='killall skypeforlinux'
-
-#mounting the folder Public for exchange between host and guest on virtualbox
-alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
-
 ## Get fastest mirrors in your neighborhood
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 30 --number 10 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pacman.d/mirrorlist"
-
-### Arcolinux experimental - best option for the moment
-alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
 
-## Arcolinux applications
-alias att="archlinux-tweak-tool"
-alias adt="arcolinux-desktop-trasher"
-alias abl="arcolinux-betterlockscreen"
-alias agm="arcolinux-get-mirrors"
-alias amr="arcolinux-mirrorlist-rank-info"
-alias aom="arcolinux-osbeck-as-mirror"
-alias ars="arcolinux-reflector-simple"
-alias atm="arcolinux-tellme"
-alias avs="arcolinux-vbox-share"
-alias awa="arcolinux-welcome-app"
-alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
-
-#Leftwm aliases
-alias lti="leftwm-theme install"
-alias ltu="leftwm-theme uninstall"
-alias lta="leftwm-theme apply"
-alias ltupd="leftwm-theme update"
-alias ltupg="leftwm-theme upgrade"
-
-#reading logs with bat
+## reading logs with bat
 alias lcalamares="bat /var/log/Calamares.log"
 alias lpacman="bat /var/log/pacman.log"
 alias lxorg="bat /var/log/Xorg.0.log"
 alias lxorgo="bat /var/log/Xorg.0.log.old"
 
-#gpg
-#verify signature for isos
+## gpg
+## verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-#receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-alias fix-gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-alias fix-keyserver="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/gpg.conf ~/.gnupg/ ; echo 'done'"
 
-#fixes
+## fixes
 alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
-alias keyfix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias key-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias keys-fix="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fixkey="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-key="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-keys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
-alias fix-sddm-config="/usr/local/bin/arcolinux-fix-sddm-config"
-alias fix-pacman-conf="/usr/local/bin/arcolinux-fix-pacman-conf"
-alias fix-pacman-keyserver="/usr/local/bin/arcolinux-fix-pacman-gpg-conf"
-

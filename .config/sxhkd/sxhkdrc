@@ -1,181 +1,232 @@
-# XF controls
-# Raise volume
+######## MEDIA BUTTONS ########
+
+## Raise volume
 XF86AudioRaiseVolume
-    amixer set Master 10%+
+        amixer set Master 10%+
 
-# Lower volume
+## Lower volume
 XF86AudioLowerVolume
-    amixer set Master 10%-
+        amixer set Master 10%-
 
-# Mute
+## Mute
 XF86AudioMute
-    amixer -D pulse set Master 1+ toggle
+        amixer -D pulse set Master 1+ toggle
 
-# Play
+## Play
 XF86AudioPlay
-    playerctl play-pause
+        playerctl play-pause
 
-# Next
+## Next
 XF86AudioNext
-    playerctl next
+        playerctl next
 
-# Previous
+## Previous
 XF86AudioPrev
-    playerctl previous
+        playerctl previous
 
-# Stop
+## Stop
 XF86AudioStop
-    playerctl stop
+        playerctl stop
 
-# Brightness up
+## Brightness up
 XF86MonBrightnessUp
-    xbacklight -inc 10
+        xbacklight -inc 10
 
-# Brightness down
+## Brightness down
 XF86MonBrightnessDown
-    xbacklight -dec 10
+        xbacklight -dec 10
 
-# System tools
-# yakuake
+
+######## FUNCTION KEYS ########
+
+## Archwiki
+F1
+        $BROWSER wiki.archlinux.org
+
+## Scratchpad
+F2
+        scratchpad
+
+## Journal
+F3
+        $TERMINAL -e md
+
+## Mail
+F4
+        $TERMINAL -e aerc
+
+## News
+F5
+        $TERMINAL -e newsboat
+
+## Gotop
+F6
+        $TERMINAL -e gotop
+
+## Browser
+F7
+        $BROWSER
+
+## Gowork
+F8
+        gowork
+
+## Useless for now
+#F9
+#
+
+## Useless for now
+#F10
+#
+
+## Useless for now
+#F11
+#
+
+## Yakuake
 F12
-    yakuake
+        yakuake \
+        && polybar-msg cmd toggle 1>/dev/null
 
-# Alacritty and thunar
-super + {_,shift} + Return
-    {alacritty,thunar}
-
-#Dmenu
-super + r
-    dmenu_run -fn 'NotoMonoRegular:bold:pixelsize=24'
-
-# Xkill
-super + Escape
-    xkill
-
-#Xcfe4-TaskManager
-ctrl + alt + Delete
-    archlinux-logout
-
-#Xfce4-settings-manager
-ctrl + Delete
-    xfce4-taskmanager
-
-# Reloaders
-# sxhkd
-super + shift + s
-    pkill -USR1 -x sxhkd
-
-# polybar
-# reload polybar
-super + shift + p
-    ~/.config/polybar/launch.sh
-
-# (un)hide polybar
-super + y
-    polybar-msg cmd toggle
-
-# quit/restart bspwm
-super + shift + {q,r}
-    bspc {quit,wm -r}
-
-#Picom Toggle
-ctrl + shift + o
-    ~/.local/bin/picom-toggle.sh
-
-
-# Launchers
-super + {a,b,m,v,x}
-    {xfce4-appfinder,brave,telegram-desktop,pavucontrol,xfce4-settings-manager}
-
-# Terminal spawners
-super + {d,e,n}
-    alacritty -e {md,aerc,newsboat}
-
-# Go work
-ctrl + shift + w
-    ~/.local/bin/gowork
-
-# Change wallpaper
-alt + w
-    feh --bg-fill -rz --no-fehbg /usr/share/backgrounds/
-
-#Scrot
+## Screenshot
 Print
-    flameshot gui
+        flameshot gui
 
-# bspwm settings
-# close and kill
-super + {_,shift + }{q,c}
-    bspc node -{k,c}
 
-# alternate between the tiled and monocle layout
-super + space
-    bspc desktop -l next
+######## ALWAYS NEED THESE ########
 
-# swap the current node and the biggest window
+## Terminal and file manager
+super + {_,shift} + Return
+        {$TERMINAL,thunar}
+
+## Xkill
+super + Escape
+        xkill
+
+## Dmenu
+super + d
+        dmenu_run -fn 'NotoMonoRegular:bold:pixelsize=24'
+
+
+######## RELOADERS ########
+
+## Bspwm
+super + shift + r
+        bspc wm -r
+
+## Sxhkd
+super + shift + s
+        pkill -USR1 -x sxhkd
+
+## Polybar
+super + shift + p
+        ~/.config/polybar/launch.sh
+
+
+######## TOGGLES ########
+
+## Picom Toggle
+ctrl + shift + o
+        ~/.local/bin/picom-toggle.sh
+
+## Polybar toggle
+ctrl + shift + p
+        polybar-msg cmd toggle
+
+
+######## SOME USEFUL SHORTCUTS ########
+
+## Appfinder
+super + a
+        xfce4-appfinder
+
+## Logout
+ctrl + alt + Delete
+        archlinux-logout
+
+## Quit bspwm (aka logout)
+super + alt + Delete
+        bspc quit
+
+## Change wallpaper
+alt + w
+        feh --bg-fill -rz --no-fehbg /usr/share/backgrounds/
+
+
+######## BSPWM SETTINGS ########
+
+## Add new desktop
+super + equal
+        bspc monitor -a $(bspc query --desktops | wc -l)
+
+## Remove last desktop
+super + minus
+        bspc desktop $(bspc query --desktops | sort -n | tail -n 1) -r
+
+## Remove focused desktop
+super + shift + minus
+        bspc desktop focused -r
+
+## Close or kill node
+super + {_,shift + }q
+        bspc node -{c,k}
+
+## Focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+        bspc {desktop -f,node -d} '^{1-9,10}'
+
+## Focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+        bspc desktop -f {prev,next}.local
+
+## Focus the last node/desktop
+super + {grave,Tab}
+        bspc {node,desktop} -f last
+
+## Focus the next/previous window in the current desktop
+super + {_,shift + }c
+        bspc node -f {next,prev}.local.!hidden.window
+
+## Focus/swap the node in the given direction
+super + {_,shift + }{h,j,k,l}
+        bspc node -{f,s} {west,south,north,east}
+
+## Swap the current node and the biggest window
 super + g
-    bspc node -s biggest.window
+        bspc node -s biggest.window
 
-# state/flags
-# set the window state
-super + {t,shift + t,s,f}
-    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+## Alternate between the tiled and monocle layout
+super + m
+        bspc desktop -l next
 
-# set the node flags
-super + ctrl + {m,x,y,z}
+## Set the node flags
+super + ctrl + {y,u,i,o}
     bspc node -g {marked,locked,sticky,private}
 
-# focus/swap
-# focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-    bspc node -{f,s} {west,south,north,east}
+## Set the node state
+super + {t,shift + t,s,f}
+        bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# focus the node for the given path jump
-#super + {p,b,comma,period}
-#    bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous window in the current desktop
-super + {_,shift + }c
-    bspc node -f {next,prev}.local.!hidden.window
-
-# focus the older or newer node in the focus history
-super + {o,i}
-    bspc wm -h off; \
-    bspc node {older,newer} -f; \
-    bspc wm -h on
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-    bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {grave,Tab}
-    bspc {node,desktop} -f last
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} '^{1-9,10}'
-
-# preselect the direction
-super + ctrl + {h,j,k,l}
-    bspc node -p {west,south,north,east}
-
-# preselect the ratio
-super + ctrl + {1-9}
-    bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-super + ctrl + space
-    bspc node -p cancel
-
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
-    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
-
-# expand/contract a window by moving one of its side outward
+## Expand/contract focused node
 super + alt + {h,j,k,l}
-    wmresize {west,south,north,east}
+        wmresize {west,south,north,east}
 
-# move a floating window
-super + {Left,Down,Up,Right}
-    bspc node -v {-20 0,0 20,0 -20,20 0}
+## Move a floating window
+super + shift + {Left,Down,Up,Right}
+        bspc node -v {-20 0,0 20,0 -20,20 0}
+
+## Preselect the direction
+super + ctrl + {h,j,k,l}
+        bspc node -p {west,south,north,east}
+
+## Preselect the ratio
+super + ctrl + {1-9}
+        bspc node -o 0.{1-9}
+
+## Cancel the preselection for the focused node
+super + ctrl + BackSpace
+        bspc node -p cancel
+
+## Cancel the preselection for the focused desktop
+super + ctrl + shift + BackSpace
+        bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel

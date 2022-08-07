@@ -26,14 +26,15 @@ filetype plugin indent on
 set splitbelow
 set splitright
 
+"" No comments while typing
+"set formatoptions-=o
+"set formatoptions-=c
+
 "" Search settings
 set incsearch
 set ignorecase
 set smartcase
 set showmatch
-
-"" Set formatoptions not to start newline with comment after o
-set formatoptions-=o
 
 "" Textwidth and linebreaks
 set textwidth=0
@@ -123,6 +124,12 @@ augroup last_cursor_pos
         \ | endif
 augroup END
 
+"" Disable comments after typing o
+augroup no_comment_after_o
+    autocmd!
+    autocmd BufReadPost set fo-=o fo-=c
+augroup END
+
 " Remove trailing whitespace on save
 augroup no_whitespace
     autocmd!
@@ -150,13 +157,13 @@ augroup END
 " Auto-reload polybar after writing config
 augroup polybar_reload
     autocmd!
-    autocmd BufWritePost *polybar/config :! ~/.config/polybar/launch.sh
+    autocmd BufWritePost *polybar/config.ini :! ~/.config/polybar/launch.sh
 augroup END
 
 " Auto-reload sxhkd after writing config
 augroup sxhkd_reload
     autocmd!
-    autocmd BufWritePost *sxhkdrc :! pkill sxhkd && sxhkd &
+    autocmd BufWritePost *sxhkdrc :! pkill -USR1 -x sxhkd
 augroup END
 
 " }}}

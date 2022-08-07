@@ -13,6 +13,7 @@ export READER="zathura"
 export BROWSER="brave"
 export MANPAGER='less -s -M +Gg'
 export HISTCONTROL=ignoreboth:erasedups
+export SCRIPTFOLDER='~/.local/bin'
 
 # Colorize less
 export LESS_TERMCAP_mb=$'\e[1;38;5;160m' # red
@@ -37,13 +38,19 @@ export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
 export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg, gpg2 --homedir "$XDG_DATA_HOME"/gnupg
+#export GNUPGHOME="$XDG_DATA_HOME"/gnupg, gpg2 --homedir "$XDG_DATA_HOME"/gnupg
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export ATOM_HOME="$XDG_DATA_HOME"/atom
 export KDEHOME="$XDG_CONFIG_HOME"/kde
 
 # Cannot set this - sddm breaks then
 #export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+#
+# Start graphical server on user's current tty if not already running.
+#[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx "$XINITRC"
 
-export SCRIPTFOLDER = ~/.local/bin
+# Switch escape and caps if tty and no passwd required:
+#sudo -n loadkeys ${XDG_DATA_HOME:-$HOME/.local/share}/larbs/ttymaps.kmap 2>/dev/null
 
+setxkbmap -option caps:swapescape
+setxkbmap -option altwin:swap_alt_win

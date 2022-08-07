@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ## Workspaces
 bspc monitor -d 1 2 3 4 5 6
 
@@ -10,18 +10,18 @@ bspc config gapless_monocle      true
 bspc config ignore_ewmh_focus    true
 
 ## Define colors
-bspc config normal_border_color     "#4c566a"
-bspc config active_border_color     "#434c5e"
-bspc config focused_border_color    "#ebcb8b"
-bspc config presel_feedback_color   "#5e81ac"
-bspc config urgent_border_color     "#bf616a"
+bspc config normal_border_color     '#4c566a'
+bspc config active_border_color     '#434c5e'
+bspc config focused_border_color    '#ebcb8b'
+bspc config presel_feedback_color   '#5e81ac'
+bspc config urgent_border_color     '#bf616a'
 
 ## Set wallpaper
 feh --bg-fill --no-fehbg -rz /usr/share/backgrounds/
 
 ## Add rules
 ## but first clear all existing ones
-bspc rule -r "*"
+bspc rule -r '*'
 
 ## Fullscreen applications
 bspc rule -a org.remmina.Remmina state=fullscreen
@@ -57,26 +57,24 @@ bspc rule -a org.remmina.Remmina desktop='^5' follow=on
 ## Authentication daemon
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-## Notifications daemon
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
-#dunst &
-
 ## Number pad on
 numlockx on &
 
-## Hotkeys daemon and tweaks
-[[ $(pgrep -x sxhkd) ]] && pkill sxhkd
-sxhkd &
+## Notifications daemon
+#/usr/lib/xfce4/notifyd/xfce4-notifyd &
+[[ $(pgrep -x dunst) ]] || dunst &
 
-setxkbmap -option caps:swapescape
-setxkbmap -option altwin:swap_alt_win
-
-## XFCE power manager
-#xfce4-power-manager &
+## Hotkey daemon
+[[ $(pgrep -x sxhkd) ]] || sxhkd &
 
 ## Picom
-#[[ $(pgrep -x picom) ]] && pkill picom
-picom &
+[[ $(pgrep -x picom) ]] || picom &
+
+## Yakuake
+[[ $(pgrep -x yakuake) ]] || yakuake &
+
+## Redshift
+[[ $(pgrep -x redshift) ]] || redshift &
 
 ## Polybar
 ~/.config/polybar/launch.sh
@@ -85,8 +83,3 @@ picom &
 nm-applet &
 blueberry-tray &
 kdeconnect-indicator &
-
-## Redshift
-[[ $(pgrep -x redshift) ]] && pkill redshift
-sleep 4 && redshift &
-
