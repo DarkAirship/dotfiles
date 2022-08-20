@@ -43,50 +43,49 @@ XF86MonBrightnessDown
 F1
         $BROWSER wiki.archlinux.org
 
-## Scratchpad
+## Terminal (cannot have TOO many of these)
 F2
-        scratchpad
-
-## Journal
-F3
-        $TERMINAL -e md
-
-## Mail
-F4
-        $TERMINAL -e aerc
-
-## News
-F5
-        $TERMINAL -e newsboat
-
-## Gotop
-F6
-        $TERMINAL -e gotop
+        $TERMINAL
 
 ## Browser
-F7
-        $BROWSER
+F3
+        telegram-desktop
 
-## Gowork
-F8
+## File manager
+F4
+        thunar
+
+## Remote work
+F5
         gowork
 
-## Useless for now
-#F9
-#
+## Steam
+F6
+        steam
 
-## Useless for now
-#F10
-#
+## Journal
+F7
+        $TERMINAL -e md
 
-## Useless for now
-#F11
-#
+## Turn off screen
+F8
+        xset dpms force off
 
-## Yakuake
+## Lock screen
+F9
+        betterlockscreen -l
+
+## Passmenu
+F10
+        passmenu -fn 'NotoMonoRegular:bold:pixelsize=22'
+
+## Browser
+F11
+        $BROWSER
+
+## Dropdown terminal
 F12
-        yakuake \
-        && polybar-msg cmd toggle 1>/dev/null
+        tdrop -am -x 1204 -y 49 -w 700 -h 900 xterm
 
 ## Screenshot
 Print
@@ -96,30 +95,33 @@ Print
 ######## ALWAYS NEED THESE ########
 
 ## Terminal and file manager
-super + {_,shift} + Return
+alt + {_,shift} + Return
+        {$TERMINAL,thunar}
+
+alt + {_,shift} + KP_Enter
         {$TERMINAL,thunar}
 
 ## Xkill
-super + Escape
+alt + Escape
         xkill
 
 ## Dmenu
-super + d
-        dmenu_run -fn 'NotoMonoRegular:bold:pixelsize=24'
+alt + d
+        dmenu_run -fn 'NotoMonoRegular:bold:pixelsize=22'
 
 
 ######## RELOADERS ########
 
 ## Bspwm
-super + shift + r
+alt + shift + r
         bspc wm -r
 
 ## Sxhkd
-super + shift + s
+alt + shift + s
         pkill -USR1 -x sxhkd
 
 ## Polybar
-super + shift + p
+alt + shift + p
         ~/.config/polybar/launch.sh
 
 
@@ -137,96 +139,106 @@ ctrl + shift + p
 ######## SOME USEFUL SHORTCUTS ########
 
 ## Appfinder
-super + a
-        xfce4-appfinder
+#alt + a
+#        xfce4-appfinder
 
 ## Logout
-ctrl + alt + Delete
+ctrl + super + Delete
         archlinux-logout
 
 ## Quit bspwm (aka logout)
-super + alt + Delete
+alt + super + Delete
         bspc quit
 
 ## Change wallpaper
-alt + w
+super + w
         feh --bg-fill -rz --no-fehbg /usr/share/backgrounds/
 
 
 ######## BSPWM SETTINGS ########
 
 ## Add new desktop
-super + equal
+alt + equal
         bspc monitor -a $(bspc query --desktops | wc -l)
 
 ## Remove last desktop
-super + minus
+alt + minus
         bspc desktop $(bspc query --desktops | sort -n | tail -n 1) -r
 
 ## Remove focused desktop
-super + shift + minus
+alt + shift + minus
         bspc desktop focused -r
 
 ## Close or kill node
-super + {_,shift + }q
+alt + {_,shift + }q
         bspc node -{c,k}
 
 ## Focus or send to the given desktop
-super + {_,shift + }{1-9,0}
+alt + {_,shift + }{1-9,0}
         bspc {desktop -f,node -d} '^{1-9,10}'
 
 ## Focus the next/previous desktop in the current monitor
-super + bracket{left,right}
+alt + bracket{left,right}
         bspc desktop -f {prev,next}.local
 
-## Focus the last node/desktop
-super + {grave,Tab}
-        bspc {node,desktop} -f last
+## Focus the last node
+alt + grave
+        bspc node -f last
+
+## Cycle through occupied workspaces
+alt + {_,shift +}Tab
+        bspc desktop -f {prev,next}.occupied
 
 ## Focus the next/previous window in the current desktop
-super + {_,shift + }c
+alt + {_,shift + }c
         bspc node -f {next,prev}.local.!hidden.window
 
 ## Focus/swap the node in the given direction
-super + {_,shift + }{h,j,k,l}
+alt + {_,shift + }{h,j,k,l}
         bspc node -{f,s} {west,south,north,east}
 
 ## Swap the current node and the biggest window
-super + g
+alt + g
         bspc node -s biggest.window
 
 ## Alternate between the tiled and monocle layout
-super + m
+alt + m
         bspc desktop -l next
 
 ## Set the node flags
-super + ctrl + {y,u,i,o}
+alt + ctrl + {y,u,i,o}
     bspc node -g {marked,locked,sticky,private}
 
 ## Set the node state
-super + {t,shift + t,s,f}
+alt + {t,shift + t,s,f}
         bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 ## Expand/contract focused node
-super + alt + {h,j,k,l}
-        wmresize {west,south,north,east}
+alt + super + {h,j,k,l}
+        n=10; \
+        { d1=left;   d2=right;  dx=-$n; dy=0;   \
+        , d1=bottom; d2=top;    dx=0;   dy=$n;  \
+        , d1=top;    d2=bottom; dx=0;   dy=-$n; \
+        , d1=right;  d2=left;   dx=$n;  dy=0;   \
+        } \
+        bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
 
 ## Move a floating window
-super + shift + {Left,Down,Up,Right}
+alt + shift + {Left,Down,Up,Right}
         bspc node -v {-20 0,0 20,0 -20,20 0}
 
 ## Preselect the direction
-super + ctrl + {h,j,k,l}
+alt + ctrl + {h,j,k,l}
         bspc node -p {west,south,north,east}
 
 ## Preselect the ratio
-super + ctrl + {1-9}
+alt + ctrl + {1-9}
         bspc node -o 0.{1-9}
 
 ## Cancel the preselection for the focused node
-super + ctrl + BackSpace
+alt + ctrl + BackSpace
         bspc node -p cancel
 
 ## Cancel the preselection for the focused desktop
-super + ctrl + shift + BackSpace
+alt + ctrl + shift + BackSpace
         bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel

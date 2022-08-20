@@ -41,7 +41,7 @@ isReadOnly() { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo " " }
 ## The prompt itself
 ## nice options ﬄﲸ
 [[ $EUID -eq 0 ]] \
-    && PS1='%F{red}者Windows_mode %F{cyan}%1~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})ﲸ%f ' \
+    && PS1='%F{red}ROOT %F{cyan}%1~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})%f ' \
     || PS1='%F{cyan}%1~%F{red}$(isReadOnly)%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})ﲸ%f '
 
 ## Setting up vi mode
@@ -85,6 +85,9 @@ bindkey -M menuselect 'l' vi-forward-char
 
 ## Fix backspace when switching modes
 bindkey "^?" backward-delete-char
+
+## Archwiki says it makes Xterm trasnparent
+[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 
 # Add plugins
 ## Syntax highlighting

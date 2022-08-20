@@ -1,5 +1,5 @@
 #!/bin/sh
-## Aliases (most of these come from ArloLinux)
+## Aliases (some of these come from ArcoLinux)
 ## Colorizing
 alias ls='exa -x --group-directories-first'
 alias la='exa -a --group-directories-first'
@@ -40,12 +40,18 @@ alias py='python'
 alias city='curl ipinfo.io/city'
 alias rc='sudo systemctl restart openvpn-client@nl.service'
 alias dc='sudo systemctl stop openvpn-client@nl.service'
-alias wgup='sudo wg-quick up wgdark 2> /dev/null'
-alias wgdown='sudo wg-quick down wgdark 2> /dev/null'
+alias wgup='sudo wg-quick up dark 2>/dev/null'
+alias wgdown='sudo wg-quick down dark 2>/dev/null'
 
 ## Remote work access
-alias trasko='sudo wg-quick up wg_trasko 2> /dev/null'
-alias untrasko='sudo wg-quick down wg_trasko 2> /dev/null'
+#alias trasko='sudo wg-quick up trasko 2>/dev/null'
+#alias untrasko='sudo wg-quick down trasko 2>/dev/null'
+alias trasko='nmcli connection up trasko 1>/dev/null'
+alias untrasko='nmcli connection down trasko 1>/dev/null'
+
+## Quickly kill apps
+alias ks='pkill skypeforlinux'
+alias kz='pkill zoiper'
 
 ## Headphones management
 alias hphones='bluetoothctl -- connect CC:98:8B:E3:1D:4E'
@@ -73,7 +79,6 @@ alias psa='ps auxf'
 alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
 alias userlist='cut -d: -f1 /etc/passwd'
 alias hw='hwinfo --short'
-alias iso='cat /etc/dev-rel | awk -F "=" "/ISO/ {print $2}"'
 alias xd='ls /usr/share/xsessions'
 
 ## System management
@@ -94,43 +99,34 @@ alias rmlogoutlock='sudo rm /tmp/arcologout.lock'
 alias rmvimswap='rm ~/.local/share/nvim/swap/*'
 alias unhblock='hblock -S none -D none'
 alias merge='xrdb -merge /home/semyon/.config/X11/xresources'
-alias rpb='~/.config/polybar/launch.sh'
 
-## flashy clear
+## Flashy clear
 alias clean='clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
 
-## which graphical card is working
-alias whichvga='/usr/local/bin/arcolinux-which-vga'
-
 ## Aliases for software managment
-alias update='sudo pacman -Syyu --color auto --noconfirm'
+alias update='sudo pacman -Syyu'
 alias paruskip='paru -S --mflags --skipinteg'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
-## switch between bash and zsh
+## Switch between bash and zsh
 alias tobash='sudo chsh $USER -s /bin/bash && echo "Now log out."'
 alias tozsh='sudo chsh $USER -s /bin/zsh && echo "Now log out."'
-
-## switch between lightdm and sddm
-alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'"
-alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'"
 
 ## Get fastest mirrors in your neighborhood
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
 alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
 
-## reading logs with bat
-alias lcalamares="bat /var/log/Calamares.log"
+## Reading logs with bat
 alias lpacman="bat /var/log/pacman.log"
 alias lxorg="bat /var/log/Xorg.0.log"
 alias lxorgo="bat /var/log/Xorg.0.log.old"
 
-## gpg
+## Gpg
 ## verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 
-## fixes
+## Fixes
 alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
 alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"

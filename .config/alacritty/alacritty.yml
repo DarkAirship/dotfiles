@@ -2,11 +2,11 @@
 window:
   dimensions:
     columns: 120
-    lines: 30
+    lines: 80
 
   position:
-    x: 810
-    y: 0
+    x: 1115
+    y: 40
 
   padding:
     x: 20
@@ -45,7 +45,7 @@ font:
     family: Hack Nerd Font Mono
     style: Bold Italic
 
-  size: 11.0
+  size: 14.0
 
   offset:
     x: 0

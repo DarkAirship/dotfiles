@@ -16,31 +16,28 @@ bspc config focused_border_color    '#ebcb8b'
 bspc config presel_feedback_color   '#5e81ac'
 bspc config urgent_border_color     '#bf616a'
 
-## Set wallpaper
-feh --bg-fill --no-fehbg -rz /usr/share/backgrounds/
-
 ## Add rules
 ## but first clear all existing ones
 bspc rule -r '*'
 
 ## Fullscreen applications
-bspc rule -a org.remmina.Remmina state=fullscreen
+bspc rule -a org.remmina.Remmina state=floating
 
 ## Floating applications
-bspc rule -a yakuake state=floating
-bspc rule -a Xfce4-terminal state=floating
+bspc rule -a Zoiper5 state=floating
 
 ## Tiled applications
 #bspc rule -a Xfce4-settings-manager state=tiled
 
 ## Pin applications to workspaces
 bspc rule -a Brave-browser desktop='^1' follow=on
-bspc rule -a firefox desktop='^1' follow=on
 bspc rule -a Alacritty desktop='^2' follow=on
 bspc rule -a TelegramDesktop desktop='^3' follow=on
 bspc rule -a Skype desktop='^3' follow=on
+bspc rule -a Zoiper5 desktop='^3'
 bspc rule -a Thunar desktop='^4' follow=on
 bspc rule -a org.remmina.Remmina desktop='^5' follow=on
+bspc rule -a Steam desktop='^6' follow=on
 
 ## Lock applications to a certain size
 #bspc rule -a Xfce4-terminal state=floating rectangle=900x500+1005+52
@@ -52,6 +49,8 @@ bspc rule -a org.remmina.Remmina desktop='^5' follow=on
 ##Adjust new window: splits biggest windows to keep windows about the same size
 #bspc config external_rules_command ~/.config/bspwm/scripts/adjust-new-window
 
+## Set wallpaper
+feh --bg-fill --no-fehbg -rz /usr/share/backgrounds/
 
 ## Autostart applications
 ## Authentication daemon
@@ -61,7 +60,6 @@ bspc rule -a org.remmina.Remmina desktop='^5' follow=on
 numlockx on &
 
 ## Notifications daemon
-#/usr/lib/xfce4/notifyd/xfce4-notifyd &
 [[ $(pgrep -x dunst) ]] || dunst &
 
 ## Hotkey daemon
@@ -70,11 +68,11 @@ numlockx on &
 ## Picom
 [[ $(pgrep -x picom) ]] || picom &
 
-## Yakuake
-[[ $(pgrep -x yakuake) ]] || yakuake &
-
 ## Redshift
 [[ $(pgrep -x redshift) ]] || redshift &
+
+## Flameshot
+[[ $(pgrep -x flameshot) ]] || flameshot &
 
 ## Polybar
 ~/.config/polybar/launch.sh

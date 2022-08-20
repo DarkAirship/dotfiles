@@ -63,6 +63,9 @@ set spelllang=en_us,en_gb,ru_yo
 "" Use system clipboard
 set clipboard+=unnamedplus
 
+"" Let's try to get italics in markdown
+let g:nord_italic = 1
+
 " }}}
 " Visual settings {{{
 
