@@ -35,6 +35,7 @@ alias news='newsboat'
 alias please='sudo'
 alias fehbg='feh --bg-fill -r -z --no-fehbg /usr/share/backgrounds/'
 alias py='python'
+alias btc='bluetoothctl'
 
 ## VPN management
 alias city='curl ipinfo.io/city'
@@ -46,8 +47,8 @@ alias wgdown='sudo wg-quick down dark 2>/dev/null'
 ## Remote work access
 #alias trasko='sudo wg-quick up trasko 2>/dev/null'
 #alias untrasko='sudo wg-quick down trasko 2>/dev/null'
-alias trasko='nmcli connection up trasko 1>/dev/null'
-alias untrasko='nmcli connection down trasko 1>/dev/null'
+alias trasko='nmcli connection up trasko 1>/dev/null 2>&1'
+alias untrasko='nmcli connection down trasko 1>/dev/null 2>&1'
 
 ## Quickly kill apps
 alias ks='pkill skypeforlinux'
@@ -56,6 +57,8 @@ alias kz='pkill zoiper'
 ## Headphones management
 alias hphones='bluetoothctl -- connect CC:98:8B:E3:1D:4E'
 alias unhphones='bluetoothctl -- disconnect CC:98:8B:E3:1D:4E'
+alias ystaysh='bluetoothctl -- connect CC:4B:73:25:97:77'
+alias unstaysh='bluetoothctl -- disconnect CC:4B:73:25:97:77'
 
 ## Fast configuration edits
 alias vb='nvim ~/.config/bash/.bashrc'
@@ -104,7 +107,7 @@ alias merge='xrdb -merge /home/semyon/.config/X11/xresources'
 alias clean='clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
 
 ## Aliases for software managment
-alias update='sudo pacman -Syyu'
+alias update='sudo pacman -Syyu --noconfirm'
 alias paruskip='paru -S --mflags --skipinteg'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 

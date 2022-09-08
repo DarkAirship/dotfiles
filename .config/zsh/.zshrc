@@ -39,10 +39,9 @@ precmd () { vcs_info }
 isReadOnly() { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo " " }
 
 ## The prompt itself
-## nice options ﬄﲸ
 [[ $EUID -eq 0 ]] \
-    && PS1='%F{red}ROOT %F{cyan}%1~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})%f ' \
-    || PS1='%F{cyan}%1~%F{red}$(isReadOnly)%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})ﲸ%f '
+    && PS1='%F{red}[root] %F{cyan}%1~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})ﬄ%f ' \
+    || PS1='%F{cyan}%1~%F{red}$(isReadOnly)%f${vcs_info_msg_0_} %(?.%F{green}.%F{red})ﬄ%f '
 
 ## Setting up vi mode
 ## source https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
@@ -87,7 +86,8 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey "^?" backward-delete-char
 
 ## Archwiki says it makes Xterm trasnparent
-[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
+[[ -n "$XTERM_VERSION" ]] && [[ $EUID -ne 0 ]] \
+    && transset-df --id "$WINDOWID" >/dev/null
 
 # Add plugins
 ## Syntax highlighting
@@ -96,3 +96,6 @@ bindkey "^?" backward-delete-char
 ## Auto suggestions
 . ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#a5abb6"
+
+## Useless beautification
+pfetch

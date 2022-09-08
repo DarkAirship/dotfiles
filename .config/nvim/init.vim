@@ -169,6 +169,12 @@ augroup sxhkd_reload
     autocmd BufWritePost *sxhkdrc :! pkill -USR1 -x sxhkd
 augroup END
 
+" Auto-reload dunst after writing config
+augroup dunst_reload
+    autocmd!
+    autocmd BufWritePost *dunstrc :! pkill dunst && dunst &
+augroup END
+
 " }}}
 " Autocorrections {{{
 
@@ -482,7 +488,7 @@ augroup journal
     "autocmd BufRead 2022.md Goyo
 
     "" Upload journal
-    autocmd BufWritePost 2022.md execute ":! ~/.local/bin/dup"
+    autocmd BufWritePost 2022.md execute ":! ~/.local/bin/dup.sh"
 augroup END
 " }}}
 " LaTeX filetype settings {{{

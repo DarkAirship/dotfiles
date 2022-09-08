@@ -30,19 +30,19 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: Hack Nerd Font Mono
-    style: Book
+    family: NotoMono Nerd Font
+    style: Regular
 
   bold:
-    family: Hack Nerd Font Mono
+    family: NotoMono Nerd Font
     style: Bold
 
   italic:
-    family: Hack Nerd Font Mono
+    family: Hack Nerd Font
     style: Italic
 
   bold_italic:
-    family: Hack Nerd Font Mono
+    family: Hack Nerd Font
     style: Bold Italic
 
   size: 14.0
@@ -140,8 +140,8 @@ live_config_reload: true
 
 
 # Shell
-#shell:
-#  program: /bin/bash
+shell:
+  program: /bin/fish
 #  args:
 #    - --login
 

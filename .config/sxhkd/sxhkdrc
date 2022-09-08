@@ -43,29 +43,29 @@ XF86MonBrightnessDown
 F1
         $BROWSER wiki.archlinux.org
 
-## Terminal (cannot have TOO many of these)
+## Remote work
 F2
-        $TERMINAL
+        gowork.sh
 
-## Browser
+## Terminal (cannot have TOO many of them)
 F3
-        telegram-desktop
+        xterm
 
 ## File manager
 F4
         thunar
 
-## Remote work
-F5
-        gowork
-
 ## Steam
-F6
+F5
         steam
+
+## Telegram
+F6
+        telegram-desktop
 
 ## Journal
 F7
-        $TERMINAL -e md
+        $TERMINAL -e md.sh
 
 ## Turn off screen
 F8
@@ -77,7 +77,7 @@ F9
 
 ## Passmenu
 F10
-        passmenu -fn 'NotoMonoRegular:bold:pixelsize=22'
+        passmenu -fn 'NotoMono Nerd Font:bold:pixelsize=24'
 
 ## Browser
 F11
@@ -107,7 +107,7 @@ alt + Escape
 
 ## Dmenu
 alt + d
-        dmenu_run -fn 'NotoMonoRegular:bold:pixelsize=22'
+        dmenu_run -fn 'NotoMono Nerd Font:bold:pixelsize=24'
 
 
 ######## RELOADERS ########
@@ -138,10 +138,6 @@ ctrl + shift + p
 
 ######## SOME USEFUL SHORTCUTS ########
 
-## Appfinder
-#alt + a
-#        xfce4-appfinder
-
 ## Logout
 ctrl + super + Delete
         archlinux-logout
@@ -151,8 +147,17 @@ alt + super + Delete
         bspc quit
 
 ## Change wallpaper
-super + w
-        feh --bg-fill -rz --no-fehbg /usr/share/backgrounds/
+## Fantasy option
+super + f
+        feh --bg-fill -rz --no-fehbg ~/pictures/backgrounds/fantasy
+
+## Reality option
+super + r
+        feh --bg-fill -rz --no-fehbg ~/pictures/backgrounds/reality
+
+## Emoji selector
+alt + e
+        dmenuemoji.sh
 
 
 ######## BSPWM SETTINGS ########
@@ -178,16 +183,21 @@ alt + {_,shift + }{1-9,0}
         bspc {desktop -f,node -d} '^{1-9,10}'
 
 ## Focus the next/previous desktop in the current monitor
+## Two hands
 alt + bracket{left,right}
         bspc desktop -f {prev,next}.local
+
+## One hand
+alt + {_,shift +}Tab
+        bspc desktop -f {next,prev}
 
 ## Focus the last node
 alt + grave
         bspc node -f last
 
 ## Cycle through occupied workspaces
-alt + {_,shift +}Tab
-        bspc desktop -f {prev,next}.occupied
+alt + {x,z}
+        bspc desktop -f {next,prev}.local.occupied
 
 ## Focus the next/previous window in the current desktop
 alt + {_,shift + }c
