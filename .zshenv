@@ -3,6 +3,7 @@
 ## Path
 [[ -d $HOME/.bin ]] && PATH=$HOME/.bin:$PATH
 [[ -d $HOME/.local/bin ]] && PATH=$HOME/.local/bin:$PATH
+[[ -d $HOME/.local/bin/platform-tools ]] && PATH=$HOME/.local/bin/platform-tools:$PATH
 
 ## Set XDG variables
 export XDG_CONFIG_HOME=$HOME/.config

@@ -3,6 +3,11 @@
 ## Commands to run when interactive
 
 if status is-interactive
+## Add a greeting
+    function fish_greeting
+        pfetch
+    end
+
 ## Enable vim mode
     fish_vi_key_bindings
 
@@ -15,12 +20,14 @@ if status is-interactive
     set fish_cursor_insert      line    blink
     set fish_cursor_replace_one underscore blink
     set fish_cursor_visual      block   blink
+
 end
 
 
 ## Abbreviations
 ## Navigation
 abbr -a cd..    'cd ..'
+abbr -a cdpy    'cd ~/documents/python/'
 
 ## Short names for frequently used programs
 ## Pacman
@@ -35,7 +42,10 @@ abbr -a fm      'ranger'
 abbr -a mf      'ranger'
 
 ## Bluetoothctl
-abbr -a btc     'bluetoothctl'
+abbr -a bctl    'bluetoothctl'
+
+## Neofetch
+abbr -a nf      'neofetch'
 
 ## Wget
 abbr -a wget    'wget -c'
@@ -86,6 +96,7 @@ abbr -a downgrada   'sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/
 abbr -a merge       'xrdb -merge /home/semyon/.config/X11/xresources'
 abbr -a sysfailed   'systemctl list-units --failed'
 abbr -a ssn         'sudo shutdown now'
+abbr -a po          'poweroff'
 abbr -a sr          'sudo reboot'
 abbr -a unhblock    'hblock -S none -D none'
 abbr -a unlock      'sudo rm /var/lib/pacman/db.lck'
@@ -167,6 +178,3 @@ alias clean     'clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo
 ## Feh (it\'s a keybinding but let\'s have an alias anyway)
 alias fehbg     'feh --bg-fill -r -z --no-fehbg ~/pictures/backgrounds'
 
-
-## Useless beautification
-pfetch

@@ -60,8 +60,8 @@ F5
         steam
 
 ## Telegram
-F6
-        telegram-desktop
+#F6
+#        telegram-desktop
 
 ## Journal
 F7
@@ -158,6 +158,10 @@ super + r
 ## Emoji selector
 alt + e
         dmenuemoji.sh
+
+## Appfinder
+alt + a
+        xfce4-appfinder
 
 
 ######## BSPWM SETTINGS ########

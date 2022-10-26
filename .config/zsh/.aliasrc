@@ -35,7 +35,8 @@ alias news='newsboat'
 alias please='sudo'
 alias fehbg='feh --bg-fill -r -z --no-fehbg /usr/share/backgrounds/'
 alias py='python'
-alias btc='bluetoothctl'
+alias bctl='bluetoothctl'
+alias nf='neofetch'
 
 ## VPN management
 alias city='curl ipinfo.io/city'
