@@ -101,7 +101,7 @@ abbr -a sr          'sudo reboot'
 abbr -a unhblock    'hblock -S none -D none'
 abbr -a unlock      'sudo rm /var/lib/pacman/db.lck'
 abbr -a update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
-abbr -a unswap      'rm ~/.local/share/nvim/swap/*'
+abbr -a rmswap      'rm ~/.local/state/nvim/swap/*'
 abbr -a rmlogoutlock    'sudo rm /tmp/arcologout.lock'
 abbr -a rmpacmanlock    'sudo rm /var/lib/pacman/db.lck'
 
@@ -158,6 +158,7 @@ alias wgdown    'sudo wg-quick down dark 2>/dev/null'
 ## with l2tp
 alias trasko    'nmcli connection up trasko 1>/dev/null 2>&1'
 alias untrasko  'nmcli connection down trasko 1>/dev/null 2>&1'
+alias гтекфылщ  'nmcli connection down trasko 1>/dev/null 2>&1'
 
 ## For colorizing the output
 ## of ls

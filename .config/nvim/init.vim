@@ -484,11 +484,11 @@ augroup END
 
 augroup journal
     "" Edit journal when opened
-    autocmd BufRead 2022.md setlocal keymap=russian-jcukenwin
-    "autocmd BufRead 2022.md Goyo
+    autocmd BufRead 2023.md setlocal keymap=russian-jcukenwin
+    "autocmd BufRead 2023.md Goyo
 
     "" Upload journal
-    autocmd BufWritePost 2022.md execute ":! ~/.local/bin/dup.sh"
+    autocmd BufWritePost 2023.md execute ":! ~/.local/bin/dup.sh"
 augroup END
 " }}}
 " LaTeX filetype settings {{{

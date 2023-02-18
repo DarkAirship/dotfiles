@@ -36,6 +36,19 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
         xbacklight -dec 10
 
+## Open gmail, why not
+XF86Mail
+        $BROWSER gmail.com
+
+## These actually work in browsers
+#XF86HomePage
+#
+#XF86Favorites
+#
+#XF86Search
+#
+#XF86Reload
+
 
 ######## FUNCTION KEYS ########
 
@@ -60,8 +73,8 @@ F5
         steam
 
 ## Telegram
-#F6
-#        telegram-desktop
+F6
+        telegram-desktop
 
 ## Journal
 F7
@@ -87,12 +100,12 @@ F11
 F12
         tdrop -am -x 1204 -y 49 -w 700 -h 900 xterm
 
-## Screenshot
-Print
-        flameshot gui
-
 
 ######## ALWAYS NEED THESE ########
+
+## Quit bspwm (aka logout)
+alt + shift + Delete
+        bspc quit
 
 ## Terminal and file manager
 alt + {_,shift} + Return
@@ -101,13 +114,40 @@ alt + {_,shift} + Return
 alt + {_,shift} + KP_Enter
         {$TERMINAL,thunar}
 
+## Dmenu
+alt + d
+        dmenu_run -fn 'NotoMono Nerd Font:bold:pixelsize=24'
+
 ## Xkill
 alt + Escape
         xkill
 
-## Dmenu
-alt + d
-        dmenu_run -fn 'NotoMono Nerd Font:bold:pixelsize=24'
+
+######## SPAWNERS ########
+
+## Screenshot
+Print
+        flameshot gui
+
+## Skype
+alt + F6
+        skypeforlinux
+
+## Zoiper
+alt + shift + F6
+        zoiper
+
+## Logout
+alt + ctrl + Delete
+        archlinux-logout
+
+## Appfinder
+alt + a
+        xfce4-appfinder
+
+## Emoji selector
+alt + e
+        dmenuemoji.sh
 
 
 ######## RELOADERS ########
@@ -127,6 +167,10 @@ alt + shift + p
 
 ######## TOGGLES ########
 
+## Dunst toggle
+Pause
+        dunstctl set-paused toggle
+
 ## Picom Toggle
 ctrl + shift + o
         ~/.local/bin/picom-toggle.sh
@@ -135,33 +179,14 @@ ctrl + shift + o
 ctrl + shift + p
         polybar-msg cmd toggle
 
-
-######## SOME USEFUL SHORTCUTS ########
-
-## Logout
-ctrl + super + Delete
-        archlinux-logout
-
-## Quit bspwm (aka logout)
-alt + super + Delete
-        bspc quit
-
-## Change wallpaper
+## Wallpaper toggle
 ## Fantasy option
-super + f
+ctrl + shift + f
         feh --bg-fill -rz --no-fehbg ~/pictures/backgrounds/fantasy
 
 ## Reality option
-super + r
+ctrl + shift + r
         feh --bg-fill -rz --no-fehbg ~/pictures/backgrounds/reality
-
-## Emoji selector
-alt + e
-        dmenuemoji.sh
-
-## Appfinder
-alt + a
-        xfce4-appfinder
 
 
 ######## BSPWM SETTINGS ########
@@ -200,11 +225,15 @@ alt + grave
         bspc node -f last
 
 ## Cycle through occupied workspaces
-alt + {x,z}
-        bspc desktop -f {next,prev}.local.occupied
+#alt + {x,z}
+#        bspc desktop -f {next,prev}.local.occupied
+
+## Quick jumps between specific workspaces (for work)
+alt + {z,x,c}
+        bspc desktop -f {1,2,6}
 
 ## Focus the next/previous window in the current desktop
-alt + {_,shift + }c
+alt + {_,shift + }n
         bspc node -f {next,prev}.local.!hidden.window
 
 ## Focus/swap the node in the given direction
