@@ -5,7 +5,7 @@
 if status is-interactive
 ## Add a greeting
     function fish_greeting
-        pfetch
+#        pfetch
     end
 
 ## Enable vim mode
@@ -23,16 +23,55 @@ if status is-interactive
 
 end
 
+#### ARCH SPECIFIC
+## Abbreviations
+## Short names for frequently used programs
+## Pacman
+#abbr -a pac     'sudo pacman'
 
+## System information
+#abbr -a big     'expac -H M "%m\t%n" | sort -h | nl'
+
+## System management
+#abbr -a downgrada       'sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/'
+#abbr -a rmlogoutlock    'sudo rm /tmp/arcologout.lock'
+#abbr -a rmpacmanlock    'sudo rm /var/lib/pacman/db.lck'
+#abbr -a unlock          'sudo rm /var/lib/pacman/db.lck'
+
+## Reading logs with bat
+#abbr -a lpacman 'bat /var/log/pacman.log'
+
+
+## Aliases
+## For getting fastest mirrors
+#alias mirror    'sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
+#alias mirrors   'sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist'
+#alias ram       'rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
+
+## For software managment
+#alias update    'sudo pacman -Syyu --noconfirm'
+#alias cleanup   'sudo pacman -Rns $(pacman -Qtdq)'
+#alias paruskip  'paru -S --mflags --skipinteg'
+
+
+#### FEDORA SPECIFIC
+## Abbreviations
+## Short names for frequently used programs
+## dnf
+abbr -a dnf      'sudo dnf'
+
+## For software managment
+abbr -a update   'sudo dnf update -y'
+
+
+## GENERAL
 ## Abbreviations
 ## Navigation
 abbr -a cd..    'cd ..'
 abbr -a cdpy    'cd ~/documents/python/'
+abbr -a scripts 'cd ~/.local/bin/'
 
 ## Short names for frequently used programs
-## Pacman
-abbr -a pac     'sudo pacman'
-
 ## Neovim
 abbr -a v       'nvim'
 abbr -a vim     'nvim --clean'
@@ -41,14 +80,12 @@ abbr -a vim     'nvim --clean'
 abbr -a fm      'ranger'
 abbr -a mf      'ranger'
 
-## Bluetoothctl
+## Bluetooth
 abbr -a bctl    'bluetoothctl'
+abbr -a rebt    'sudo systemctl restart bluetooth.service'
 
 ## Neofetch
 abbr -a nf      'neofetch'
-
-## Wget
-abbr -a wget    'wget -c'
 
 ## Transmission
 abbr -a tsd     'transmission-daemon'
@@ -79,7 +116,6 @@ abbr -a rf      'source ~/.config/fish/config.fish'
 abbr -a rz      'source $ZDOTDIR/.zshrc'
 
 ## System information
-abbr -a big     'expac -H M "%m\t%n" | sort -h | nl'
 abbr -a df      'df -h'
 abbr -a free    'free -mt'
 abbr -a jctl    'journalctl -p 3 -xb'
@@ -92,21 +128,16 @@ abbr -a microcode   'grep . /sys/devices/system/cpu/vulnerabilities/*'
 abbr -a userlist    'cut -d: -f1 /etc/passwd'
 
 ## System management
-abbr -a downgrada   'sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/'
 abbr -a merge       'xrdb -merge /home/semyon/.config/X11/xresources'
 abbr -a sysfailed   'systemctl list-units --failed'
 abbr -a ssn         'sudo shutdown now'
 abbr -a po          'poweroff'
 abbr -a sr          'sudo reboot'
 abbr -a unhblock    'hblock -S none -D none'
-abbr -a unlock      'sudo rm /var/lib/pacman/db.lck'
 abbr -a update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
 abbr -a rmswap      'rm ~/.local/state/nvim/swap/*'
-abbr -a rmlogoutlock    'sudo rm /tmp/arcologout.lock'
-abbr -a rmpacmanlock    'sudo rm /var/lib/pacman/db.lck'
 
 ## Reading logs with bat
-abbr -a lpacman 'bat /var/log/pacman.log'
 abbr -a lxorg   'bat /var/log/Xorg.0.log'
 abbr -a lxorgo  'bat /var/log/Xorg.0.log.old'
 
@@ -115,19 +146,24 @@ abbr -a lxorgo  'bat /var/log/Xorg.0.log.old'
 ## For fun
 alias please    'sudo'
 
+## For colorizing the output
+## of ls
+alias ls        'exa -x --group-directories-first'
+alias la        'exa -a --group-directories-first'
+alias ll        'exa -alh --git --group-directories-first --icons'
+alias l.        'exa -a --no-icons | rg "^\."'
+
+## of other programs
+alias grep      'grep --color=auto'
+alias ip        'ip -color=auto'
+alias rg        'rg --sort path --color=auto'
+
+## Flashy clear
+alias clean     'clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
+
 ## For managing dotfiles
 alias config    '/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
 alias comconf   'config commit -m $(date +%d.%m.%Y)'
-
-## For getting fastest mirrors
-alias mirror    'sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
-alias mirrors   'sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist'
-alias ram       'rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
-
-## For software managment
-alias update    'sudo pacman -Syyu --noconfirm'
-alias cleanup   'sudo pacman -Rns $(pacman -Qtdq)'
-alias paruskip  'paru -S --mflags --skipinteg'
 
 ## To switch between shells
 alias tobash    'sudo chsh $USER -s /bin/bash && echo "Now log out."'
@@ -145,10 +181,10 @@ alias genpass   'bw generate -lusn --length 14'
 
 ## For VPN management
 alias city      'curl ipinfo.io/city'
-alias rc        'sudo systemctl restart openvpn-client@nl.service'
-alias dc        'sudo systemctl stop openvpn-client@nl.service'
-alias wgup      'sudo wg-quick up dark 2>/dev/null'
-alias wgdown    'sudo wg-quick down dark 2>/dev/null'
+#alias rc        'sudo systemctl restart openvpn-client@nl.service'
+#alias dc        'sudo systemctl stop openvpn-client@nl.service'
+#alias wgup      'sudo wg-quick up dark 2>/dev/null'
+#alias wgdown    'sudo wg-quick down dark 2>/dev/null'
 
 ## For remote work access
 ## with wireguard
@@ -156,26 +192,12 @@ alias wgdown    'sudo wg-quick down dark 2>/dev/null'
 #alias untrasko 'sudo wg-quick down trasko 2>/dev/null'
 
 ## with l2tp
-alias trasko    'nmcli connection up trasko 1>/dev/null 2>&1'
-alias untrasko  'nmcli connection down trasko 1>/dev/null 2>&1'
-alias гтекфылщ  'nmcli connection down trasko 1>/dev/null 2>&1'
-
-## For colorizing the output
-## of ls
-alias ls        'exa -x --group-directories-first'
-alias la        'exa -a --group-directories-first'
-alias ll        'exa -alh --git --group-directories-first --icons'
-alias l.        'exa -a --no-icons | rg "^\."'
-
-## of other programs
-alias grep      'grep --color=auto'
-alias ip        'ip -color=auto'
-alias pacman    'pacman --color=auto'
-alias rg        'rg --sort path --color=auto'
-
-## Flashy clear
-alias clean     'clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
+#alias trasko    'nmcli connection up trasko 1>/dev/null 2>&1'
+#alias untrasko  'nmcli connection down trasko 1>/dev/null 2>&1'
+#alias гтекфылщ  'nmcli connection down trasko 1>/dev/null 2>&1'
 
 ## Feh (it\'s a keybinding but let\'s have an alias anyway)
-alias fehbg     'feh --bg-fill -r -z --no-fehbg ~/pictures/backgrounds'
+#alias fehbg    'feh --bg-fill -r -z --no-fehbg ~/pictures/backgrounds'
 
+## Wget
+alias wget      'wget -c --hsts-file="$XDG_CACHE_HOME/wget-hsts"'

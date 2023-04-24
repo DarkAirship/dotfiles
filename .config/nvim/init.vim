@@ -488,7 +488,7 @@ augroup journal
     "autocmd BufRead 2023.md Goyo
 
     "" Upload journal
-    autocmd BufWritePost 2023.md execute ":! ~/.local/bin/dup.sh"
+    autocmd BufWritePost 2023.md execute ":! ~/.local/bin/dup"
 augroup END
 " }}}
 " LaTeX filetype settings {{{

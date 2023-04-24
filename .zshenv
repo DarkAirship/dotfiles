@@ -16,7 +16,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 #PATH=/var/lib/flatpak/exports/bin:$PATH
 
 ## X11 path
-export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
+#export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
 
 ## Set environment variables
 export TERM="xterm-256color"
@@ -52,5 +52,6 @@ export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export ATOM_HOME="$XDG_DATA_HOME"/atom
 export KDEHOME="$XDG_CONFIG_HOME"/kde
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+#export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"

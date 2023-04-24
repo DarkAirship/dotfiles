@@ -92,11 +92,11 @@ bindkey "^?" backward-delete-char
 
 # Add plugins
 ## Syntax highlighting
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ## Auto suggestions
-. ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
+. /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#a5abb6"
 
 ## Useless beautification
-pfetch
+#pfetch
