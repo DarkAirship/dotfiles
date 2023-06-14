@@ -61,7 +61,7 @@ end
 abbr -a dnf      'sudo dnf'
 
 ## For software managment
-abbr -a update   'sudo dnf update -y'
+abbr -a update   'sudo dnf update --best --allowerasing'
 
 
 ## GENERAL
@@ -85,7 +85,7 @@ abbr -a bctl    'bluetoothctl'
 abbr -a rebt    'sudo systemctl restart bluetooth.service'
 
 ## Neofetch
-abbr -a nf      'neofetch'
+abbr -a nf      'fastfetch'
 
 ## Transmission
 abbr -a tsd     'transmission-daemon'

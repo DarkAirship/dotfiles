@@ -1,12 +1,12 @@
 # Window configuration
 window:
   dimensions:
-    columns: 100
+    columns: 97
     lines: 25
 
   position:
-    x: 420
-    y: 150
+    x: 400
+    y: 200
 
   padding:
     x: 20
