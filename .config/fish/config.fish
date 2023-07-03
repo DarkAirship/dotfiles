@@ -85,7 +85,7 @@ abbr -a bctl    'bluetoothctl'
 abbr -a rebt    'sudo systemctl restart bluetooth.service'
 
 ## Neofetch
-abbr -a nf      'fastfetch'
+abbr -a nf      'fastfetch --load-config neofetch'
 
 ## Transmission
 abbr -a tsd     'transmission-daemon'
