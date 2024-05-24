@@ -1,5 +1,4 @@
 #!/bin/fish
-
 ## Commands to run when interactive
 
 if status is-interactive
@@ -21,50 +20,19 @@ if status is-interactive
     set fish_cursor_replace_one underscore blink
     set fish_cursor_visual      block   blink
 
+## Setting up colors for man pages
+    set -gx LESS_TERMCAP_mb \e'[01;31m'
+    set -gx LESS_TERMCAP_md \e'[01;34m'
+    set -gx LESS_TERMCAP_so \e'[01;35;37m'
+    set -gx LESS_TERMCAP_us \e'[01;36m'
+    set -gx LESS_TERMCAP_me \e'[0m'
+    set -gx LESS_TERMCAP_se \e'[0m'
+    set -gx LESS_TERMCAP_ue \e'[0m'
 end
 
-#### ARCH SPECIFIC
-## Abbreviations
-## Short names for frequently used programs
-## Pacman
-#abbr -a pac     'sudo pacman'
 
-## System information
-#abbr -a big     'expac -H M "%m\t%n" | sort -h | nl'
+## GENERAL ABBREVIATIONS AND ALIASES
 
-## System management
-#abbr -a downgrada       'sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/'
-#abbr -a rmlogoutlock    'sudo rm /tmp/arcologout.lock'
-#abbr -a rmpacmanlock    'sudo rm /var/lib/pacman/db.lck'
-#abbr -a unlock          'sudo rm /var/lib/pacman/db.lck'
-
-## Reading logs with bat
-#abbr -a lpacman 'bat /var/log/pacman.log'
-
-
-## Aliases
-## For getting fastest mirrors
-#alias mirror    'sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
-#alias mirrors   'sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist'
-#alias ram       'rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
-
-## For software managment
-#alias update    'sudo pacman -Syyu --noconfirm'
-#alias cleanup   'sudo pacman -Rns $(pacman -Qtdq)'
-#alias paruskip  'paru -S --mflags --skipinteg'
-
-
-#### FEDORA SPECIFIC
-## Abbreviations
-## Short names for frequently used programs
-## dnf
-abbr -a dnf      'sudo dnf'
-
-## For software managment
-abbr -a update   'sudo dnf update --best --allowerasing'
-
-
-## GENERAL
 ## Abbreviations
 ## Navigation
 abbr -a cd..    'cd ..'
@@ -85,7 +53,7 @@ abbr -a bctl    'bluetoothctl'
 abbr -a rebt    'sudo systemctl restart bluetooth.service'
 
 ## Neofetch
-abbr -a nf      'fastfetch --load-config neofetch'
+abbr -a nf      'neofetch'
 
 ## Transmission
 abbr -a tsd     'transmission-daemon'
@@ -135,11 +103,7 @@ abbr -a po          'poweroff'
 abbr -a sr          'sudo reboot'
 abbr -a unhblock    'hblock -S none -D none'
 abbr -a update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
-abbr -a rmswap      'rm ~/.local/state/nvim/swap/*'
-
-## Reading logs with bat
-abbr -a lxorg   'bat /var/log/Xorg.0.log'
-abbr -a lxorgo  'bat /var/log/Xorg.0.log.old'
+abbr -a rmswap      'rm ~/.local/share/nvim/swap/*'
 
 
 ## Aliases
@@ -148,32 +112,39 @@ alias please    'sudo'
 
 ## For colorizing the output
 ## of ls
-alias ls        'exa -x --group-directories-first'
-alias la        'exa -a --group-directories-first'
-alias ll        'exa -alh --git --group-directories-first --icons'
-alias l.        'exa -a --no-icons | rg "^\."'
+alias ls        'eza --group-directories-first'
+alias la        'eza -a --group-directories-first'
+alias ll        'eza -alh --git --group-directories-first --icons'
+alias l.        'eza -a --no-icons | rg "^\."'
+
+#alias ls        'ls --group-directories-first'
+#alias la        'ls --almost-all --group-directories-first'
+#alias ll        'ls -alh --group-directories-first'
+#alias l.        'ls -a | rg "^\."'
 
 ## of other programs
 alias grep      'grep --color=auto'
 alias ip        'ip -color=auto'
 alias rg        'rg --sort path --color=auto'
+alias bat       'batcat'
 
 ## Flashy clear
 alias clean     'clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
 
 ## For managing dotfiles
-alias config    '/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
-alias comconf   'config commit -m $(date +%d.%m.%Y)'
+#alias config    '/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
+#alias comconf   'config commit -m $(date +%d.%m.%Y)'
 
 ## To switch between shells
 alias tobash    'sudo chsh $USER -s /bin/bash && echo "Now log out."'
 alias tozsh     'sudo chsh $USER -s /bin/zsh && echo "Now log out."'
+alias tofish    'sudo chsh $USER -s /bin/fish && echo "Now log out."'
 
 ## For headphones management
-alias hphones   'bluetoothctl -- connect CC:98:8B:E3:1D:4E'
-alias unhphones 'bluetoothctl -- disconnect CC:98:8B:E3:1D:4E'
-alias ysta      'bluetoothctl -- connect CC:4B:73:25:97:77'
-alias unysta    'bluetoothctl -- disconnect CC:4B:73:25:97:77'
+alias hphones   'bluetoothctl -- connect C8:7B:23:56:DE:4F'
+alias unhphones 'bluetoothctl -- disconnect C8:7B:23:56:DE:4F'
+alias ystaysh   'bluetoothctl -- connect CC:4B:73:25:97:77'
+alias unstaysh  'bluetoothctl -- disconnect CC:4B:73:25:97:77'
 
 ## For Bitwarden
 alias mypass    'bw get password'
@@ -186,18 +157,77 @@ alias city      'curl ipinfo.io/city'
 #alias wgup      'sudo wg-quick up dark 2>/dev/null'
 #alias wgdown    'sudo wg-quick down dark 2>/dev/null'
 
-## For remote work access
-## with wireguard
-#alias trasko   'sudo wg-quick up trasko 2>/dev/null'
-#alias untrasko 'sudo wg-quick down trasko 2>/dev/null'
-
-## with l2tp
-#alias trasko    'nmcli connection up trasko 1>/dev/null 2>&1'
-#alias untrasko  'nmcli connection down trasko 1>/dev/null 2>&1'
-#alias гтекфылщ  'nmcli connection down trasko 1>/dev/null 2>&1'
-
 ## Feh (it\'s a keybinding but let\'s have an alias anyway)
 #alias fehbg    'feh --bg-fill -r -z --no-fehbg ~/pictures/backgrounds'
 
 ## Wget
 alias wget      'wget -c --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+
+
+## DISTRO SPECIFIC ABBREVIATIONS AND ALIASES
+## Figure out what distro we are on and add abbreviations for that
+set distro "$(awk -F= '/^ID=/{print $2}' /etc/os-release)"
+switch $distro
+#### ARCH
+case arch
+    ## Abbreviations
+    ## Short names for frequently used programs
+    ## Pacman
+    abbr -a pac     'sudo pacman'
+
+    ## System information
+    abbr -a big     'expac -H M "%m\t%n" | sort -h | nl'
+
+    ## System management
+    abbr -a downgrada       'sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/'
+    abbr -a rmlogoutlock    'sudo rm /tmp/arcologout.lock'
+    abbr -a rmpacmanlock    'sudo rm /var/lib/pacman/db.lck'
+    abbr -a unlock          'sudo rm /var/lib/pacman/db.lck'
+
+    ## Reading logs with bat
+    abbr -a lpacman 'bat /var/log/pacman.log'
+
+
+    ## Aliases
+    ## For getting fastest mirrors
+    alias mirror    'sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist'
+    alias mirrors   'sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist'
+    alias ram       'rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
+
+    ## For software managment
+    alias update    'sudo pacman -Syyu --noconfirm'
+    alias cleanup   'sudo pacman -Rns $(pacman -Qtdq)'
+    alias paruskip  'paru -S --mflags --skipinteg'
+
+#### FEDORA
+case fedora
+    ## Abbreviations
+    ## Short names for frequently used programs
+    ## dnf
+    abbr -a dnf      'sudo dnf'
+
+    ## For software managment
+    abbr -a update   'sudo dnf update --best --allowerasing'
+
+    ## Aliases
+
+#### UBUNTU
+case ubuntu
+    ## Abbreviations
+    ## Short names for frequently used programs
+    ## apt
+    abbr -a apt     'sudo apt'
+
+    ## nala
+    abbr -a nala    'sudo nala'
+
+    ## For software managment
+    abbr -a update  'sudo nala upgrade -y'
+
+    ## Gimme back my firefox
+    abbr -a foxback 'sudo snap remove firefox && sudo apt install firefox -y'
+
+    ## Aliases
+
+end
+

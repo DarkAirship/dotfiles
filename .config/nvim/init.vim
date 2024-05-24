@@ -4,6 +4,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-fugitive'
@@ -65,6 +66,7 @@ set clipboard+=unnamedplus
 
 "" Let's try to get italics in markdown
 let g:nord_italic = 1
+let g:dracula_italic = 1
 
 " }}}
 " Visual settings {{{
@@ -484,11 +486,11 @@ augroup END
 
 augroup journal
     "" Edit journal when opened
-    autocmd BufRead 2023.md setlocal keymap=russian-jcukenwin
+    autocmd BufRead 2024.md setlocal keymap=russian-jcukenwin
     "autocmd BufRead 2023.md Goyo
 
     "" Upload journal
-    autocmd BufWritePost 2023.md execute ":! ~/.local/bin/dup"
+    autocmd BufWritePost 2024.md execute ":! ~/.local/bin/dup"
 augroup END
 " }}}
 " LaTeX filetype settings {{{
