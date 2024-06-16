@@ -103,7 +103,7 @@ abbr -a po          'poweroff'
 abbr -a sr          'sudo reboot'
 abbr -a unhblock    'hblock -S none -D none'
 abbr -a update-grub 'sudo grub-mkconfig -o /boot/grub/grub.cfg'
-abbr -a rmswap      'rm ~/.local/share/nvim/swap/*'
+abbr -a rmswap      'rm ~/.local/state/nvim/swap/*'
 
 
 ## Aliases

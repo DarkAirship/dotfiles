@@ -1,136 +1,204 @@
 #!/bin/sh
 ## Aliases (some of these come from ArcoLinux)
-## Colorizing
-alias ls='exa -x --group-directories-first'
-alias la='exa -a --group-directories-first'
-alias ll='exa -alh --git --group-directories-first --icons'
-alias l.='exa -a --no-icons | rg "^\."'
+## Colorizing the output
+## of ls
+alias ls='eza -x --group-directories-first'
+alias la='eza -a --group-directories-first'
+alias ll='eza -alh --git --group-directories-first --icons'
+alias l.='eza -a --no-icons | rg "^\."'
+
+## Uncomment when no eza
+#alias ls        'ls --group-directories-first'
+#alias la        'ls --almost-all --group-directories-first'
+#alias ll        'ls -alh --group-directories-first'
+#alias l.        'ls -a | rg "^\."'
+
+## of various greps
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias pacman='pacman --color=auto'
 alias rg='rg --sort path --color=auto'
+
+## of other programs
 alias ip='ip -color=auto'
+
+## Flashy clear
+alias clean='clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
 
 ## Navigation
 alias cd..='cd ..'
 alias -g ...='../..'
 alias -g ....='../../..'
 
+## System information
+alias df='df -h'
+alias free='free -mt'
+alias jctl='journalctl -p 3 -xb'
+alias hw='hwinfo --short'
+alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
+alias probe='sudo -E hw-probe -all -upload'
+alias psa='ps auxf'
+alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
+alias sysfailed='systemctl list-units --failed'
+alias userlist='cut -d: -f1 /etc/passwd'
+alias city='curl ipinfo.io/city'
+
+## System management
+alias po='poweroff'
+alias ssn='sudo shutdown now'
+alias sr='sudo reboot'
+alias unhblock='hblock -S none -D none'
+alias rmvimswap='rm ~/.local/state/nvim/swap/*'
+
+## Gpg (verify signature for isos)
+alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+
+## Switch between shells
+alias tobash='sudo chsh $USER -s /bin/bash && echo "Now log out."'
+alias tozsh='sudo chsh $USER -s /bin/zsh && echo "Now log out."'
+alias tofish='sudo chsh $USER -s /bin/fish && echo "Now log out."'
+
+## Fast configuration edits
+alias va='nvim ~/.config/alacritty/alacritty.toml'
+alias vb='nvim ~/.config/bash/.bashrc'
+alias vd='nvim ~/.config/dunst/dunstrc'
+alias vf='nvim ~/.config/fish/config.fish'
+alias vp='nvim ~/.config/polybar/config.ini'
+alias vv='nvim ~/.config/nvim/init.vim'
+alias vz='nvim ~/.config/zsh/.zshrc'
+alias vsa='nvim ~/.config/zsh/.aliasrc'
+alias vsx='nvim ~/.config/sxhkd/sxhkdrc'
+alias vwm='nvim ~/.config/bspwm/bspwmrc'
+
+## And one word reloaders
+alias rf='source ~/.config/fish/config.fish'
+alias rz='source $ZDOTDIR/.zshrc'
+
 ## Short names for frequently used programs
+## Fun (also Serenity)
+alias pls='sudo'
+
+## Neovim
 alias v='nvim'
 alias vim='nvim --clean'
-alias fm='ranger'
-alias mf='ranger'
-alias tsd='transmission-daemon'
-alias tsm='transmission-remote'
-alias watchtsm='watch transmission-remote -l'
-alias p='sudo pacman --color auto'
-alias mypass='bw get password'
-alias genpass='bw generate -lusn --length 14'
-alias wtrc='curl wttr.in/chelyabinsk'
-alias wtre='curl wttr.in/ekaterinburg'
-alias mail='aerc'
-alias news='newsboat'
-alias please='sudo'
-alias fehbg='feh --bg-fill -r -z --no-fehbg /usr/share/backgrounds/'
-alias py='python'
-alias bctl='bluetoothctl'
+
+## Neofetch
 alias nf='neofetch'
 
-## VPN management
-alias city='curl ipinfo.io/city'
-alias rc='sudo systemctl restart openvpn-client@nl.service'
-alias dc='sudo systemctl stop openvpn-client@nl.service'
-alias wgup='sudo wg-quick up dark 2>/dev/null'
-alias wgdown='sudo wg-quick down dark 2>/dev/null'
+## Ranger
+alias fm='ranger'
+alias mf='ranger'
 
-## Remote work access
-#alias trasko='sudo wg-quick up trasko 2>/dev/null'
-#alias untrasko='sudo wg-quick down trasko 2>/dev/null'
-alias trasko='nmcli connection up trasko 1>/dev/null 2>&1'
-alias untrasko='nmcli connection down trasko 1>/dev/null 2>&1'
+## Python
+alias py='python'
 
-## Quickly kill apps
-alias ks='pkill skypeforlinux'
-alias kz='pkill zoiper'
-
-## Headphones management
+## Bluetooth
+alias bctl='bluetoothctl'
+alias rebt='sudo systemctl restart bluetooth.service'
 alias hphones='bluetoothctl -- connect CC:98:8B:E3:1D:4E'
 alias unhphones='bluetoothctl -- disconnect CC:98:8B:E3:1D:4E'
 alias ystaysh='bluetoothctl -- connect CC:4B:73:25:97:77'
 alias unstaysh='bluetoothctl -- disconnect CC:4B:73:25:97:77'
 
-## Fast configuration edits
-alias vb='nvim ~/.config/bash/.bashrc'
-alias vz='nvim ~/.config/zsh/.zshrc'
-alias vsa='nvim ~/.config/zsh/.aliasrc'
-alias va='nvim ~/.config/alacritty/alacritty.yml'
-alias vv='nvim ~/.config/nvim/init.vim'
-alias vp='nvim ~/.config/polybar/config.ini'
-alias vd='nvim ~/.config/dunst/dunstrc'
-alias vsx='nvim ~/.config/sxhkd/sxhkdrc'
-alias vwm='nvim ~/.config/bspwm/bspwmrc'
+## Transmission
+alias tsd='transmission-daemon'
+alias tsm='transmission-remote'
+alias watchtsm='watch transmission-remote -l'
+
+## Weather info
+alias wtrc='curl wttr.in/chelyabinsk'
+alias wtre='curl wttr.in/ekaterinburg'
+
+## Bitwarden
+alias mypass='bw get password'
+alias genpass='bw generate -lusn --length 14'
+
+## Found this somewhere
+alias wget='wget -c'
+
+## Used thems before
+#alias mail='aerc'
+#alias news='newsboat'
+#alias fehbg='feh --bg-fill -r -z --no-fehbg /usr/share/backgrounds/'
 
 ## Alias for managing dotfiles
-alias config='/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
-alias comconf='config commit -m $(date +%d.%m.%Y)'
+#alias config='/usr/bin/git --git-dir=$HOME/.config/.dots/ --work-tree=$HOME'
+#alias comconf='config commit -m $(date +%d.%m.%Y)'
 
-## System information
-alias df='df -h'
-alias free='free -mt'
-alias psa='ps auxf'
-alias psgrep='ps aux | grep -v grep | grep -i -e VSZ -e'
-alias userlist='cut -d: -f1 /etc/passwd'
-alias hw='hwinfo --short'
-alias xd='ls /usr/share/xsessions'
+## VPN management (sadly useless)
+#alias rc='sudo systemctl restart openvpn-client@nl.service'
+#alias dc='sudo systemctl stop openvpn-client@nl.service'
+#alias wgup='sudo wg-quick up dark 2>/dev/null'
+#alias wgdown='sudo wg-quick down dark 2>/dev/null'
+## Remote work
+#alias trasko='sudo wg-quick up trasko 2>/dev/null'
+#alias untrasko='sudo wg-quick down trasko 2>/dev/null'
+#alias trasko='nmcli connection up trasko 1>/dev/null 2>&1'
+#alias untrasko='nmcli connection down trasko 1>/dev/null 2>&1'
 
-## System management
-alias probe='sudo -E hw-probe -all -upload'
-alias sysfailed='systemctl list-units --failed'
-alias jctl='journalctl -p 3 -xb'
-alias big='expac -H M "%m\t%n" | sort -h | nl'
-alias ssn='sudo shutdown now'
-alias sr='sudo reboot'
-alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
-alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias wget='wget -c'
-alias rz='. $ZDOTDIR/.zshrc'
-alias downgrada='sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/'
-alias unlock='sudo rm /var/lib/pacman/db.lck'
-alias rmpacmanlock='sudo rm /var/lib/pacman/db.lck'
-alias rmlogoutlock='sudo rm /tmp/arcologout.lock'
-alias rmvimswap='rm ~/.local/share/nvim/swap/*'
-alias unhblock='hblock -S none -D none'
-alias merge='xrdb -merge /home/semyon/.config/X11/xresources'
+## SESSION SPECIFIC ALIASES
+case "$XDG_SESSION_TYPE" in
+    x11)
+    alias xd='ls /usr/share/xsessions'
+    alias merge='xrdb -merge /home/semyon/.config/X11/xresources'
+    ;;
+    wayland)
+    ;;
+esac
 
-## Flashy clear
-alias clean='clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat; echo'
+## DISTRO SPECIFIC ALIASES
+distro="$(awk -F= '/^ID=/{print $2}' /etc/os-release)"
+case "$distro" in
+    arch)
+    ## Colorizing the output
+    ## of pacman
+    alias pac='sudo pacman --color auto'
 
-## Aliases for software managment
-alias update='sudo pacman -Syyu --noconfirm'
-alias paruskip='paru -S --mflags --skipinteg'
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+    ## System information
+    alias big='expac -H M "%m\t%n" | sort -h | nl'
 
-## Switch between bash and zsh
-alias tobash='sudo chsh $USER -s /bin/bash && echo "Now log out."'
-alias tozsh='sudo chsh $USER -s /bin/zsh && echo "Now log out."'
+    ## System management
+    ## Fixes
+    alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
+    alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
 
-## Get fastest mirrors in your neighborhood
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
-alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
+    ## Mirrors
+    alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+    alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
+    alias ram='rate-mirrors --allow-root arch | sudo tee /etc/pacman.d/mirrorlist'
 
-## Reading logs with bat
-alias lpacman="bat /var/log/pacman.log"
-alias lxorg="bat /var/log/Xorg.0.log"
-alias lxorgo="bat /var/log/Xorg.0.log.old"
+    ## Software managment
+    alias update='sudo pacman -Syyu --noconfirm'
+    alias paruskip='paru -S --mflags --skipinteg'
+    alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+    alias downgrada='sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/'
+    alias rmpacmanlock='sudo rm /var/lib/pacman/db.lck'
+    alias rmlogoutlock='sudo rm /tmp/arcologout.lock'
+    alias unlock='sudo rm /var/lib/pacman/db.lck'
 
-## Gpg
-## verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+    ## Reading logs with bat
+    alias lpacman="bat /var/log/pacman.log"
 
-## Fixes
-alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
-alias fixkeys="/usr/local/bin/arcolinux-fix-pacman-databases-and-keys"
+    ## Short names for frequently used programs
+    alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+    ;;
+
+    fedora)
+    ## Software managment
+    alias update='sudo dnf update --best --allowerasing'
+
+    ## Short names for frequently used programs
+    alias dnf='sudo dnf'
+    ;;
+
+    ubuntu)
+    ## Software managment
+    alias update='sudo nala upgrade -y'
+
+    ## Short names for frequently used programs
+    alias bat='batcat'
+    alias apt='sudo apt'
+    alias nala='sudo nala'
+    ;;
+esac
