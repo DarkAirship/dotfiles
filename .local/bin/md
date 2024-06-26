@@ -1,0 +1,15 @@
+#!/bin/bash
+
+JOURNAL=/home/semyon/Documents/journal/2024/2024.md
+
+echo '# '$(date +"%-e %B, %A, %R") >> $JOURNAL
+echo  >> $JOURNAL
+echo '*Уровень дня:' >> $JOURNAL
+
+for i in {1..10}
+do
+    echo >> $JOURNAL
+done
+
+#gnome-terminal -- nvim $JOURNAL
+alacritty -e nvim $JOURNAL

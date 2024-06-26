@@ -1,0 +1,6 @@
+#!/bin/bash
+pushd /home/semyon/Documents/journal
+git commit -am $(date +"%d.%m.%Y")
+git push
+popd
+
