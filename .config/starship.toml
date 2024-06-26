@@ -1,0 +1,17 @@
+# Prompt settings
+# Move the directory to the second line
+format = '$all$directory$character'
+add_newline = false
+
+# Directory settings
+[directory]
+read_only = ' '
+
+# Character settings
+[character]
+success_symbol = '[󰘅](bold green)'
+error_symbol = '[󰘅](bold red)'
+
+# Package settings
+#[package]
+#disabled = true

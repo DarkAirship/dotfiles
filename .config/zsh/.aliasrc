@@ -64,12 +64,14 @@ alias va='nvim ~/.config/alacritty/alacritty.toml'
 alias vb='nvim ~/.config/bash/.bashrc'
 alias vd='nvim ~/.config/dunst/dunstrc'
 alias vf='nvim ~/.config/fish/config.fish'
+alias vn='nvim ~/.config/nix/nix.conf'
 alias vp='nvim ~/.config/polybar/config.ini'
-alias vv='nvim ~/.config/nvim/init.vim'
-alias vz='nvim ~/.config/zsh/.zshrc'
+alias vs='nvim ~/.config/starship.toml'
 alias vsa='nvim ~/.config/zsh/.aliasrc'
 alias vsx='nvim ~/.config/sxhkd/sxhkdrc'
+alias vv='nvim ~/.config/nvim/init.vim'
 alias vwm='nvim ~/.config/bspwm/bspwmrc'
+alias vz='nvim ~/.config/zsh/.zshrc'
 
 ## And one word reloaders
 alias rf='source ~/.config/fish/config.fish'
@@ -150,6 +152,7 @@ esac
 ## DISTRO SPECIFIC ALIASES
 distro="$(awk -F= '/^ID=/{print $2}' /etc/os-release)"
 case "$distro" in
+    ## ARCH
     arch)
     ## Colorizing the output
     ## of pacman
@@ -184,6 +187,7 @@ case "$distro" in
     alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
     ;;
 
+    ## FEDORA
     fedora)
     ## Software managment
     alias update='sudo dnf update --best --allowerasing'
@@ -192,6 +196,7 @@ case "$distro" in
     alias dnf='sudo dnf'
     ;;
 
+    ## UBUNTU
     ubuntu)
     ## Software managment
     alias update='sudo nala upgrade -y'

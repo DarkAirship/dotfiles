@@ -28,21 +28,21 @@ zmodload zsh/complist
 
 ## Prompt settings
 ## Git integration
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '*'
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:*' formats ' %F{yellow}%b%f%u%c'
-precmd () { vcs_info }
-
-## Readonly alert
-isReadOnly() { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo " 🔒" }
-
-## The prompt itself
-[[ $EUID -eq 0 ]] \
-    && PS1=' %F{red}[root] %F{cyan}%1~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red}) %f ' \
-    || PS1=' %F{cyan}%1~%F{red}$(isReadOnly)%f${vcs_info_msg_0_} %(?.%F{green}.%F{red}) %f '
+#autoload -Uz vcs_info
+#zstyle ':vcs_info:*' check-for-changes true
+#zstyle ':vcs_info:*' unstagedstr '*'
+#zstyle ':vcs_info:*' stagedstr '+'
+#zstyle ':vcs_info:*' formats ' %F{yellow}%b%f%u%c'
+#precmd () { vcs_info }
 #
+### Readonly alert
+#isReadOnly() { [[ -r $PWD ]] && [[ ! -w $PWD ]] && echo " 🔒" }
+#
+### The prompt itself
+#[[ $EUID -eq 0 ]] \
+#    && PS1=' %F{red}[root] %F{cyan}%1~%f${vcs_info_msg_0_} %(?.%F{green}.%F{red}) %f ' \
+#    || PS1=' %F{cyan}%1~%F{red}$(isReadOnly)%f${vcs_info_msg_0_} %(?.%F{green}.%F{red}) %f '
+##
 
 ## Setting up vi mode
 ## source https://github.com/LukeSmithxyz/voidrice/blob/master/.config/zsh/.zshrc
@@ -100,3 +100,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#a5abb6"
 
 ## Useless beautification
 #pfetch
+
+# start zoxide
+eval "$(zoxide init zsh)"
+
+# start starship
+eval "$(starship init zsh)"
