@@ -233,6 +233,23 @@ nnoremap <Down>  :resize -2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 nnoremap <Left>  :vertical resize +2<CR>
 
+"" Change weird control+space behaviour
+nnoremap <silent> <C-Space> :<C-u>call <SID>ToggleInsertMode()<CR>
+
+function! s:ToggleInsertMode()
+    if &insertmode
+        set nopaste
+        "set nosmartindent
+        "set noexpandtab
+        "set filetype=
+    else
+        set paste
+        "set smartindent
+        "set expandtab
+    endif
+    exec "normal! i"
+endfunction
+
 "" Disable keys
 "nnoremap <Up> <Nop>
 "nnoremap <Down> <Nop>
@@ -270,6 +287,9 @@ inoremap {{ {
 "" insert a block of code by pressing Enter after a curly bracket
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+"" Remap Control+space to escape
+inoremap <silent> <C-Space> <Esc>
 
 "" Disable keys
 inoremap <Up> <Nop>
