@@ -68,3 +68,5 @@ case "$XDG_SESSION_TYPE" in
     export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
     ;;
 esac
+
+#dasfasdflkaj комментарийц
