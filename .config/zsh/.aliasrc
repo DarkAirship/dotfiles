@@ -133,6 +133,9 @@ alias wget='wget -c'
 #alias dc='sudo systemctl stop openvpn-client@nl.service'
 #alias wgup='sudo wg-quick up dark 2>/dev/null'
 #alias wgdown='sudo wg-quick down dark 2>/dev/null'
+alias vpnup='adguardvpn-cli connect -f'
+alias vpndown='adguardvpn-cli disconnect'
+
 ## Remote work
 #alias trasko='sudo wg-quick up trasko 2>/dev/null'
 #alias untrasko='sudo wg-quick down trasko 2>/dev/null'

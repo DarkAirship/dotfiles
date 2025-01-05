@@ -1,6 +1,7 @@
 #!/bin/bash
 
-JOURNAL=/home/semyon/Documents/journal/2024/2024.md
+YEAR=$(date +%Y)
+JOURNAL=/home/semyon/Documents/journal/$YEAR/$YEAR.md
 
 echo '# '$(date +"%-e %B, %A, %R") >> $JOURNAL
 echo  >> $JOURNAL
